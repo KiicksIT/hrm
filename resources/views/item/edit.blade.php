@@ -1,6 +1,6 @@
 @extends('template')
 @section('title')
-Item
+{{$ITEM_TITLE}}
 @stop
 @section('content')
 
@@ -8,7 +8,7 @@ Item
 <div class="panel panel-primary">
 
     <div class="panel-heading">
-        <h3 class="panel-title"><strong>Editing {{$item->product_id}} : {{$item->name}} </strong></h3>
+        <h3 class="panel-title"><strong>Editing {{$item->name}} </strong></h3>
     </div>
 
     <div class="panel-body">

@@ -47,6 +47,29 @@ get('/deal/data/{transaction_id}', 'DealController@getData');
 delete('/deal/data/{id}', 'DealController@destroyAjax');
 resource('deal', 'DealController');
 
+get('/campaign/data', 'CampaignController@getData');
+delete('/campaign/data/{id}', 'CampaignController@destroyAjax');
+resource('campaign', 'CampaignController');
+
+get('/scheduler/data1', 'SchedulerController@getData1');
+get('/scheduler/data2', 'SchedulerController@getData2');
+delete('/scheduler/data/{id}', 'SchedulerController@destroyAjax');
+resource('scheduler', 'SchedulerController');
+
+get('/market/data1', 'MarketController@getData1');
+get('/market/data2', 'MarketController@getData2');
+get('/market/data3', 'MarketController@getData3');
+get('/market/create/{choice}', 'MarketController@createDirect');
+delete('/market/data/{id}', 'MarketController@destroyAjax');
+resource('market', 'MarketController');
+
+get('/report', 'RptController@index');
+post('/report/person', 'RptController@generatePerson');
+post('/report/item', 'RptController@generateItem');
+post('/report/transaction', 'RptController@generateTransaction');
+post('/report/campaign', 'RptController@generateCampaign');
+
+
 get('/user/data', 'UserController@getData');
 delete('/user/data/{id}', 'UserController@destroyAjax');
 resource('user', 'UserController');

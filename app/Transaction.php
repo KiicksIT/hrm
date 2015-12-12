@@ -1,62 +1,25 @@
 <?php
 
 namespace App;
-// namespace MyApp\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
 class Transaction extends Model
 {
-    use \Venturecraft\Revisionable\RevisionableTrait;
-
-    public static function boot()
-    {
-        parent::boot();
-    }  
-
-    public function identifiableName()
-    {
-        return $this->title;
-    }  
-
-    protected $dontKeepRevisionOf = array(
-        'person_id'
-    );        
-
-    protected $revisionEnabled = true;
-
-    //Remove old revisions (works only when used with $historyLimit)
-    protected $revisionCleanup = true; 
-
-    //Maintain a maximum of 500 changes at any point of time, while cleaning up old revisions.
-    protected $historyLimit = 500; 
-
-    //storing new creation
-    protected $revisionCreationsEnabled = true;
-
-    //revision appear format name
-    protected $revisionFormattedFieldNames = array(
-        'delivery_date' => 'Delivery Date',
-        'transremark' => 'Comment',
-        'status' => 'Status',
-        'pay_status' => 'Payment',
-        'person_code'  => 'Customer',
-    );    
-
     protected $fillable=[
-        'total', 'delivery_date', 'status', 
-        'person_id', 'user_id', 'transremark',
-        'pay_status', 'person_code'
+        'amount', 'contract_start', 'contract_end', 
+        'person_id', 'transremark'
     ];
 
-    protected $dates =[
-        'created_at', 'delivery_date'
-    ];
-
-    public function setDeliveryDateAttribute($date)
+    public function setContractStartAttribute($date)
     {
-        $this->attributes['delivery_date'] = Carbon::parse($date);
+        $this->attributes['contract_start'] = Carbon::parse($date);
+    }
+
+    public function setContractEndAttribute($date)
+    {
+        $this->attributes['contract_end'] = Carbon::parse($date);
     }
 
     public function setTransremarkAttribute($value)
@@ -69,50 +32,40 @@ class Transaction extends Model
         return $this->belongsTo('App\Person');
     }
 
-    public function user()
+    public function items()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\Item')->withTimestamps();
     }
 
-    public function sale()
+ /*   public function user()
     {
-        return $this->hasOne('App\Sale');
+        return $this->belongsTo('App\User')->withTimestamps();
+    }*/
+
+    public function market()
+    {
+        return $this->hasOne('App\Market');
     }
 
-    public function deals()
+    public function getItemListAttribute()
     {
-        return $this->hasMany('App\Deal');
-    }    
+        return $this->items->lists('id')->all();
+    }
 
-    public function getCreatedAtAttribute($date)
+    public function getContractStartAttribute($date)
     {
         return Carbon::parse($date)->format('d-M-Y');
     }
 
-    public function getDeliveryDateAttribute($date)
+    public function getContractEndAttribute($date)
     {
-        if($date){
-
-            return Carbon::parse($date)->format('d-M-y');    
-
-        }else{
-
-            return null;
-        }
-        
+        return Carbon::parse($date)->format('d-M-y');
     }
 
-    /*public function getDates()
+    public function getCreatedAtAttribute($date)
     {
-         substitute your list of fields you want to be auto-converted to timestamps here: 
-        return array('created_at', 'updated_at', 'deleted_at', 'delivery_date');
-    }*/ 
-
-    //select field populate selected
-    /*public function getPersonIdAttribute()
-    {
-        return $this->person->lists('id')->all();
-    } */      
+        return Carbon::parse($date)->format('d-M-y');
+    }    
 
     /**
      * search and retrieve month data
@@ -128,17 +81,11 @@ class Transaction extends Model
         return $query->whereBetween('created_at',array($datefrom, $dateto));
     }
 
-    public function scopeSearchYearRange($query, $period)
+    public function scopeSearchYearRange($query, $year)
     {
-       if($period == 'this'){
 
-           return $query->whereBetween('created_at', array(Carbon::now()->startOfYear(), Carbon::now()->endOfYear()));
+        return $query->whereBetween('created_at', array(Carbon::parse('first day of January '.$year), Carbon::parse('last day of December '.$year)));
 
-       }else if($period == 'last'){
-
-           return $query->whereBetween('created_at', array(Carbon::now()->subYear()->startOfYear(), Carbon::now()->subYear()->endOfYear()));
-
-       }
     }
 
     public function scopeSearchMonthRange($query, $month)

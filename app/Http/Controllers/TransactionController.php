@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TransactionRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-// use Illuminate\Http\Response;
-use Venturecraft\Revisionable\Revision;
-use Response;
-use App;
-use DB;
+use Illuminate\Support\Facades\Mail;
+
 use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Transaction;
 use App\Item;
 use App\Person;
-use App\Price;
-use App\Deal;
 use Carbon\Carbon;
-use App\Profile;
-use Maatwebsite\Excel\Facades\Excel;
-use PDF;
+use Laracasts\Flash\Flash;
 
 class TransactionController extends Controller
 {
@@ -32,13 +23,6 @@ class TransactionController extends Controller
         $this->middleware('auth');
     }
 
-    public function getData()
-    {
-        $transactions =  Transaction::with(['person', 'user'])->get();
-
-        return $transactions;
-    }      
-
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +30,20 @@ class TransactionController extends Controller
      */
     public function index(Request $request)
     {
-        return view('transaction.index');
+        if($request->get('sortBy')){
+
+            $sortBy = $request->get('sortBy');
+
+
+            $transactions = Transaction::orderBy($sortBy, 'asc')->latest()->paginate(15);
+
+        }else{
+
+            $transactions = Transaction::latest()->paginate(15);
+
+        }
+
+        return view('transaction.index', compact('transactions'));
     }
 
     /**
@@ -54,19 +51,9 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $request->merge(array('status' => 'Pending'));
-
-        $request->merge(array('pay_status' => 'Owe'));
-
-        $input = $request->all();
-
-        $transaction = new Transaction($input);
-
-        Auth::user()->transactions()->save($transaction);
-
-        return Redirect::action('TransactionController@edit', $transaction->id);
+        return view('transaction.create');
     }
 
     /**
@@ -76,8 +63,39 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {       
 
+        $choice = $request->input('choice');
+
+        if($choice == 1){
+            
+            $request->merge(array('person_id' => $request->input('person')));
+
+        }elseif($choice == 2){
+
+            $person = Person::create($request->all());
+
+            $request->merge(array('person_id' => $person->id));
+
+        }
+
+        $transaction = Transaction::create($request->all());
+
+        $this->syncItems($transaction, $request);            
+
+        $this->sendNotification($request);
+
+        if($transaction){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }
+
+        return redirect('transaction');
     }
 
     /**
@@ -88,9 +106,7 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $transaction = Transaction::findOrFail($id);
-
-        return $transaction;
+        //
     }
 
     /**
@@ -113,42 +129,25 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TransactionRequest $request, $id)
+    public function update(Request $request, $id)
     {
-
-        if($request->input('save')){
-
-            $request->merge(array('status' => 'Pending'));
-
-        }elseif($request->input('pay')){
-
-            $request->merge(array('pay_status' => 'Paid'));
-
-        }else{
-
-            $request->merge(array('status' => 'Confirmed'));
-
-        }
-
-
         $transaction = Transaction::findOrFail($id);
-
-        $request->merge(array('person_id' => $request->input('person_copyid')));
-        // dd($request->input('person_id'));
-        // dd($request->input('person_copyid'));
 
         $transaction->update($request->all());
 
-        if($request->input('save')){
+        $this->syncItems($transaction, $request);
 
-            return redirect('transaction');
+        if($transaction){
+
+            Flash::success('Successfully Updated');
 
         }else{
 
-            return Redirect::action('TransactionController@edit', $transaction->id);
-
+            Flash::error('Please Try Again');
+            
         }
-        
+
+        return redirect('transaction');
     }
 
     /**
@@ -163,108 +162,25 @@ class TransactionController extends Controller
 
         $transaction->delete();
 
+        if($transaction){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+            
+        }     
+
         return redirect('transaction');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *transaction
-     * @param  int  $id
-     * @return json
-     */
-    public function destroyAjax($id)
-    {
-        $transaction = Transaction::findOrFail($id);
-
-        $transaction->delete();
-
-        return $transaction->id . 'has been successfully deleted';
-    }    
-
-    public function getCust($person_id)
-    {
-        $person =  Person::findOrFail($person_id);
-
-        return $person;
-    }
-
-    public function getItem($person_id)
-    {
-        return Item::whereHas('prices', function($query) use ($person_id){
-
-            $query->where('person_id', $person_id);
-
-        })->get();
-        //select(DB::raw("CONCAT(product_id,' - ',name,' - ',remark) AS full, id"))->lists('full', 'id');
-
-    }
-
-    public function getPrice($person_id, $item_id)
-    {
-
-        return Price::with('item')->where('person_id', $person_id)->where('item_id', $item_id)->first();
-
-    }
-
-    public function storeCust($trans_id, Request $request)
-    {
-        $input = $request->all();
-
-        $transaction = Transaction::findOrFail($trans_id);
-
-        //take the first value of the array
-        $transaction->person_id = reset($input);
-
-        $transaction->save();
-
-        return "Sucess updating transaction #" . $transaction->id;
-
-    }
-
-    public function storeCustcode($trans_id, Request $request)
-    {
-
-        $transaction = Transaction::findOrFail($trans_id);
-
-        //take the first value of the array
-        $transaction->person_code = $request->input('person_code');
-
-        $transaction->save();
-
-        return "Sucess updating transaction #" . $transaction->id;
-
-    }    
-
-    public function storeTotal($trans_id, Request $request)
-    {
-        $input = $request->all();
-
-        $transaction = Transaction::findOrFail($trans_id);
-
-        //take the first value of the array
-        $transaction->total = reset($input);
-
-        $transaction->save();
-
-        return "Sucess updating transaction #" . $transaction->id;
-
-    }    
-
-    private function syncTransaction(Request $request)
-    {
-        // dd(Auth::user()->toJson());
-        $transaction = Auth::user()->transactions()->create($request->all());
-
-        $this->syncItems($transaction, $request);
-
-    }
 
     private function syncItems($transaction, $request)
     {
         if ( ! $request->has('item_list'))
         {
             $transaction->items()->detach();
-
             return;
         }
 
@@ -282,56 +198,76 @@ class TransactionController extends Controller
         }
 
         $transaction->items()->sync($allItemsId);
-    } 
+    }  
 
-    public function generateInvoice($id)    
+    private function sendNotification($request)
     {
 
-        $transaction = Transaction::findOrFail($id);
+        if($request->input('reminder')){
 
-        $person = Person::findOrFail($transaction->person_id);
+            $expirySub = Carbon::createFromFormat('d-F-Y', $request->input('contract_end'))->subMonths(2);
 
-        $deals = Deal::whereTransactionId($transaction->id)->get();
+            $start = Carbon::now()->tomorrow()->startOfDay();
 
-        $totalprice = DB::table('deals')->whereTransactionId($transaction->id)->sum('amount');
+            $time = $start->diffInSeconds($expirySub, true);
 
-        $profile = Profile::firstOrFail();
+            $today = Carbon::now()->format('d-F-Y');
 
-        $data = [
-            'transaction'   =>  $transaction,
-            'person'        =>  $person,
-            'deals'         =>  $deals,
-            'totalprice'    =>  $totalprice,
-            'profile'       =>  $profile,
-        ];
+            $user = Auth::user()->email;
 
-        $name = 'Inv('.$transaction->id.')_'.Carbon::now()->format('dmYHis').'.pdf';
+            foreach($request->input('item_list') as $id){
 
-        $pdf = PDF::loadView('transaction.invoice', $data);
+                $item_list[] = Item::findOrFail($id)->name;
 
-        $pdf->setPaper('a4');
-        
-        return $pdf->download($name);
+            }
+
+            $item_list = implode(",", $item_list);
+
+            $person = Person::findOrFail($request->input('person_id'));
+
+            $data = array(
+
+                'name' => $person->name,
+
+                'nric' => $person->nric,
+
+                'contact' => $person->contact,
+
+                'contract_start' => $request->input('contract_start'),
+
+                'contract_end' => $request->input('contract_end'),
+
+                'transremark' => $request->input('transremark'),
+
+                'item_list' => $item_list,
+
+                'today' => $today
+
+            );            
+
+
+
+            if($expirySub > $start){
+
+              /*  Mail::later($time, 'email.reminder', $data, function ($message) use ($user)
+                {
+                    $message->from($user);
+                    $message->subject('Contract Expiry Reminder for ['.\Carbon\Carbon::now()->format('d-F-Y').']');
+                    $message->setTo($user);
+                });*/ 
+
+                // testing
+                Mail::send( 'email.reminder', $data, function ($message) use ($user)
+                {
+                    $message->from($user);
+
+                    $message->subject('Contract Expiry Reminder for ['.\Carbon\Carbon::now()->format('d-F-Y').']');
+
+                    $message->setTo($user);
+                });                 
+
+            }  
+        }         
 
     }  
-    
-    public function generateLogs($id)
-    {
-        $transaction = Transaction::findOrFail($id);
-
-        // $transaction = $transaction->with('deals')
-
-       
-        $transHistory = $transaction->revisionHistory;
-
-        // dd($transHistory->toJson());
-
-        /*$revisionDeal = Revision::whereRevisionableType('App\Deal')->with(array('deals' => function($query) use ($id){
-                            $query->where('transaction_id', $id);
-                        }))->get();
-        $revisions = Revision::all();
-        dd($revisionDeal->toJson());*/
-
-        return view('transaction.log', compact('transaction', 'transHistory'));  
-    }       
 }

@@ -14,7 +14,9 @@
     <div class="panel-body">
         {!! Form::model($transaction = new \App\Transaction, ['action'=>'TransactionController@store']) !!}
 
-            @include('transaction.form_test')
+            @include('transaction.form')
+
+            @include('transaction.form_person')
 
             <div class="col-md-12">
                 <div class="form-group pull-right" style="padding: 30px 190px 0px 0px;">

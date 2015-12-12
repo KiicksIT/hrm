@@ -33,60 +33,24 @@
                 <li class="{{ strpos(Request::path(), 'person') !== false ? 'active' : '' }}">
                     <a href="/person"><i class="fa fa-fw fa-users"></i> {{ $PERSON_TITLE }}</a>
                 </li>
-                {{-- <li>
-                    <a href="/sale"><i class="fa fa-fw fa-tasks"></i> Sales Pipeline</a>
-                </li> --}}
-                <li class="{{ strpos(Request::path(), 'item') !== false ? 'active' : '' }}">
-                    <a href="/item"><i class="fa fa-fw fa-shopping-cart"></i> Item</a>
-                </li>                
-
-                {{-- <li>
-                    <a href="/scheduler"><i class="fa fa-fw fa-clock-o"></i> To Do's</a>
-                </li>
-                <li>
-                    <a href="/report"><i class="fa fa-fw fa-file-text-o"></i> Report</a>
-                </li>
-                <li>
-                    <a href="/massemail"><i class="fa fa-fw fa-envelope-o"></i> Email</a>
-                </li>  --}}                                
-                {{-- <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                    </ul>
-                </li> --}}
-                {{-- <li>
-                    <a href="/setting"><i class="fa fa-fw fa-cog"></i> Resouces Definition</a>
-                </li> --}}                
-                {{-- <li>
-                    <a href="/person"><i class="fa fa-fw fa-briefcase"></i> {{ $PERSON_TITLE }}</a>
-                </li> --}}
-                <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
-                    <a href="/user"><i class="fa fa-fw fa-user"></i> User</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-
-        {{-- <div id="navbarCollapse" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="{{ strpos(Request::path(), 'transaction') !== false ? 'active' : '' }}">
-                    <a href="/transaction"><i class="fa fa-fw fa-credit-card"></i> Transaction</a>
-                </li>                
-                <li class="{{ strpos(Request::path(), 'person') !== false ? 'active' : '' }}">
-                    <a href="/person"><i class="fa fa-fw fa-users"></i> {{ $PERSON_TITLE }}</a>
+                <li class="{{ strpos(Request::path(), 'market') !== false ? 'active' : '' }}">
+                    <a href="/market"><i class="fa fa-fw fa-tasks"></i> Sales Pipeline</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'item') !== false ? 'active' : '' }}">
                     <a href="/item"><i class="fa fa-fw fa-shopping-cart"></i> Item</a>
-                </li>  
+                </li>                
                 <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
                     <a href="/user"><i class="fa fa-fw fa-user"></i> User</a>
                 </li>
+                <li class="{{ strpos(Request::path(), 'campaign') !== false ? 'active' : '' }}">
+                    <a href="/campaign"><i class="fa fa-fw fa fa-newspaper-o"></i> Event</a>
+                </li>
+                <li class="{{ strpos(Request::path(), 'scheduler') !== false ? 'active' : '' }}">
+                    <a href="/scheduler"><i class="fa fa-fw fa fa-clock-o"></i> To Do's</a>
+                </li> 
+                <li class="{{ strpos(Request::path(), 'report') !== false ? 'active' : '' }}">
+                    <a href="/report"><i class="fa fa-fw fa fa-file-text-o"></i> Report</a>
+                </li>                                                   
             </ul>
-        </div>  --}}        
+        </div>       
     </nav>

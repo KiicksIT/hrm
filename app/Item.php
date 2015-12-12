@@ -7,19 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     protected $fillable=[
-        'name', 'remark', 'unit',
-        'product_id'
+        'name', 'remark'
     ];
 
     public function transactions()
     {
         return $this->belongsToMany('App\Transaction');
-    }
-
-    public function prices()
-    {
-        return $this->hasMany('App\Price');
-    }    
+    }   
 
     public function deals()
     {

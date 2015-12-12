@@ -86,6 +86,11 @@ class User extends Model implements AuthenticatableContract,
     {
         $user_model = \Config::get('auth.model');
         return $user_model::find($this->user_id);
-    }            
+    } 
+
+    public function schedulers()
+    {
+        return $this->belongsToMany('App\Scheduler');
+    }               
 
 }

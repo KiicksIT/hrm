@@ -13,10 +13,10 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         Profile::create([
-            'name' => 'HAPPY ICE LOGISTIC PTE LTD',
-            'roc_no' => '201427642H',
-            'address' => '#04-125, TradeHub 21, 18 Boon Lay Way, Singapore 609966',
-            'contact' => '+65 6795 0881'
+            'name' => 'MAXSURE',
+            'roc_no' => '',
+            'address' => '',
+            'contact' => ''
         ]); 
     }
 }

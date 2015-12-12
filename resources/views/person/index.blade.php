@@ -5,7 +5,7 @@
 @section('content')
     
     <div class="row">        
-    <a class="title_hyper pull-left" href="/person"><h1>{{ $PERSON_TITLE }} <i class="fa fa-briefcase"></i></h1></a>
+    <a class="title_hyper pull-left" href="/person"><h1>{{ $PERSON_TITLE }} <i class="fa fa-users"></i></h1></a>
     </div>
     <div ng-app="app" ng-controller="personController">
 
@@ -24,6 +24,8 @@
                     </div>
 
                     <div class="pull-right">
+                        {{-- <input type="button" class="btn btn-primary" name="submit" value="Send Mail" ng-click="check(people)"/> --}}
+                        <a href="#" ng-click="check(people)" class="btn btn-primary"><i class="fa fa-envelope"></i></a>
                         <a href="/person/create" class="btn btn-success">+ New {{ $PERSON_TITLE }}</a>                        
                     </div>
                 </div>
@@ -31,16 +33,19 @@
 
             <div class="panel-body">
                 <div style="padding-bottom: 10px">
-                    <label for="search_name" class="search">Search ID:</label>
-                    <input type="text" ng-model="search.cust_id">
-                    <label for="search_company" class="search" style="padding-left: 10px">Company:</label>
-                    <input type="text" ng-model="search.company">
-                    <label for="search_contact" class="search" style="padding-left: 10px">Contact:</label>
+                    <label for="search_name" class="search">Search Name:</label>
+                    <input type="text" ng-model="search.name">
+                    <label for="search_company" class="search" style="padding-left: 10px">Contact:</label>
                     <input type="text" ng-model="search.contact">
+                    <label for="search_contact" class="search" style="padding-left: 10px">Car Plate:</label>
+                    <input type="text" ng-model="search.carplate">
                 </div>
                 <div class="table-responsive">
                     <table class="table table-list-search table-hover table-bordered">
                         <tr style="background-color: #DDFDF8">
+                            <th class="col-md-1 text-center">
+                                {{-- <input type="checkbox" class="checkall" /> --}}
+                            </th>
                             <th class="col-md-1 text-center">
                                 #
                             </th>                    
@@ -48,23 +53,16 @@
                                 ID                           
                             </th>
                             <th class="col-md-2 text-center">
-                                <a href="#" ng-click="sortType = 'company'; sortReverse = !sortReverse">
-                                Company
-                                <span ng-show="sortType == 'company' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'company' && sortReverse" class="fa fa-caret-up"></span>
-                                </a>                            
-                            </th>
-                            <th class="col-md-2 text-center">
-                                <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                                Att. To
-                                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                                Name
                             </th>
                             <th class="col-md-2 text-center">
                                 Contact
-                            </th>                                                
-                             <th class="col-md-2 text-center">
-                                Delivery Add
+                            </th>  
+                            <th class="col-md-2 text-center">
+                                Email
+                            </th>                                                                            
+                             <th class="col-md-1 text-center">
+                                Car Plate
                             </th>
                              <th class="col-md-2 text-center">
                                 Action
@@ -73,17 +71,15 @@
 
                         <tbody>
                             <tr dir-paginate="person in people | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage"  current-page="currentPage" ng-controller="repeatController">
-                                <td class="col-md-1 text-center">@{{ number }} </td>
-                                <td class="col-md-1">@{{ person.cust_id }}</td>
-                                <td class="col-md-2">@{{ person.company }}</td>
-                                <td class="col-md-2">@{{ person.name }}</td>
-                                <td class="col-md-2">
-                                    @{{ person.contact }}
-                                    <span ng-show="person.alt_contact.length > 0">
-                                    / @{{ person.alt_contact }}
-                                    </span>
+                                <td class="col-md-1 text-center">
+                                    {!! Form::checkbox('name', '@{{person.id}}', false,  ['ng-model'=>"person.SELECTED", 'ng-true-value'=>"'Y'", 'ng-false-value'=>"'N'"]) !!}
                                 </td>
-                                <td class="col-md-2">@{{ person.del_address }}</td>
+                                <td class="col-md-1 text-center">@{{ number }} </td>
+                                <td class="col-md-1">@{{ person.id }}</td>
+                                <td class="col-md-2">@{{ person.name }}</td>
+                                <td class="col-md-2">@{{ person.contact }}</td>
+                                <td class="col-md-2">@{{ person.email }}</td>
+                                <td class="col-md-1">@{{ person.carplate }}</td>
                                 <td class="col-md-2 text-center">
                                     <a href="/person/@{{ person.id }}/edit" class="btn btn-sm btn-primary">Profile</a>
                                     <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(person.id)">Delete</button>

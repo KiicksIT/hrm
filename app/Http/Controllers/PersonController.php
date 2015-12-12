@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\StoreFile;
 use App\Price;
 use App\Transaction;
+use Laracasts\Flash\Flash;
 
 class PersonController extends Controller
 {
@@ -68,6 +69,16 @@ class PersonController extends Controller
 
         $person = Person::create($input);
 
+        if($person){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }        
+
         return redirect('person');
     }
 
@@ -121,6 +132,16 @@ class PersonController extends Controller
 
         $person->update($input);
 
+        if($person){
+
+            Flash::success('Successfully Updated');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }        
+
         return Redirect::action('PersonController@edit', $person->id);
     }
 
@@ -135,6 +156,16 @@ class PersonController extends Controller
         $person = Person::findOrFail($id);
 
         $person->delete();
+
+        if($person){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
 
         return redirect('person');
     }
@@ -151,6 +182,16 @@ class PersonController extends Controller
 
         $person->delete();
 
+        if($person){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
         return $person->name . 'has been successfully deleted';
     }
 
@@ -165,6 +206,16 @@ class PersonController extends Controller
         $file->move('person_asset/file', $name);
 
         $person->files()->create(['path' => "/person_asset/file/{$name}"]);
+
+        if($file){
+
+            Flash::success('Files Added');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
 
     }
 
@@ -183,11 +234,17 @@ class PersonController extends Controller
 
         if (!File::delete($path.$filename))
         {
+
+            Flash::error('Please Try Again');
+
             return Redirect::action('PersonController@edit', $file->person_id);
         }
         else
         {
             $file->delete();
+
+            Flash::success('Files Deleted');
+
             return Redirect::action('PersonController@edit', $file->person_id);
         }
     }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Item;
+use Laracasts\Flash\Flash;
 
 class ItemController extends Controller
 {
@@ -63,6 +64,16 @@ class ItemController extends Controller
 
         $item = Item::create($input);
 
+        if($item){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }        
+
         return redirect('item');
     }
 
@@ -108,6 +119,16 @@ class ItemController extends Controller
 
         $item->update($input);
 
+        if($item){
+
+            Flash::success('Successfully Updated');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
         return redirect('item');
     }
 
@@ -122,6 +143,16 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
 
         $item->delete();
+
+        if($item){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
 
         return redirect('item');
     }
@@ -138,6 +169,16 @@ class ItemController extends Controller
 
         $item->delete();
 
-        return $item->name . 'has been successfully deleted';
+        if($item){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
+        return $item->item_name . 'has been successfully deleted';
     }
 }

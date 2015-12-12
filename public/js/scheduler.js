@@ -1,20 +1,19 @@
-var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPagination', 'ui.select', 'ngSanitize']);
+var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPagination']);
 
-    function transController($scope, $http){
+    function schedulerController($scope, $http){
+
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 10;  
+        $scope.itemsPerPage = 10;         
 
         angular.element(document).ready(function () {
-
-            $http.get('/transaction/data').success(function(transactions){
-                $scope.transactions = transactions;
-
-                $scope.optionStatus = [
-                    {name: 'All', value: ''}, 
-                    {name: 'Pending', value: 'Pending'},
-                    {name: 'Confirmed', value: 'Confirmed'}
-                ];        
+       
+            $http.get('/scheduler/data1').success(function(schedulers){
+            $scope.schedulers = schedulers;
             });
+
+            $http.get('/scheduler/data2').success(function(cschedulers){
+            $scope.cschedulers = cschedulers;
+            });            
 
             //delete record
             $scope.confirmDelete = function(id){
@@ -22,7 +21,7 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
                 if(isConfirmDelete){
                     $http({
                         method: 'DELETE',
-                        url: '/transaction/data/' + id
+                        url: '/scheduler/data/' + id
                     })
                     .success(function(data){
                         console.log(data);
@@ -45,5 +44,5 @@ function repeatController($scope) {
     })
 }    
 
-app.controller('transController', transController);
+app.controller('schedulerController', schedulerController);
 app.controller('repeatController', repeatController);

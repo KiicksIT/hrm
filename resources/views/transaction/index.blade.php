@@ -5,117 +5,89 @@
 @section('content')
     
     <div class="row">        
-    <a class="title_hyper pull-left" href="/transaction"><h1>{{ $TRANS_TITLE }} <i class="fa fa-briefcase"></i></h1></a>
+    <a class="title_hyper pull-left" href="/transaction"><h1>{{ $TRANS_TITLE }} <i class="fa fa-credit-card"></i></h1></a>
     </div>
-    <div ng-app="app" ng-controller="transController">
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-title">
-
-                    <div class="pull-left display_num">
-                        <label for="display_num">Display</label>
-                        <select ng-model="itemsPerPage" ng-init="itemsPerPage='10'">
-                          <option>10</option>
-                          <option>20</option>
-                          <option>30</option>
-                        </select>
-                        <label for="display_num2" style="padding-right: 20px">per Page</label>
-                    </div>
-
-                    <div class="pull-right">
-                        <a href="/transaction/create" class="btn btn-success">+ New {{ $TRANS_TITLE }}</a>                        
-                    </div>
-                </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="pull-right">
+                <a href="/transaction/create" class="btn btn-success">+ New {{ $TRANS_TITLE }}</a>                          
             </div>
-
-            <div class="panel-body">
-                <div style="padding-bottom: 10px">
-                    <label for="search_name" class="search">Search Inv:</label>
-                    <input type="text" ng-model="search.id">
-                    <label for="search_company" class="search" style="padding-left: 10px">Company:</label>
-                    <input type="text" ng-model="search.person.company">
-                    <label for="search_status" class="search" style="padding-left: 10px">Status:</label>
-                    <input type="text" ng-model="search.status">
-                    <label for="search_payment" class="search" style="padding-left: 10px">Payment:</label>
-                    <input type="text" ng-model="search.pay_status">                    
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-list-search table-hover table-bordered">
-                        <tr style="background-color: #DDFDF8">
-                            <th class="col-md-1 text-center">
-                                #
-                            </th>                    
-                            <th class="col-md-1 text-center">
-                                <a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
-                                Invoice No
-                                <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>                                                       
-                            </th>
-                            <th class="col-md-2 text-center">
-                                Company   
-                            </th>
-                             <th class="col-md-1 text-center">
-                                Payment
-                            </th>                         
-                            <th class="col-md-2 text-center">
-                                <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                                Delivery Date
-                                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-                            </th>
-                            <th class="col-md-1 text-center">
-                                <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">
-                                Status
-                                <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>                            
-                            </th>                                                
-                             <th class="col-md-2 text-center">
-                                <a href="#" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">                         
-                                Created On
-                                <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'created_at' && sortReverse" class="fa fa-caret-up"></span>                          
-                            </th>
-                             <th class="col-md-1 text-center">
-                                Created By
-                            </th>                        
-                             <th class="col-md-2 text-center">
-                                Action
-                            </th>                                                                                                
-                        </tr>
-
-                        <tbody>
-                            <tr dir-paginate="transaction in transactions | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage"  current-page="currentPage" ng-controller="repeatController">
-                                <td class="col-md-1 text-center">@{{ number }} </td>
-                                <td class="col-md-1 text-center">@{{ transaction.id }} </td>
-                                <td class="col-md-2 text-center">
-                                <a href="/person/@{{ transaction.person.id }}">
-                                @{{ transaction.person.company }}
-                                </a>
-                                </td>
-                                <td class="col-md-1 text-center">@{{ transaction.pay_status }}</td>
-                                <td class="col-md-2 text-center">@{{ transaction.delivery_date }}</td>
-                                <td class="col-md-1 text-center">@{{ transaction.status }}</td>
-                                <td class="col-md-1 text-center">@{{ transaction.created_at }}</td>
-                                <td class="col-md-1 text-center">@{{ transaction.user.name }}</td>
-                                <td class="col-md-2 text-center">
-                                        <a href="/transaction/@{{ transaction.id }}/edit" class="btn btn-sm btn-primary">Edit</a>
-                                        <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(transaction.id)">Delete</button>  
-                                </td>
-                            </tr>
-                            <tr ng-show="(transactions | filter:search).length == 0 || ! transactions.length">
-                                <td colspan="9" class="text-center">No Records Found</td>
-                            </tr>                         
-
-                        </tbody>
-                    </table>
-                </div>            
-            </div>
-                <div class="panel-footer">
-                      <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" class="pull-left"> </dir-pagination-controls>
-                      <label class="pull-right totalnum" for="totalnum">Showing @{{(transactions | filter:search).length}} of @{{transactions.length}} entries</label> 
-                </div>
         </div>
-    </div>  
-    <script src="/js/transaction_index.js"></script>  
+
+        <div class="panel-body">
+            {{-- Search elements --}}
+
+          {{--   <div class="col-md-12" style="padding-bottom: 10px">
+                <label for="search_name" class="col-md-2" style="padding-top:0px">Search Name:</label>
+                {!! Form::open(['method'=>'GET']) !!}
+                {!! Form::input('search', 'name', null, ['class'=>'col-md-2']) !!}
+                {!! Form::close() !!}
+                <label for="search_name" class="col-md-2" style="padding: 0px 0px 0px 20px">Contract End:</label>
+                {!! Form::open(['method'=>'GET']) !!}
+                {!! Form::input('search', 'contract_end', null, ['class'=>'col-md-2']) !!}
+                {!! Form::close() !!}                  
+            </div> --}}
+
+            <div class="table-responsive col-md-12">
+                <table class="table table-list-search table-hover table-bordered">
+                    <tr style="background-color: #DDFDF8">        
+                    <th class="col-md-1 text-center">#</th>
+                    <th class="col-md-3">{{ $ITEM_TITLE }} Purchased</th>
+                    <th class="col-md-2 text-center">Amount</th>
+                    <th class="col-md-2">Customer Name</th>
+                    <th class="col-md-1">{!! sort_person('created_at', 'Created On') !!}</th>
+                    <th class="col-md-1">{!! sort_person('contract_end', 'Contract End') !!}</th>
+                    <th class="col-md-2">Action</th>  
+                    </tr>
+                    <tbody>
+                        <?php $index = $transactions->firstItem(); ?>
+                        @unless(count($transactions)>0)
+                            <tr>
+                            <td colspan="7" class="text-center">No Records Found</td>
+                            </tr>
+                        @else
+                            @foreach($transactions as $transaction)
+                            <tr>
+                                <td class="col-md-1">{{ $index++ }}</td>
+                                <td class="col-md-3">
+                                    @foreach($transaction->items as $index2 => $item)
+                                    {{$item->name}}
+                                        @if($index2 + 1 != count($transaction->items))
+                                        ,
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td class="col-md-2 text-right">{{$transaction->amount}}</td>
+                                <td class="col-md-2">
+                                    <a href="/person/{{$transaction->person->id}}">
+                                    {{$transaction->person->name}}
+                                    </a>
+                                </td>
+                                <td class="col-md-1">{{$transaction->created_at}}</td>
+                                <td class="col-md-1">{{$transaction->contract_end}}</td>
+                                <td class="col-md-2">
+                                    <a href="/transaction/{{ $transaction->id }}/edit" class="btn btn-sm btn-primary col-md-4" style="margin-right:5px;">Edit</a>
+
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['TransactionController@destroy', $transaction->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                                        {!! Form::submit('Delete', ['class'=> 'btn btn-danger btn-sm col-md-5']) !!}
+                                    {!! Form::close() !!}                          
+                                </td>                             
+                            </tr>
+                            @endforeach
+                        @endunless
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            {!! $transactions->render() !!}
+
+            <label class="pull-right totalnum" for="totalnum">
+                Total of {{$transactions->total()}} entries
+            </label>
+        </div>
+    </div>
+ 
 @stop

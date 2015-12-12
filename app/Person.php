@@ -11,11 +11,9 @@ class Person extends Model
     use SoftDeletes;
 
         protected $fillable = [
-        'contact', 'alt_contact',
-        'email', 'name', 'cust_id',
-        'remark', 'area', 'postcode',
-        'company', 'bill_to', 'del_address',
-        'payterm', 'cost_rate'
+        'name', 'nric', 'carplate',
+        'email', 'contact', 'remark',
+        'address'
         ];
 
     /**
@@ -62,35 +60,21 @@ class Person extends Model
         return $this->hasMany('App\Transaction');
     }
 
-    public function area()
-    {
-        return $this->belongsTo('App\Area');
-    }
-
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function sale()
+    public function market()
     {
-        return $this->hasOne('App\Sale');
+        return $this->hasOne('App\Market');
     }
 
     public function files()
     {
         return $this->hasMany('App\StoreFile');
     }
-
-    public function payterm()
-    {
-        return $this->belongsTo('App\Payterm');
-    }
-
-    public function price()
-    {
-        return $this->hasOne('App\Price');
-    }    
+ 
 
     /**
      * search like name
@@ -121,11 +105,6 @@ class Person extends Model
     public function scopeSearchEmail($query, $email)
     {
         return $query->where('email', 'like', "%$email%");
-    }
-
-    public function scopeSearchArea($query, $area)
-    {
-        return $query->where('area','=', $area);
-    }         
+    }       
    
 }

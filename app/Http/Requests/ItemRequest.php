@@ -26,9 +26,7 @@ class ItemRequest extends Request
         $item = $this->route('item');
 
         return [
-            'product_id' => 'required|unique:items,product_id,'.$item,
             'name' => 'required|unique:items,name,'.$item,
-            'unit' => 'required',
         ];
     }
 }

@@ -24,17 +24,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Person::class, function (Faker\Generator $faker) {
     return [
-        'company' => $faker->company,
         'name' => $faker->name,
+        'nric' => $faker->text(8),
         'contact' => $faker->phoneNumber,
-        'office_no' => $faker->phoneNumber,
-        'fax_no' => $faker->phoneNumber,
-        'roc_no' => $faker->word,
-        'branch_code' => $faker->word,
         'address' => $faker->address,
-        'postcode' => $faker->postcode,
         'email' => $faker->email,
         'remark' => $faker->text(20),
+        'carplate' => $faker->text(8),
     ];
 });
 
@@ -43,5 +39,16 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
         'name' => $faker->name,
         'label' => $faker->name,
         'remark' => $faker->text(10),
+    ];
+});
+
+$factory->define(App\Market::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'contact' => $faker->phoneNumber,
+        'email' => $faker->email,
+        'subject' => $faker->text(8),
+        'status' => 'Lead',
+        'remark' => $faker->text(12),
     ];
 });

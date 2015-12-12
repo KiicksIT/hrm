@@ -10,6 +10,7 @@ use App\User;
 use App\Role;
 use App\Profile;
 use Auth;
+use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
@@ -79,6 +80,16 @@ class UserController extends Controller
 
         $this->syncRole($user, $request->input('role_list'));
 
+        if($user){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }        
+
         return redirect('user');
     }
 
@@ -128,9 +139,19 @@ class UserController extends Controller
 
         }
 
-        $user->update($input);
+        $user->update($input);        
 
         $this->syncRole($user, $request->input('role_list'));
+
+        if($user){
+
+            Flash::success('Successfully Updated');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
 
         return redirect('user');        
     }
@@ -147,6 +168,16 @@ class UserController extends Controller
 
         $user->delete();
 
+        if($user){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
         return redirect('user');
     }
 
@@ -161,6 +192,16 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $user->delete();
+
+        if($user){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
 
         return $user->name . 'has been successfully deleted';
     }

@@ -14,10 +14,8 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('product_id')->unique;
             $table->string('name')->unique();
             $table->text('remark')->nullable();
-            $table->string('unit');
             $table->timestamps();
         });
 
@@ -26,10 +24,13 @@ class CreateItemsTable extends Migration
             $table->foreign('item_id')->references('id')->on('items');
 
             $table->integer('transaction_id')->unsigned()->index();
-            $table->foreign('transaction_id')->references('id')->on('transactions');
+            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
 
             $table->timestamps();
-        });        
+        });  
+
+        $statement = "ALTER TABLE items AUTO_INCREMENT = 100001;";
+        DB::unprepared($statement);               
     }
 
     /**
