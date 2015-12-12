@@ -92,11 +92,13 @@ class PersonController extends Controller
     {
         $person = Person::findOrFail($id);
 
+        $transactions = Transaction::where('person_id', $id)->latest()->simplePaginate(10);
+
         $files = StoreFile::wherePersonId($id)->latest()->paginate(5);
 
         $prices = Price::wherePersonId($id)->oldest()->paginate(10);
 
-        return view('person.edit', compact('person', 'files', 'prices'));
+        return view('person.edit', compact('person', 'transactions', 'files', 'prices'));
     }
 
     /**
@@ -109,11 +111,13 @@ class PersonController extends Controller
     {
         $person = Person::findOrFail($id);
 
+        $transactions = Transaction::where('person_id', $id)->latest()->simplePaginate(10);
+
         $files = StoreFile::wherePersonId($id)->oldest()->paginate(5);
 
         $prices = Price::wherePersonId($id)->oldest()->paginate(10);
 
-        return view('person.edit', compact('person', 'files', 'prices'));
+        return view('person.edit', compact('person', 'transactions', 'files', 'prices'));
     }
 
     /**

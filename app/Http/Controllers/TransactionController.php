@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 use Auth;
 use App\Http\Requests;
@@ -53,8 +54,17 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        return view('transaction.create');
+        $person_id = '';
+
+        return view('transaction.create', compact('person_id'));
     }
+
+    public function createWPerson($id)
+    {
+        $person_id = $id;
+
+        return view('transaction.create', compact('person_id'));
+    }    
 
     /**
      * Store a newly created resource in storage.
@@ -67,16 +77,21 @@ class TransactionController extends Controller
 
         $choice = $request->input('choice');
 
-        if($choice == 1){
-            
-            $request->merge(array('person_id' => $request->input('person')));
+        $person_id = $request->input('person_id');
 
-        }elseif($choice == 2){
+        if($person_id == ''){
 
-            $person = Person::create($request->all());
+            if($choice == 1){
+                
+                $request->merge(array('person_id' => $request->input('person')));
 
-            $request->merge(array('person_id' => $person->id));
+            }elseif($choice == 2){
 
+                $person = Person::create($request->all());
+
+                $request->merge(array('person_id' => $person->id));
+
+            }
         }
 
         $transaction = Transaction::create($request->all());
@@ -95,7 +110,15 @@ class TransactionController extends Controller
 
         }
 
-        return redirect('transaction');
+        if($person_id == ''){
+
+            return redirect('transaction');
+
+        }else{
+
+            return Redirect::action('PersonController@edit', $person_id);
+
+        }
     }
 
     /**
@@ -147,7 +170,7 @@ class TransactionController extends Controller
             
         }
 
-        return redirect('transaction');
+        return Redirect::action('PersonController@edit', $transaction->person_id);
     }
 
     /**
@@ -249,22 +272,26 @@ class TransactionController extends Controller
 
             if($expirySub > $start){
 
-              /*  Mail::later($time, 'email.reminder', $data, function ($message) use ($user)
+                Mail::later($time, 'email.reminder', $data, function ($message) use ($user)
                 {
                     $message->from($user);
                     $message->subject('Contract Expiry Reminder for ['.\Carbon\Carbon::now()->format('d-F-Y').']');
                     $message->setTo($user);
-                });*/ 
+                }); 
 
                 // testing
-                Mail::send( 'email.reminder', $data, function ($message) use ($user)
+               /* Mail::send( 'email.reminder', $data, function ($message) use ($user)
                 {
                     $message->from($user);
 
                     $message->subject('Contract Expiry Reminder for ['.\Carbon\Carbon::now()->format('d-F-Y').']');
 
                     $message->setTo($user);
-                });                 
+                });*/                 
+
+            }else{
+
+                Flash::error('Contract End to be Notified Less Than 2 Months from Today\'s Date');
 
             }  
         }         

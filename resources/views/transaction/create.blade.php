@@ -13,10 +13,12 @@
 
     <div class="panel-body">
         {!! Form::model($transaction = new \App\Transaction, ['action'=>'TransactionController@store']) !!}
-
+        {!! Form::text('person_id', $person_id, ['class'=>'hidden']) !!}
             @include('transaction.form')
 
-            @include('transaction.form_person')
+            @if($person_id == '')
+                @include('transaction.form_person')
+            @endif
 
             <div class="col-md-12">
                 <div class="form-group pull-right" style="padding: 30px 190px 0px 0px;">

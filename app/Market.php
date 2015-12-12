@@ -11,7 +11,8 @@ class Market extends Model
         'name', 'contact', 'appt_date',
         'subject', 'status', 'remark', 'email',
         'person_id', 'transaction_id',
-        'nric', 'address', 'carplate', 'amount', 'contract_start', 'contract_end', 'transremark'
+        'company', 'office_no', 'roc_no',
+        'address', 'amount', 'contract_start', 'contract_end', 'transremark', 'postcode'
     ];
 
     protected $dates = [

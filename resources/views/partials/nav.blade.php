@@ -37,7 +37,7 @@
                     <a href="/market"><i class="fa fa-fw fa-tasks"></i> Sales Pipeline</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'item') !== false ? 'active' : '' }}">
-                    <a href="/item"><i class="fa fa-fw fa-shopping-cart"></i> Item</a>
+                    <a href="/item"><i class="fa fa-fw fa-shopping-cart"></i> Product</a>
                 </li>                
                 <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
                     <a href="/user"><i class="fa fa-fw fa-user"></i> User</a>

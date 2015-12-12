@@ -27,9 +27,12 @@ class PersonRequest extends Request
 
         return [
             'name'=>'required|min:3',
-            'nric' => 'unique:people,nric,'.$person,
+            'company' => 'unique:people,company,'.$person,
+            'roc_no' => 'unique:people,roc_no,'.$person,
             'email'=>'email|unique:people,email,'.$person,
             'contact'=>array('regex:/^([0-9\s\-\+\(\)]*)$/'),
+            'office_no'=>array('regex:/^([0-9\s\-\+\(\)]*)$/'),
+            'postcode'=>'numeric',
         ];
     }
 }

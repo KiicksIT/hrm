@@ -10,12 +10,14 @@
                     {{ $records[] = $data->id }}
                         <tr>
                         <th>#</th>
+                        <th>Company</th>
+                        <th>ROC No</th>
                         <th>Name</th>
-                        <th>NRIC</th>
                         <th>Contact</th>
+                        <th>Office No</th>
                         <th>Email</th>
-                        <th>Car Plate</th>
                         <th>Address</th>
+                        <th>PostCode</th>
                         <th>Remark</th>
                         <th>Amount</th>
                         <th>Start Date</th>
@@ -29,12 +31,14 @@
                                 @if($data->id == $findid->id)
                                     <tr>
                                     <td>{{$counter ++}}</td>
+                                    <td>{{$item->person->company}}</td>
+                                    <td>{{$item->person->roc_no}}</td>
                                     <td>{{$item->person->name}}</td>
-                                    <td>{{$item->person->nric}}</td>
                                     <th>{{$item->person->contact}}</th>
+                                    <th>{{$item->person->office_no}}</th>
                                     <td>{{$item->person->email}}</td>
-                                    <td>{{$item->person->carplate}}</td>
                                     <td>{{$item->person->address}}</td>
+                                    <td>{{$item->person->postcode}}</td>
                                     <td>{{$item->person->remark}}</td>
                                     <td>{{$item->amount}}</td>
                                     <td>{{$item->contract_start}}</td>

@@ -61,7 +61,7 @@
                                 <td class="col-md-2 text-right">{{$transaction->amount}}</td>
                                 <td class="col-md-2">
                                     <a href="/person/{{$transaction->person->id}}">
-                                    {{$transaction->person->name}}
+                                    {{$transaction->person->company}} - {{$transaction->person->name}}
                                     </a>
                                 </td>
                                 <td class="col-md-1">{{$transaction->created_at}}</td>

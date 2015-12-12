@@ -27,9 +27,12 @@ class MarketRequest extends Request
 
         return [
             'name'=>'required|min:3',
+            'company'=>'unique:markets,company,'.$market,
+            'roc_no'=>'unique:markets,roc_no,'.$market,
             'contact'=>array('regex:/^([0-9\s\-\+\(\)]*)$/'),
+            'office_no'=>array('regex:/^([0-9\s\-\+\(\)]*)$/'),
             'email'=>'email|unique:markets,email,'.$market,
-            'nric' => 'unique:markets,nric,'.$market,
+            'postcode'=>'numeric',
         ];
     }
 }

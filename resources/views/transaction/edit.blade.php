@@ -9,7 +9,7 @@
 
     <div class="panel-heading">
         <h3 class="panel-title">
-            <strong>Editing {{$transaction->id}} : {{$transaction->person->name}} </strong>
+            <strong>Editing {{$transaction->id}} : {{$transaction->person->company}} - {{$transaction->person->name}} </strong>
         </h3>
     </div>
 

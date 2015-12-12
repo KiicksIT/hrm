@@ -14,6 +14,8 @@ class CreateMarketTable extends Migration
     {
         Schema::create('markets', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('company');
+
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('contact');
@@ -28,9 +30,10 @@ class CreateMarketTable extends Migration
             $table->foreign('transaction_id')->references('id')->on('transactions');            
 
             // temporary storage
-            $table->string('nric')->nullable();
+            $table->string('roc_no')->nullable();
+            $table->string('office_no')->nullable();
             $table->text('address')->nullable();
-            $table->string('carplate')->nullable();
+            $table->integer('postcode')->nullable();
             $table->decimal('amount', 10, 2)->nullable();
             $table->timestamp('contract_start')->nullable();
             $table->timestamp('contract_end')->nullable();

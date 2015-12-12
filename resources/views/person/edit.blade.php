@@ -8,7 +8,7 @@
 <div class="panel panel-primary">
 
     <div class="panel-heading">
-        <h3 class="panel-title"><strong>Profile for {{$person->cust_id}} : {{$person->company}} </strong></h3>
+        <h3 class="panel-title"><strong>Profile for {{$person->id}} : {{$person->company}} - {{$person->name}} </strong></h3>
     </div>
 
     <div class="panel-body">
@@ -31,11 +31,77 @@
             </div>
     </div>
 </div>
+{{-- second content --}}
 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+        <h3 class="panel-title pull-left" style="padding-top:5px"><strong>Transaction History for {{$person->id}} : {{$person->company}} - {{$person->name}} </strong></h3>
+            <div class="pull-right">
+                <a href="/transaction/create/{{$person->id}}" class="btn btn-md btn-success">+ New {{ $TRANS_TITLE }}</a>                          
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="table-responsive col-md-12">
+                <table class="table table-list-search table-hover table-bordered">
+                    <tr style="background-color: #DDFDF8">        
+                    <th class="col-md-1 text-center">#</th>
+                    <th class="col-md-3">{{ $ITEM_TITLE }} Purchased</th>
+                    <th class="col-md-2 text-center">Amount</th>
+                    <th class="col-md-1 text-center">Created On</th>
+                    <th class="col-md-1 text-center">Contract End</th>
+                    <th class="col-md-2">Action</th>  
+                    </tr>
+                    <tbody>
+                        <?php $index = $transactions->firstItem(); ?>
+                        @unless(count($transactions)>0)
+                            <tr>
+                            <td colspan="7" class="text-center">No Records Found</td>
+                            </tr>
+                        @else
+                            @foreach($transactions as $transaction)
+                            <tr>
+                                <td class="col-md-1 text-center">{{ $index++ }}</td>
+                                <td class="col-md-3">
+                                    @foreach($transaction->items as $index2 => $item)
+                                    {{$item->name}}
+                                        @if($index2 + 1 != count($transaction->items))
+                                        ,
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td class="col-md-2 text-right">{{$transaction->amount}}</td>
+                                <td class="col-md-2 text-center">{{$transaction->created_at}}</td>
+                                <td class="col-md-2 text-center">{{$transaction->contract_end}}</td>
+                                <td class="col-md-2">
+                                    <a href="/transaction/{{ $transaction->id }}/edit" class="btn btn-sm btn-primary col-md-4" style="margin-right:5px;">Edit</a>
+
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['TransactionController@destroy', $transaction->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                                        {!! Form::submit('Delete', ['class'=> 'btn btn-danger btn-sm col-md-5']) !!}
+                                    {!! Form::close() !!}                          
+                                </td>                             
+                            </tr>
+                            @endforeach
+                        @endunless
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            {!! $transactions->render() !!}
+
+            <label class="pull-right totalnum" for="totalnum">
+                Total of {{count($transactions)}} entries
+            </label>
+        </div>
+    </div>
+
+{{-- third content --}}
 <div class="panel panel-primary">
     <div class="panel-heading">
         <div class="panel-title">
-            <h3 class="panel-title"><strong>File : {{$person->company}}</strong></h3>
+            <h3 class="panel-title"><strong>File : {{$person->company}} - {{$person->name}}</strong></h3>
         </div>
     </div>
 

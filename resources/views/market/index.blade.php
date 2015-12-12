@@ -55,8 +55,10 @@
 
                         <div class="panel-body">
                             <div style="padding-bottom: 10px">
-                                <label for="search_name" class="search">Search Name:</label>
-                                <input type="text" ng-model="search.name">
+                                <label for="search_company" class="search">Search Company:</label>
+                                <input type="text" ng-model="search.company">
+                                <label for="search_name" class="search" style="padding-left: 10px">Name:</label>
+                                <input type="text" ng-model="search.name">                                
                                 <label for="search_company" class="search" style="padding-left: 10px">Subject:</label>
                                 <input type="text" ng-model="search.subject">
                                 <a href="#" ng-click="check1(markets1)" class="btn btn-primary pull-right"><i class="fa fa-envelope"></i></a>   
@@ -67,8 +69,11 @@
                                         <th></th>
                                         <th class="col-md-1 text-center">
                                             #
-                                        </th>                    
-                                        <th class="col-md-2 text-center">
+                                        </th> 
+                                        <th class="col-md-1 text-center">
+                                            Company
+                                        </th>                                                           
+                                        <th class="col-md-1 text-center">
                                             Name
                                         </th>
                                         <th class="col-md-1 text-center">
@@ -80,7 +85,7 @@
                                         <th class="col-md-2 text-center">
                                             Subject
                                         </th>
-                                        <th class="col-md-2 text-center">
+                                        <th class="col-md-1 text-center">
                                             <a href="#" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">
                                             Created On
                                             <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
@@ -97,11 +102,12 @@
                                             {!! Form::checkbox('name', '@{{market.id}}', false,  ['ng-model'=>"market.SELECTED1", 'ng-true-value'=>"'Y'", 'ng-false-value'=>"'N'"]) !!}                                                
                                             </td>
                                             <td class="col-md-1 text-center">@{{ number }} </td>
-                                            <td class="col-md-2">@{{ market.name }}</td>
+                                            <td class="col-md-1">@{{ market.company }}</td>
+                                            <td class="col-md-1">@{{ market.name }}</td>
                                             <td class="col-md-1">@{{ market.contact }}</td>
                                             <td class="col-md-1">@{{ market.email }}</td>
                                             <td class="col-md-2">@{{ market.subject }}</td>
-                                            <td class="col-md-2 text-center">@{{ market.created_at }}</td>
+                                            <td class="col-md-1 text-center">@{{ market.created_at }}</td>
                                             <td class="col-md-2 text-center">
                                                 <a href="/market/@{{ market.id }}" class="btn btn-success btn-sm">Convert</a>
                                                 <a href="/market/@{{ market.id }}/edit" class="btn btn-sm btn-primary">Edit</a>
@@ -156,8 +162,11 @@
                                         <th></th>
                                         <th class="col-md-1 text-center">
                                             #
-                                        </th>                    
-                                        <th class="col-md-2 text-center">
+                                        </th>
+                                        <th class="col-md-1 text-center">
+                                            Company
+                                        </th>                                                            
+                                        <th class="col-md-1 text-center">
                                             Name
                                         </th>
                                         <th class="col-md-1 text-center">
@@ -189,7 +198,8 @@
                                             {!! Form::checkbox('name', '@{{market.id}}', false,  ['ng-model'=>"market.SELECTED2", 'ng-true-value'=>"'Y'", 'ng-false-value'=>"'N'"]) !!}                                                 
                                             </td>
                                             <td class="col-md-1 text-center">@{{ number }} </td>
-                                            <td class="col-md-2">@{{ market.name }}</td>
+                                            <td class="col-md-1">@{{ market.company }}</td>
+                                            <td class="col-md-1">@{{ market.name }}</td>
                                             <td class="col-md-1">@{{ market.contact }}</td>
                                             <td class="col-md-2">@{{ market.subject }}</td>
                                             <td class="col-md-2">@{{ market.appt_date }}</td>
@@ -234,8 +244,10 @@
 
                         <div class="panel-body">
                             <div style="padding-bottom: 10px">
-                                <label for="search_name" class="search">Search Name:</label>
+                                <label for="search_company" class="search">Search Company:</label>
                                 <input type="text" ng-model="search.company">
+                                <label for="search_name" class="search" style="padding-left: 10px">Name:</label>
+                                <input type="text" ng-model="search.name">                                 
                                 <label for="search_company" class="search" style="padding-left: 10px">Subject:</label>
                                 <input type="text" ng-model="search.subject">                                
                             </div>
@@ -244,20 +256,23 @@
                                     <tr style="background-color: #DDFDF8">
                                         <th class="col-md-1 text-center">
                                             #
-                                        </th>                    
+                                        </th>
+                                        <th class="col-md-2 text-center">
+                                            Company
+                                        </th>                                                            
                                         <th class="col-md-2 text-center">
                                             Name
                                         </th>
                                         <th class="col-md-1 text-center">
                                             Contact
                                         </th>                                                                    
-                                        <th class="col-md-2 text-center">
+                                        <th class="col-md-1 text-center">
                                             Email                           
                                         </th>
                                         <th class="col-md-2 text-center">
                                             Subject
                                         </th>
-                                        <th class="col-md-2 text-center">
+                                        <th class="col-md-1 text-center">
                                             <a href="#" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">
                                             Created On
                                             <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
@@ -271,11 +286,12 @@
                                     <tbody>
                                         <tr dir-paginate="market in markets3 | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage3"  current-page="currentPage3" ng-controller="repeatController3" pagination-id="3">
                                             <td class="col-md-1 text-center">@{{ number }} </td>
+                                            <td class="col-md-2">@{{ market.company }}</td>
                                             <td class="col-md-2">@{{ market.name }}</td>
                                             <td class="col-md-1">@{{ market.contact }}</td>
-                                            <td class="col-md-2">@{{ market.email }}</td>
+                                            <td class="col-md-1">@{{ market.email }}</td>
                                             <td class="col-md-2">@{{ market.subject }}</td>
-                                            <td class="col-md-2 text-center">@{{ market.created_at }}</td>
+                                            <td class="col-md-1 text-center">@{{ market.created_at }}</td>
                                             <td class="col-md-2 text-center">
                                                 <a href="/market/@{{ market.id }}" class="btn btn-default btn-sm">View</a>
                                             </td>
