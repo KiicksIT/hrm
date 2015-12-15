@@ -63,11 +63,16 @@ class RptController extends Controller
                     $people = Market::whereStatus('Prospect')->get();
 
                     break;
+
             }            
 
+        }else{
+
+            $people = '';
         }
 
-        if(count($people)>0){
+
+        if($people){
 
             Excel::create($title.'_'.Carbon::now()->format('dmYHis'), function($excel) use ($people, $option) {
 
@@ -87,7 +92,14 @@ class RptController extends Controller
 
         }else{
 
-            Flash::error('There is no records for the selection report');
+            if($option){
+
+                Flash::error('There is no records for the selection report');
+
+            }else{
+
+                Flash::error('Please Select an Option');
+            }
 
         }
 

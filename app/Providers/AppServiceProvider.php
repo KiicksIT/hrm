@@ -48,7 +48,10 @@ class AppServiceProvider extends ServiceProvider
         view()->share('REPORT_TITLE', 'Report');
         view()->share('REPORT_PREFIX', 'R');                                   
 
-        //trans status                  
+        //Email                              
+        view()->share('EMAIL_TITLE', 'Contact');
+        view()->share('EMAIL_PREFIX', '');   
+                
     }
 
     /**

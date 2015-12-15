@@ -69,6 +69,7 @@ post('/report/item', 'RptController@generateItem');
 post('/report/transaction', 'RptController@generateTransaction');
 post('/report/campaign', 'RptController@generateCampaign');
 
+resource('/massemail', 'MassEmailController');
 
 get('/user/data', 'UserController@getData');
 delete('/user/data/{id}', 'UserController@destroyAjax');

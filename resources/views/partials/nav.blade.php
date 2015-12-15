@@ -28,29 +28,32 @@
                     <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li> --}}
                 <li class="{{ strpos(Request::path(), 'transaction') !== false ? 'active' : '' }}">
-                    <a href="/transaction"><i class="fa fa-fw fa-credit-card"></i> Transaction</a>
+                    <a href="/transaction"><i class="fa fa-fw fa-credit-card"></i> {{ $TRANS_TITLE }}</a>
                 </li>                
                 <li class="{{ strpos(Request::path(), 'person') !== false ? 'active' : '' }}">
                     <a href="/person"><i class="fa fa-fw fa-users"></i> {{ $PERSON_TITLE }}</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'market') !== false ? 'active' : '' }}">
-                    <a href="/market"><i class="fa fa-fw fa-tasks"></i> Sales Pipeline</a>
+                    <a href="/market"><i class="fa fa-fw fa-tasks"></i> {{ $MARKET_TITLE }}</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'item') !== false ? 'active' : '' }}">
-                    <a href="/item"><i class="fa fa-fw fa-shopping-cart"></i> Product</a>
+                    <a href="/item"><i class="fa fa-fw fa-shopping-cart"></i> {{ $ITEM_TITLE }}</a>
                 </li>                
                 <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
-                    <a href="/user"><i class="fa fa-fw fa-user"></i> User</a>
+                    <a href="/user"><i class="fa fa-fw fa-user"></i> {{ $USER_TITLE }}</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'campaign') !== false ? 'active' : '' }}">
-                    <a href="/campaign"><i class="fa fa-fw fa fa-newspaper-o"></i> Event</a>
+                    <a href="/campaign"><i class="fa fa-fw fa fa-newspaper-o"></i> {{ $CAMPAIGN_TITLE }}</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'scheduler') !== false ? 'active' : '' }}">
-                    <a href="/scheduler"><i class="fa fa-fw fa fa-clock-o"></i> To Do's</a>
+                    <a href="/scheduler"><i class="fa fa-fw fa fa-clock-o"></i> {{ $SCHEDULER_TITLE }}</a>
                 </li> 
                 <li class="{{ strpos(Request::path(), 'report') !== false ? 'active' : '' }}">
-                    <a href="/report"><i class="fa fa-fw fa fa-file-text-o"></i> Report</a>
-                </li>                                                   
+                    <a href="/report"><i class="fa fa-fw fa fa-file-text-o"></i> {{ $REPORT_TITLE }}</a>
+                </li>         
+                <li class="{{ strpos(Request::path(), 'massemail') !== false ? 'active' : '' }}">
+                    <a href="/massemail"><i class="fa fa-fw fa fa-envelope-o"></i> {{ $EMAIL_TITLE }}</a>
+                </li>                                                                             
             </ul>
         </div>       
     </nav>
