@@ -179,7 +179,7 @@
                                                </div>
 
                                                <div class="col-md-3">
-                                               {!! Form::radio('campaign_choice', 'all') !!}
+                                               {!! Form::radio('campaign_choice', 'campaign_choice', 'all') !!}
                                                {!! Form::label('campaign_choice', 'All') !!}
                                                </div>
                                         </div>             

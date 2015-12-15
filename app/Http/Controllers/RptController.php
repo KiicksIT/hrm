@@ -42,25 +42,29 @@ class RptController extends Controller
 
         $option = $request->input('cust_choice');
 
-        switch($option) {
-            
-            case 'current':
+        if($option){
 
-                $people = Person::all();
+            switch($option) {
+                
+                case 'current':
 
-                break;
+                    $people = Person::all();
 
-            case 'lead':
+                    break;
 
-                $people = Market::whereStatus('Lead')->get();
+                case 'lead':
 
-                break;
+                    $people = Market::whereStatus('Lead')->get();
 
-            case 'prospect':
+                    break;
 
-                $people = Market::whereStatus('Prospect')->get();
+                case 'prospect':
 
-                break;
+                    $people = Market::whereStatus('Prospect')->get();
+
+                    break;
+            }            
+
         }
 
         if(count($people)>0){
