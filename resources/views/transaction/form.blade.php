@@ -28,10 +28,10 @@
         </div>
     </div>
 
-{{--     <div class="form-group">
+    <div class="form-group">
         {!! Form::checkbox('reminder', null, ['class'=>'form-control']) !!}
         {!! Form::label('reminder', 'Remind 2 Months Before Expiry', ['class'=>'control-label', 'style'=>'padding-left: 10px;']) !!}
-    </div>  --}}          
+    </div>           
 
     <div class="form-group">
         {!! Form::label('transremark', 'Transaction Remark', ['class'=>'control-label']) !!}
