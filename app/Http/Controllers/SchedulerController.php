@@ -213,7 +213,7 @@ class SchedulerController extends Controller
 
         $notify = $request->input('notify_date');
 
-        $time = Carbon::now()->endOfDay()->diffInSeconds(Carbon::parse($notify), true);
+        $time = Carbon::now()->diffInSeconds(Carbon::parse($notify), true);
 
         $today = Carbon::now()->format('d-F-Y');
 
