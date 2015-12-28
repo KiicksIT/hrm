@@ -11,9 +11,16 @@ class Person extends Model
     use SoftDeletes;
 
         protected $fillable = [
-        'name', 'roc_no', 'company',
-        'email', 'contact', 'remark',
-        'address', 'office_no', 'postcode'
+        'name', 'nric_fin', 'contract_type',
+        'gender', 'dob','nationality', 'resident',
+        'contact', 'address', 'email',
+        'start_date', 'end_date', 'leave_reason',
+        'education', 'person_remark', 'basic',
+        'ot_rate', 'prob_start', 'prob_end', 'department_id',
+        'hour_remark', 'day_remark', 'off_remark',
+        'position_id', 'basic_rate', 'paid_leave',
+        'mc', 'hospital_leave', 'medic_exam',
+        'benefit_remark'
         ];
 
     /**
@@ -21,39 +28,91 @@ class Person extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];    
+    protected $dates = [
+        'dob', 'start_date', 'end_date' ,'deleted_at', 'prob_start', 'prob_end'
+    ]; 
 
-    // set default nullable value upon detection
-    public function setEmailAttribute($value) 
+    public function setStartDateAttribute($date)
     {
+        if($date){
 
-        $this->attributes['email'] = $value ?: null;
+            $this->attributes['start_date'] = Carbon::parse($date);
 
-    }       
+        }else{
 
-    // set default nullable value upon detection
-    public function setRemarkAttribute($value) 
+            $this->attributes['start_date'] = null;
+
+        }
+    } 
+
+    public function setEndDateAttribute($date)
     {
+        if($date){
 
-        $this->attributes['remark'] = $value ?: null;
+            $this->attributes['end_date'] = Carbon::parse($date);
+
+        }else{
+
+            $this->attributes['end_date'] = null;
+
+        }
+    } 
+
+    public function setDobAttribute($date)
+    {
+        if($date){
+
+            $this->attributes['dob'] = Carbon::parse($date);
+            // $this->attributes['dob'] = Carbon::createFromFormat('d-F-Y', $date)->toDateTimeString();
+
+        }else{
+
+            $this->attributes['dob'] = null;
+
+        }
+    }               
+
+    // dates format
+    public function getDobAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-F-Y');
+    }  
+
+    public function getStartDateAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-F-Y');
+    }  
+
+    public function getEndDateAttribute($date)
+    {
+        if($date){
+
+            return Carbon::parse($date)->format('d-F-Y');
+
+        }else{
+
+            return '';
+        }
         
-    } 
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }    
-
-    //select field populate selected
-    public function getRoleListAttribute()
-    {
-        return $this->roles->lists('id')->all();
-    } 
+    }          
 
     public function getCreatedAtAttribute($date)
     {
         return Carbon::parse($date)->format('d-F-Y');
-    }    
+    }  
+
+    public function getResidentAttribute($data)
+    {
+        if($data == 'on'){
+
+            return 'Yes';
+
+        }else{
+
+            return 'No';
+
+        }
+    }      
 
     public function transaction()
     {
@@ -65,15 +124,30 @@ class Person extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function market()
+    public function payslips()
     {
-        return $this->hasOne('App\Market');
+        return $this->hasMany('App\Payslip');
     }
 
     public function files()
     {
         return $this->hasMany('App\StoreFile');
     }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Department');
+    } 
+
+    public function position()
+    {
+        return $this->belongsTo('App\Position');
+    }  
+
+    public function leave()
+    {
+        return $this->hasOne('App\Leave');
+    }                  
  
 
     /**

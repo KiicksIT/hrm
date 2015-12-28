@@ -22,32 +22,33 @@
             @endif
         </ul>
 <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        @unless (Auth::guest())
         <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarCollapse">
             <ul class="nav navbar-nav side-nav">
-                {{-- <li>
-                    <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                </li> --}}
-                <li class="{{ strpos(Request::path(), 'transaction') !== false ? 'active' : '' }}">
-                    <a href="/transaction"><i class="fa fa-fw fa-credit-card"></i> {{ $TRANS_TITLE }}</a>
+                <li class="{{ strpos(Request::path(), 'mainindex') !== false ? 'active' : '' }}">
+                    <a href="/mainindex"><i class="fa fa-fw fa-dashboard"></i> {{ $MAININDEX_TITLE }}</a>
+                </li>
+                <li class="{{ strpos(Request::path(), 'payslip') !== false ? 'active' : '' }}">
+                    <a href="/payslip"><i class="fa fa-fw fa-credit-card"></i> {{ $PAYSLIP_TITLE }}</a>
                 </li>                
                 <li class="{{ strpos(Request::path(), 'person') !== false ? 'active' : '' }}">
                     <a href="/person"><i class="fa fa-fw fa-users"></i> {{ $PERSON_TITLE }}</a>
                 </li>
-                <li class="{{ strpos(Request::path(), 'market') !== false ? 'active' : '' }}">
-                    <a href="/market"><i class="fa fa-fw fa-tasks"></i> {{ $MARKET_TITLE }}</a>
-                </li>
-                <li class="{{ strpos(Request::path(), 'item') !== false ? 'active' : '' }}">
-                    <a href="/item"><i class="fa fa-fw fa-shopping-cart"></i> {{ $ITEM_TITLE }}</a>
-                </li>                
+                <li class="{{ strpos(Request::path(), 'position') !== false ? 'active' : '' }}">
+                    <a href="/position"><i class="fa fa-fw fa-briefcase"></i> {{ $POSITION_TITLE }}</a>
+                </li>         
+                <li class="{{ strpos(Request::path(), 'department') !== false ? 'active' : '' }}">
+                    <a href="/department"><i class="fa fa-fw fa-building-o"></i> {{ $DEPT_TITLE }}</a>
+                </li> 
+                <li class="{{ strpos(Request::path(), 'leave') !== false ? 'active' : '' }}">
+                    <a href="/leave"><i class="fa fa-fw fa-calendar-times-o"></i> {{ $LEAVE_TITLE }}</a>
+                </li>                                  
                 <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
                     <a href="/user"><i class="fa fa-fw fa-user"></i> {{ $USER_TITLE }}</a>
                 </li>
-                <li class="{{ strpos(Request::path(), 'campaign') !== false ? 'active' : '' }}">
-                    <a href="/campaign"><i class="fa fa-fw fa fa-newspaper-o"></i> {{ $CAMPAIGN_TITLE }}</a>
-                </li>
-                <li class="{{ strpos(Request::path(), 'scheduler') !== false ? 'active' : '' }}">
+            {{--     <li class="{{ strpos(Request::path(), 'scheduler') !== false ? 'active' : '' }}">
                     <a href="/scheduler"><i class="fa fa-fw fa fa-clock-o"></i> {{ $SCHEDULER_TITLE }}</a>
-                </li> 
+                </li> --}} 
                 <li class="{{ strpos(Request::path(), 'report') !== false ? 'active' : '' }}">
                     <a href="/report"><i class="fa fa-fw fa fa-file-text-o"></i> {{ $REPORT_TITLE }}</a>
                 </li>         
@@ -55,5 +56,6 @@
                     <a href="/massemail"><i class="fa fa-fw fa fa-envelope-o"></i> {{ $EMAIL_TITLE }}</a>
                 </li>                                                                             
             </ul>
-        </div>       
+        </div>
+        @endunless       
     </nav>

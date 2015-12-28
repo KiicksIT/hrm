@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     protected $fillable=[
-        'job_title', 'duty', 'work_start',
-        'work_end', 'work_day', 'salary_datea',
-        'basic', 'ot_period', 'ot_rate',
-        'probation_length', 'remark',
-        'salary_dateb' 
+        'name', 'remark', 'work_hour',
+        'work_off', 'work_day', 'prob_length'
     ];
+
+    public function people()
+    {
+        return $this->hasMany('App\Person');
+    }    
+
 }

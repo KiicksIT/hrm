@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Position;
+use Laracasts\Flash\Flash;
 
 class PositionController extends Controller
 {
@@ -57,7 +58,21 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $position = Position::create($input);
+
+        if($position){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }        
+
+        return redirect('position');
     }
 
     /**
@@ -79,7 +94,9 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $position = Position::findOrFail($id);
+
+        return view('position.edit', compact('position'));
     }
 
     /**
@@ -91,7 +108,23 @@ class PositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $position = Position::findOrFail($id);
+
+        $input = $request->all();
+
+        $position->update($input);
+
+        if($position){
+
+            Flash::success('Successfully Updated');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }        
+
+        return redirect('position');
     }
 
     /**
@@ -102,6 +135,45 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $position = Position::findOrFail($id);
+
+        $position->delete();
+
+        if($position){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
+        return redirect('position');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return json
+     */
+    public function destroyAjax($id)
+    {
+        $position = Position::findOrFail($id);
+
+        $position->delete();
+
+        if($position){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
+        return $position->name . 'has been successfully deleted';
+    }    
 }

@@ -33,12 +33,12 @@
 
             <div class="panel-body">
                 <div style="padding-bottom: 10px">
-                    <label for="search_company" class="search">Search Company:</label>
-                    <input type="text" ng-model="search.company">
-                    <label for="search_name" class="search" style="padding-left: 10px">Name:</label>
-                    <input type="text" ng-model="search.name">                    
-                    <label for="search_contact" class="search" style="padding-left: 10px">Contact:</label>
-                    <input type="text" ng-model="search.contact">
+                    <label for="search_company" class="search">Search Name:</label>
+                    <input type="text" ng-model="search.name">
+                    <label for="search_contact" class="search" style="padding-left: 10px">Dept:</label>
+                    <input type="text" ng-model="search.department.name">                    
+                    <label for="search_name" class="search" style="padding-left: 10px">Position:</label>
+                    <input type="text" ng-model="search.position.name">                    
 
                 </div>
                 <div class="table-responsive">
@@ -54,12 +54,15 @@
                                 ID                           
                             </th>
                             <th class="col-md-2 text-center">
-                                Company
+                                Name
                             </th>                            
                             <th class="col-md-2 text-center">
-                                Name
+                                Position
                             </th>
-                            <th class="col-md-2 text-center">
+                            <th class="col-md-1 text-center">
+                                Department
+                            </th>                             
+                            <th class="col-md-1 text-center">
                                 Contact
                             </th>  
                             <th class="col-md-1 text-center">
@@ -77,9 +80,10 @@
                                 </td>
                                 <td class="col-md-1 text-center">@{{ number }} </td>
                                 <td class="col-md-1">@{{ person.id }}</td>
-                                <td class="col-md-2">@{{ person.company }}</td>
                                 <td class="col-md-2">@{{ person.name }}</td>
-                                <td class="col-md-2">@{{ person.contact }}</td>
+                                <td class="col-md-2 text-center">@{{ person.position.name }}</td>
+                                <td class="col-md-1 text-center">@{{ person.department.name }}</td>
+                                <td class="col-md-1">@{{ person.contact }}</td>
                                 <td class="col-md-1">@{{ person.email }}</td>
                                 <td class="col-md-2 text-center">
                                     <a href="/person/@{{ person.id }}/edit" class="btn btn-sm btn-primary">Profile</a>
@@ -87,7 +91,7 @@
                                 </td>
                             </tr>
                             <tr ng-show="(people | filter:search).length == 0 || ! people.length">
-                                <td colspan="8" class="text-center">No Records Found</td>
+                                <td colspan="9" class="text-center">No Records Found</td>
                             </tr>                         
 
                         </tbody>

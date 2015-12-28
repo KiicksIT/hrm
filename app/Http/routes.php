@@ -10,10 +10,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-get('/position/data', 'PositionController@getData');
-delete('/position/data/{id}', 'PositionController@destroyAjax');
-resource('position', 'PositionController');
-
 get('person/transac/{person_id}', 'PersonController@showTransac');
 get('/person/data', 'PersonController@getData');
 delete('/person/data/{id}', 'PersonController@destroyAjax');
@@ -24,44 +20,48 @@ delete('person/{id}/file', 'PersonController@removeFile');
 resource('profile', 'ProfileController');
 // resource('sale', 'SaleController');
 
-get('/item/data', 'ItemController@getData');
-delete('/item/data/{id}', 'ItemController@destroyAjax');
-resource('item', 'ItemController');
-
 resource('price', 'PriceController');
 
 get('/transaction/create/{id}', 'TransactionController@createWPerson');
 post('/transaction/log/{trans_id}', 'TransactionController@generateLogs');
 post('/transaction/download/{trans_id}', 'TransactionController@generateInvoice');
-get('/transaction/data', 'TransactionController@getData');
-delete('/transaction/data/{id}', 'TransactionController@destroyAjax');
 post('/transaction/{trans_id}/editpersoncode', 'TransactionController@storeCustcode');
 put('/transaction/{trans_id}/editperson', 'TransactionController@storeCust');
 put('/transaction/{trans_id}/total', 'TransactionController@storeTotal');
 get('/transaction/person/{person_id}', 'TransactionController@getCust');
 get('/transaction/item/{person_id}', 'TransactionController@getItem');
 get('/transaction/person/{person_id}/item/{item_id}', 'TransactionController@getPrice');
-resource('transaction', 'TransactionController');
 
-get('/deal/data/{transaction_id}', 'DealController@getData');
-delete('/deal/data/{id}', 'DealController@destroyAjax');
-resource('deal', 'DealController');
+post('/payslip/download/{payslip_id}', 'PayslipController@generatePayslip');
+get('/payslip/{payslip_id}/person', 'PayslipController@getPayslipPerson');
+get('/payslip/addother/{payslip_id}', 'PayslipController@getAddOther');
+get('/payslip/deduction/{payslip_id}', 'PayslipController@getDeduction');
+get('/payslip/addition/{payslip_id}', 'PayslipController@getAddition');
+get('/payslip/person/{person_id}', 'PayslipController@getPersonData');
+delete('/payslip/data/{id}', 'PayslipController@destroyAjax');
+get('/payslip/data', 'PayslipController@getData');
+resource('payslip', 'PayslipController');
 
-get('/campaign/data', 'CampaignController@getData');
-delete('/campaign/data/{id}', 'CampaignController@destroyAjax');
-resource('campaign', 'CampaignController');
+get('/addition/data/{id}', 'AdditionController@getData');
+delete('/addition/data/{id}', 'AdditionController@destroyAjax');
+resource('addition', 'AdditionController');
+
+get('/deduction/data/{id}', 'DeductionController@getData');
+delete('/deduction/data/{id}', 'DeductionController@destroyAjax');
+resource('deduction', 'DeductionController');
+
+get('/addother/data/{id}', 'AddOtherController@getData');
+delete('/addother/data/{id}', 'AddOtherController@destroyAjax');
+resource('addother', 'AddOtherController');
+
+get('/leave/data/', 'LeaveController@getData');
+delete('/leave/data/{id}', 'LeaveController@destroyAjax');
+resource('leave', 'LeaveController');
 
 get('/scheduler/data1', 'SchedulerController@getData1');
 get('/scheduler/data2', 'SchedulerController@getData2');
 delete('/scheduler/data/{id}', 'SchedulerController@destroyAjax');
 resource('scheduler', 'SchedulerController');
-
-get('/market/data1', 'MarketController@getData1');
-get('/market/data2', 'MarketController@getData2');
-get('/market/data3', 'MarketController@getData3');
-get('/market/create/{choice}', 'MarketController@createDirect');
-delete('/market/data/{id}', 'MarketController@destroyAjax');
-resource('market', 'MarketController');
 
 get('/report', 'RptController@index');
 post('/report/person', 'RptController@generatePerson');
@@ -78,6 +78,15 @@ resource('user', 'UserController');
 get('/role/data', 'RoleController@getData');
 resource('role', 'RoleController');
 
+get('/position/data', 'PositionController@getData');
+delete('/position/data/{id}', 'PositionController@destroyAjax');
+resource('position', 'PositionController');
+
+get('/department/data/', 'DeptController@getData');
+delete('/department/data/{id}', 'DeptController@destroyAjax');
+resource('department', 'DeptController');
+
+resource('mainindex', 'MainIndexController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

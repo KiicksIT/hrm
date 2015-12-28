@@ -23,6 +23,8 @@ class CreateProfileTable extends Migration
             $table->string('header')->nullable();
             $table->string('logo')->nullable();
             $table->string('footer')->nullable();
+            $table->string('salary_period');
+            $table->string('ot_period');            
             $table->timestamps();
         });
     }

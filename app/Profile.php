@@ -11,6 +11,7 @@ class Profile extends Model
     protected $fillable =[
         'name', 'address', 'email',
         'contact', 'alt_contact', 'roc_no',
-        'header', 'logo', 'footer' 
+        'header', 'logo', 'footer',
+        'salary_period', 'ot_period' 
     ];
 }

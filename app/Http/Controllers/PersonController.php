@@ -14,6 +14,7 @@ use App\StoreFile;
 use App\Price;
 use App\Transaction;
 use Laracasts\Flash\Flash;
+use App\Leave;
 
 class PersonController extends Controller
 {
@@ -31,7 +32,7 @@ class PersonController extends Controller
 
     public function getData()
     {
-        $person =  Person::all();
+        $person =  Person::with(['position', 'department'])->get();
 
         return $person;
     }  
@@ -69,6 +70,14 @@ class PersonController extends Controller
 
         $person = Person::create($input);
 
+        // check whether leaves field filled or not
+        if($request->paid_leave or $request->mc or $request->hospital_leave){
+
+            // initiate leave records for this person
+            $this->initLeave($request, $person);
+
+        }
+
         if($person){
 
             Flash::success('Successfully Created');
@@ -92,13 +101,9 @@ class PersonController extends Controller
     {
         $person = Person::findOrFail($id);
 
-        $transactions = Transaction::where('person_id', $id)->latest()->simplePaginate(10);
+        $files = StoreFile::wherePersonId($id)->oldest()->paginate(5);
 
-        $files = StoreFile::wherePersonId($id)->latest()->paginate(5);
-
-        $prices = Price::wherePersonId($id)->oldest()->paginate(10);
-
-        return view('person.edit', compact('person', 'transactions', 'files', 'prices'));
+        return view('person.edit', compact('person', 'files'));
     }
 
     /**
@@ -111,13 +116,9 @@ class PersonController extends Controller
     {
         $person = Person::findOrFail($id);
 
-        $transactions = Transaction::where('person_id', $id)->latest()->simplePaginate(10);
-
         $files = StoreFile::wherePersonId($id)->oldest()->paginate(5);
 
-        $prices = Price::wherePersonId($id)->oldest()->paginate(10);
-
-        return view('person.edit', compact('person', 'transactions', 'files', 'prices'));
+        return view('person.edit', compact('person', 'files'));
     }
 
     /**
@@ -129,7 +130,7 @@ class PersonController extends Controller
      */
     public function update(PersonRequest $request, $id)
     {
-        
+        // dd($request->all());
         $person = Person::findOrFail($id);
 
         $input = $request->all();
@@ -256,6 +257,22 @@ class PersonController extends Controller
     public function showTransac($person_id)
     {
         return Transaction::with('user')->wherePersonId($person_id)->get();
-    }               
+    } 
+
+    // create leave records for the person
+    private function initLeave($request, $person)
+    {
+        $leave = new Leave();
+
+        $leave->total_paidleave = $request->paid_leave;
+
+        $leave->total_paidsickleave = $request->mc;
+
+        $leave->total_paidhospleave = $request->hospital_leave;
+
+        $leave->person_id = $person->id;
+
+        $leave->save();        
+    }              
   
 }

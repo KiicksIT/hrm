@@ -14,11 +14,27 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //App name for all view
-        view()->share('APP_NAME', 'CRM');
+        view()->share('APP_NAME', 'HRM');
 
         //Person
-        view()->share('PERSON_TITLE', 'Customer');
-        view()->share('PERSON_PREFIX', 'C');
+        view()->share('MAININDEX_TITLE', 'Dashboard');
+        view()->share('MAININDEX_PREFIX', 'B');        
+
+        //Person
+        view()->share('PERSON_TITLE', 'Employee');
+        view()->share('PERSON_PREFIX', 'E');
+
+        //Position
+        view()->share('POSITION_TITLE', 'Position');
+        view()->share('POSITION_PREFIX', 'L');        
+
+        //Dept
+        view()->share('DEPT_TITLE', 'Department');
+        view()->share('DEPT_PREFIX', 'D'); 
+
+        //Dept
+        view()->share('PAYSLIP_TITLE', 'Payslip');
+        view()->share('PAYSLIP_PREFIX', 'P');                 
 
         //User
         view()->share('USER_TITLE', 'User');
@@ -26,23 +42,11 @@ class AppServiceProvider extends ServiceProvider
 
         //Transaction
         view()->share('TRANS_TITLE', 'Transaction');
-        view()->share('TRANS_PREFIX', 'T');
-
-        //Transaction
-        view()->share('ITEM_TITLE', 'Product');
-        view()->share('ITEM_PREFIX', 'P');            
-
-        //Campaign
-        view()->share('CAMPAIGN_TITLE', 'Event');
-        view()->share('CAMPAIGN_PREFIX', 'E'); 
+        view()->share('TRANS_PREFIX', 'T');         
 
         //Scheduler
         view()->share('SCHEDULER_TITLE', 'Todo\'s');
-        view()->share('SCHEDULER_PREFIX', 'D'); 
-
-        //Market
-        view()->share('MARKET_TITLE', 'Sales Pipeline');
-        view()->share('MARKET_PREFIX', 'S');  
+        view()->share('SCHEDULER_PREFIX', 'T'); 
 
         //Market
         view()->share('REPORT_TITLE', 'Report');
@@ -50,7 +54,15 @@ class AppServiceProvider extends ServiceProvider
 
         //Email                              
         view()->share('EMAIL_TITLE', 'Contact');
-        view()->share('EMAIL_PREFIX', '');   
+        view()->share('EMAIL_PREFIX', ''); 
+
+        //Leave                              
+        view()->share('LEAVE_TITLE', 'Leave');
+        view()->share('LEAVE_PREFIX', ''); 
+
+        //Apply Leave                              
+        view()->share('APPLEAVE_TITLE', 'Apply Leave');
+        view()->share('APPLEAVE_PREFIX', '');                   
                 
     }
 

@@ -1,6 +1,6 @@
 @extends('template')
 @section('title')
-Position
+{{ $POSITION_TITLE }}
 @stop
 @section('content')
 
@@ -8,7 +8,7 @@ Position
 <div class="panel panel-primary">
 
     <div class="panel-heading">
-        <h3 class="panel-title"><strong>New Position</strong></h3>
+        <h3 class="panel-title"><strong>New {{ $POSITION_TITLE }}</strong></h3>
     </div>
 
     <div class="panel-body">

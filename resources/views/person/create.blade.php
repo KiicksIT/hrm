@@ -26,5 +26,10 @@
     </div>
 </div>
 </div>
-
+@stop
+@section('footer')
+    <script>
+        $('#end_date').val('');
+        $('#dob').val('');
+    </script>
 @stop

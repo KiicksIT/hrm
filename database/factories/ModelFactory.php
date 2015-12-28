@@ -24,19 +24,27 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Person::class, function (Faker\Generator $faker) {
     return [
-        'company' => $faker->company,
         'name' => $faker->name,
-        'roc_no' => $faker->word,
+        'nric_fin' => $faker->randomNumber,
+        'contract_type' => 'Fulltime',
+        'gender' => 'Male',
+        'dob' => $faker->dateTime(),
+        'nationality' => 'Singaporean',
+        'resident' => 'True',
         'contact' => $faker->phoneNumber,
-        'office_no' => $faker->phoneNumber,
         'address' => $faker->address,
-        'postcode' => $faker->postcode,
         'email' => $faker->email,
-        'remark' => $faker->text(20),
+        'start_date' => $faker->dateTime(),
+        'person_remark' => $faker->text(20),
+        'basic' => 2000,
+        'basic_hour' => 8,
+        'ot_rate' => 1.5,
+        'department_id' => 1,
+        'position_id' => 1,
     ];
 });
 
-$factory->define(App\Role::class, function (Faker\Generator $faker) {
+$factory->define(App\Position::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'label' => $faker->name,
@@ -44,14 +52,10 @@ $factory->define(App\Role::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Market::class, function (Faker\Generator $faker) {
+$factory->define(App\MainIndex::class, function (Faker\Generator $faker) {
     return [
-        'company' => $faker->company,
-        'name' => $faker->name,
-        'contact' => $faker->phoneNumber,
-        'email' => $faker->email,
-        'subject' => $faker->text(8),
-        'status' => 'Lead',
-        'remark' => $faker->text(12),
+        'title' => $faker->sentence($nbWords = 6),
+        'content' => $faker->paragraph,
     ];
 });
+
