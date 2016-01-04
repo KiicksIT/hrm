@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PositionSeeder::class);
         $this->call(DeptSeeder::class);
         $this->call(DeductItemSeeder::class);
-        // $this->call(PersonSeeder::class);
+        $this->call(PersonSeeder::class);
         Model::reguard();
     }
 }

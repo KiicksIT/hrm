@@ -15,19 +15,16 @@ class DeptSeeder extends Seeder
         Department::create([
             'name' => 'IT Dept',
             'remark' => 'Company Software',
-            'hod' => 'Mr Lee',
         ]); 
 
         Department::create([
             'name' => 'MD',
             'remark' => 'Management for whole company',
-            'hod' => 'Mr Loh',
         ]); 
 
         Department::create([
             'name' => 'Operation',
             'remark' => 'Operation',
-            'hod' => 'Mr Lah',
         ]);                 
     }
 }
