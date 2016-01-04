@@ -47,8 +47,15 @@
             </div>
             <p>{{$mainindex->content}}</p>
 
-            <div class="row pull-right">
-                 <u><strong>{{$mainindex->created_at->format('d-F-Y')}}</strong></u>
+            <div class="row" style="padding-top: 20px"> 
+                <div class="pull-left">
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['MainIndexController@destroy', $mainindex->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                        {!! Form::submit('Delete', ['class'=> 'btn btn-danger']) !!}
+                    {!! Form::close() !!}                    
+                </div>
+                <div class="pull-right">
+                    <u><strong>{{$mainindex->created_at->format('d-F-Y')}}</strong></u>
+                </div>
             </div>
         </div>
     @endforeach

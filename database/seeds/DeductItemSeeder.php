@@ -14,7 +14,7 @@ class DeductItemSeeder extends Seeder
     {
         DeductItem::create([
             'id' => 1,
-            'name' => 'Employee\'s EPF Deduction',
+            'name' => 'Employee\'s CPF Deduction',
         ]); 
     }
 }

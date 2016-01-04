@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\AddOtherRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Addother;
 use App\Addotheritem;
+use Laracasts\Flash\Flash;
 
 class AddOtherController extends Controller
 {
@@ -25,7 +27,7 @@ class AddOtherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddOtherRequest $request)
     {
         $addotheritem_id = $request->addotheritem_id;
 
@@ -43,6 +45,16 @@ class AddOtherController extends Controller
 
         $addother = Addother::create($input);
 
+        if($addother){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
         return Redirect::action('PayslipController@edit', $request->payslip_id);
     } 
 
@@ -57,6 +69,16 @@ class AddOtherController extends Controller
         $addother = Addother::findOrFail($id);
 
         $addother->delete();
+
+        if($addother){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }          
 
         return $addother->name . 'has been successfully deleted';
     }  

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class MainIndexRequest extends Request
+class DeductionRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,9 @@ class MainIndexRequest extends Request
      */
     public function rules()
     {
-        $mainindex = $this->route('mainindex');
-
         return [
-            'title' => 'required|unique:mainindexes,title,'.$mainindex,
-            'content' => 'required',
+            'deductitem_id' => 'required',
+            'amount' => 'required|numeric',
         ];
     }
 }

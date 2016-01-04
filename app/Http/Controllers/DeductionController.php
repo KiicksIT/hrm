@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Http\Requests\DeductionRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Deduction;
 use App\DeductItem;
+use Laracasts\Flash\Flash;
 
 class DeductionController extends Controller
 {
@@ -25,7 +27,7 @@ class DeductionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DeductionRequest $request)
     {
         
         $deductitem_id = $request->deductitem_id;
@@ -44,6 +46,16 @@ class DeductionController extends Controller
 
         $deduction = Deduction::create($input);
 
+        if($deduction){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
         return Redirect::action('PayslipController@edit', $request->payslip_id);
     } 
 
@@ -58,6 +70,16 @@ class DeductionController extends Controller
         $deduction = Deduction::findOrFail($id);
 
         $deduction->delete();
+
+        if($deduction){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }          
 
         return $deduction->name . 'has been successfully deleted';
     }     

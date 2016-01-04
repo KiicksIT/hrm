@@ -103,7 +103,7 @@ class Person extends Model
 
     public function getResidentAttribute($data)
     {
-        if($data == 'on'){
+        if($data == 1){
 
             return 'Yes';
 

@@ -27,6 +27,7 @@ class PersonRequest extends Request
 
         return [
             'name'=>'required|min:3',
+            'dob'=>'required',
             'nric_fin' => 'unique:people,nric_fin,'.$person,
             'email'=>'email|unique:people,email,'.$person,
             'contact'=>array('regex:/^([0-9\s\-\+\(\)]*)$/'),

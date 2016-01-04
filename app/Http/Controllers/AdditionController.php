@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
+use App\Http\Requests\AdditionRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Addition;
 use App\AddItem;
+use Laracasts\Flash\Flash;
 
 class AdditionController extends Controller
 {
@@ -25,7 +27,7 @@ class AdditionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdditionRequest $request)
     {
         $additem_id = $request->additem_id;
 
@@ -43,6 +45,16 @@ class AdditionController extends Controller
 
         $addition = Addition::create($input);
 
+        if($addition){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
         return Redirect::action('PayslipController@edit', $request->payslip_id);
     } 
 
@@ -57,6 +69,16 @@ class AdditionController extends Controller
         $addition = Addition::findOrFail($id);
 
         $addition->delete();
+
+        if($addition){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }          
 
         return $addition->name . 'has been successfully deleted';
     }             

@@ -8,6 +8,7 @@ use App\Http\Requests\MainIndexRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\MainIndex;
+use Laracasts\Flash\Flash;
 
 class MainIndexController extends Controller
 {
@@ -44,6 +45,16 @@ class MainIndexController extends Controller
         $input = $request->all();
 
         $mainindex = MainIndex::create($input);
+
+        if($mainindex){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
 
         return redirect('mainindex');
     }
@@ -90,6 +101,20 @@ class MainIndexController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mainindex = MainIndex::findOrFail($id);
+
+        $mainindex->delete();
+
+        if($mainindex){
+
+            Flash::success('Successfully Deleted');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }         
+
+        return redirect('mainindex');
     }
 }

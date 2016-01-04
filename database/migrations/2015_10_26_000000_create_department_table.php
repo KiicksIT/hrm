@@ -16,7 +16,6 @@ class CreateDepartmentTable extends Migration
             $table->increments('id');            
             $table->string('name');
             $table->text('remark')->nullable();
-            $table->string('hod')->nullable();
             $table->timestamps();
         }); 
        

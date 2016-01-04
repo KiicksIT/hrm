@@ -77,7 +77,7 @@ class PayslipController extends Controller
 
         if($person->resident == 'Yes'){
 
-            $this->createEPFDeduction($payslip);            
+            $this->createCPFDeduction($payslip);            
 
         }
 
@@ -300,7 +300,7 @@ class PayslipController extends Controller
     }            
 
     // create epf item as first item for Singaporean/ PR
-    private function createEPFDeduction($payslip)
+    private function createCPFDeduction($payslip)
     {
         $deductitem = DeductItem::firstOrFail();
 
