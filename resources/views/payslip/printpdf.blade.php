@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+@section('footer')
     <style type="text/css">
         .inline {
             display:inline;
@@ -44,20 +40,16 @@
             height: 70%;
         }
        
-        @media print {
+       /* @media print {
           *,
           *:before,
           *:after {
             background: color hex code !important;
             color: #000 !important; 
-          }
-        
-
+          }*/
     </style>
-    </head>
 
-    <body>
-        <div class="container-fluid">
+        <div class="container">
 
             {{-- payslip from and to --}}
             <div class="row">
@@ -304,7 +296,5 @@
                         </li>                                                
                     </ul>                    
                 </div>
-            </div>                                                                                      
-
-    </body>
-</html>    
+            </div>                                                                                
+@stop
