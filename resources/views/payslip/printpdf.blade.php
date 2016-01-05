@@ -15,7 +15,7 @@
             font-family: 'Times New Roman';
         }    
         th{
-            font-size: 14px;
+            font-size: 17px;
         }
         footer{
             position: fixed;
@@ -32,16 +32,16 @@
             background-color: transparent;            
         } 
         .panel{
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .panel-heading{
-            height: 25px;
+            height: 30px;
             padding-top: 2px;
             padding-bottom: 0px;
         }
         .panel-body{
-            height: 60%;
+            height: 70%;
         }
        
         @media print {
