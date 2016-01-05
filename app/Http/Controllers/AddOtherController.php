@@ -94,7 +94,7 @@ class AddOtherController extends Controller
 
         $payslip = Payslip::findOrFail($payslip_id);
 
-        $other_total = $addother->sum('deduct_amount');
+        $other_total = $addother->sum('addother_amount');
 
         $payslip->other_total = $other_total;
 

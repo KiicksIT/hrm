@@ -13,16 +13,10 @@
         <div class="panel-body">
             {!! Form::open(['id'=>'form_print', 'method'=>'POST', 'action'=>['PayslipController@generatePayslip', $payslip->id]]) !!}
             {!! Form::close() !!}        
-            {!! Form::model($payslip,['id'=>'form_submit', 'method'=>'PATCH','action'=>['PayslipController@update', $payslip->id], 'ng-submit'=>'calTotal()']) !!}            
+            {!! Form::model($payslip,['id'=>'form_submit', 'method'=>'PATCH','action'=>['PayslipController@update', $payslip->id]]) !!}            
             {!! Form::text('payslip_id', $payslip->id, ['id'=>'payslip_id','class'=>'hidden form-control']) !!}
             {!! Form::text('ot_total', null, ['class'=>'hidden form-control', 'ng-model'=>'ottotalModel']) !!}
-            {!! Form::text('plus_all', null, ['class'=>'hidden form-control', 'ng-model'=>'plusAllModel']) !!}
-            {!! Form::text('employercont_epf', null, ['class'=>'hidden form-control', 'ng-model'=>'employerEpfModel']) !!}
-            {!! Form::text('employee_epf', null, ['class'=>'hidden form-control', 'ng-model'=>'employeeEpfModel']) !!}
-            {{-- {!! Form::text('add_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalAddModel']) !!} --}}
-            {{-- {!! Form::text('deduct_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalDeductModel']) !!} --}}
-            {{-- {!! Form::text('other_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalAddotherModel']) !!} --}}
-            {{-- {!! Form::text('net_pay', null, ['class'=>'hidden form-control', 'ng-model'=>'netPayModel']) !!} --}}
+
                 @include('payslip.form')
             
                 <div class="col-md-12">

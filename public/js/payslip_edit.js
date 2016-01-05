@@ -38,9 +38,6 @@ var app = angular.module('app', [   'ui.bootstrap',
             // retrieve total ot pay
             $scope.ottotalModel = payslip.ot_total;
 
-            // $scope.netPayModel = parseFloat(payslip.basic) + parseFloat(payslip.add_total) 
-            //     - parseFloat(payslip.deduct_total) + parseFloat(payslip.ot_total) + parseFloat(payslip.other_total);
-
             // retrieve basic pay
             if(payslip.basic == null || payslip.basic == 0){
 
@@ -62,9 +59,6 @@ var app = angular.module('app', [   'ui.bootstrap',
 
             // retrieve resident isSingporean
             $scope.residentModel = payslip.person.resident;
-
-            // calculate eligible CPF
-            $scope.ageCPF = getAge(payslip.person.dob);
 
             // worked ot pay
             $scope.onOtHourChange = function(){
@@ -112,56 +106,6 @@ var app = angular.module('app', [   'ui.bootstrap',
                 $scope.totalAddotherModel = totaladdother.toFixed(2);
 
             });            
-
-            // retrieve net payslip
-/*            
-            $scope.netPayModel = (parseFloat($scope.basicModel) + parseFloat($scope.totalAddModel) 
-                - parseFloat($scope.totalDeductModel) + parseFloat($scope.ottotalModel) + parseFloat($scope.totalAddotherModel)).toFixed(2);
-*/
-
-            // add all up upon confirm/update pressed
-            $scope.calTotal = function(){
-                $scope.plusAllModel =  (parseFloat($scope.basicModel) +  parseFloat($scope.totalAddModel) + 
-                                        parseFloat($scope.ottotalModel) + parseFloat($scope.totalAddotherModel)).toFixed(2);
-
-                if(payslip.person.resident == 'Yes'){
-
-                    if($scope.ageCPF <=  50){
-
-                        $scope.employerEpfModel = parseFloat($scope.plusAllModel * 17/100).toFixed(2);
-
-                        $scope.employeeEpfModel = parseFloat($scope.plusAllModel * 20/100).toFixed(2);
-
-                    }else if($scope.ageCPF > 50 && $scope.ageCPF <= 55){
-
-                        $scope.employerEpfModel = parseFloat($scope.plusAllModel * 16/100).toFixed(2);
-
-                        $scope.employeeEpfModel = parseFloat($scope.plusAllModel * 19/100).toFixed(2);
-
-                    }else if($scope.ageCPF > 55 && $scope.ageCPF <= 60){
-
-                        $scope.employerEpfModel = parseFloat($scope.plusAllModel * 12/100).toFixed(2);
-
-                        $scope.employeeEpfModel = parseFloat($scope.plusAllModel * 13/100).toFixed(2);
-
-                    }else if($scope.ageCPF > 60 && $scope.ageCPF <= 65){
-
-                        $scope.employerEpfModel = parseFloat($scope.plusAllModel * 8.5/100).toFixed(2);
-
-                        $scope.employeeEpfModel = parseFloat($scope.plusAllModel * 7.5/100).toFixed(2);
-
-                    }else{
-
-                        $scope.employerEpfModel = parseFloat($scope.plusAllModel * 7.5/100).toFixed(2);
-
-                        $scope.employeeEpfModel = parseFloat($scope.plusAllModel * 5/100).toFixed(2);
-
-                    }                  
-                }
-                
-                return true;
-            } 
-
         });      
 
         //delete all record
@@ -242,18 +186,6 @@ var app = angular.module('app', [   'ui.bootstrap',
         } 
     } 
 
-function getAge(dateString) 
-{
-    var today = new Date();
-    var birthDate = new Date(dateString);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
-    {
-        age--;
-    }
-    return age;
-}
 
 
 function repeatController1($scope) {
