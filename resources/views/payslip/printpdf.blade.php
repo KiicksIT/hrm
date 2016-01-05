@@ -1,3 +1,4 @@
+@extends('template')
 @section('footer')
     <style type="text/css">
         .inline {
