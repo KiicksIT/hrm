@@ -26,33 +26,20 @@
         html, body{
             height: 100%;
         } 
-        pre{
-            font-size: 13px;
-            font-family: 'Times New Roman';
-            background-color: transparent;            
-        } 
         .panel{
             margin-bottom: 20px;
         }
 
         .panel-heading{
-            height: 30px;
-            padding-top: 2px;
+            height: 40px;
+            padding-top: 5px;
             padding-bottom: 0px;
+            font-size: 18px;
         }
         .panel-body{
             height: 70%;
         }
-       
-        @media print {
-          *,
-          *:before,
-          *:after {
-            background: color hex code !important;
-            color: #000 !important; 
-          }
-        
-
+    
     </style>
     </head>
 
