@@ -293,7 +293,7 @@ class PayslipController extends Controller
             'profile'  =>  $profile,
         ];
 
-        $name = 'Payslip_'.$person->name.Carbon::now()->format('dmYHis').'.pdf';
+        $name = 'Payslip_('.$person->name.')-'.Carbon::now()->format('dmYHis').'.pdf';
 
         $pdf = PDF::loadView('payslip.printpdf', $data);
 
