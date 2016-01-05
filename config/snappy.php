@@ -10,10 +10,10 @@ return array(
         'timeout' => false,
         'options' => array(
                             // 'print-media-type' => true,
-                            'zoom' => 1.3,
+                            // 'zoom' => 1.3,
                             // 'outline' => true,
-                            'dpi' => 96,
-                            'page-size' => 'A4',
+                            // 'dpi' => 96,
+                            // 'page-size' => 'A4',
                         ),
     ),
     'image' => array(
