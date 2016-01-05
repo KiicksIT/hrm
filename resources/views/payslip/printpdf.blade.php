@@ -1,5 +1,8 @@
-@extends('template')
-@section('footer')
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style type="text/css">
         .inline {
             display:inline;
@@ -41,15 +44,19 @@
             height: 70%;
         }
        
-       /* @media print {
+        @media print {
           *,
           *:before,
           *:after {
             background: color hex code !important;
             color: #000 !important; 
-          }*/
-    </style>
+          }
+        
 
+    </style>
+    </head>
+
+    <body>
         <div class="container">
 
             {{-- payslip from and to --}}
@@ -297,5 +304,7 @@
                         </li>                                                
                     </ul>                    
                 </div>
-            </div>                                                                                
-@stop
+            </div>                                                                                      
+
+    </body>
+</html>    
