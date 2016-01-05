@@ -42,6 +42,15 @@
         .panel-body{
             height: 60%;
         }
+       
+        @media print {
+          *,
+          *:before,
+          *:after {
+            background: color hex code !important;
+            color: #000 !important; 
+          }
+        
 
     </style>
     </head>
