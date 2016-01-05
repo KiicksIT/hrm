@@ -25,7 +25,7 @@ class AddOtherRequest extends Request
     {
         return [
             'addotheritem_id' => 'required',
-            'amount' => 'required|numeric',
+            'addother_amount' => 'required|numeric',
         ];
     }
 }

@@ -5821,7 +5821,7 @@ body p {
 .sidebar {
   padding: 0; }
 
-@media (min-width: 768px) {
+@media (min-width: 830px) {
   .sidebar {
     position: fixed;
     top: 0;

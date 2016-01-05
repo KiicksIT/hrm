@@ -14,7 +14,7 @@ class CreateAddotherTable extends Migration
     {
         Schema::create('addothers', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('amount', 15, 2);
+            $table->decimal('addother_amount', 15, 2);
             $table->timestamps();
 
             $table->integer('addotheritem_id')->unsigned()->nullable();

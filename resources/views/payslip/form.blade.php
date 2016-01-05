@@ -55,13 +55,13 @@
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('basic_rate', 'Hourly Pay ($)', ['class'=>'control-label']) !!}
-                {!! Form::text('basic_rate', $payslip->person->basic_rate + 0, ['id'=>'basic_rate', 'class'=>'form-control', 'disabled'=>'disabled']) !!}
+                {!! Form::text('basic_rate', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'basicRateModel']) !!}
             </div>        
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('resident', 'Singaporean/ PR', ['class'=>'control-label']) !!}
-                {!! Form::text('resident', $payslip->person->resident, ['id'=>'resident', 'class'=>'form-control', 'disabled'=>'disabled']) !!}
+                {!! Form::text('resident', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'residentModel']) !!}
             </div>        
         </div>    
     </div>
@@ -90,7 +90,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('ot_rate', 'Overtime Rate (Hourly)', ['class'=>'control-label']) !!}
-                {!! Form::text('ot_rate', $payslip->person->ot_rate + 0, ['id'=>'ot_rate', 'class'=>'form-control', 'disabled'=>'disabled']) !!}
+                {!! Form::text('ot_rate', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'otRateModel']) !!}
             </div>        
         </div> 
         <div class="col-md-3">

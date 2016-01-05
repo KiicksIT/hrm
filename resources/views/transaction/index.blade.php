@@ -3,7 +3,7 @@
 {{ $TRANS_TITLE }}
 @stop
 @section('content')
-    
+    <div class="col-sm-6">
     <div class="row">        
     <a class="title_hyper pull-left" href="/transaction"><h1>{{ $TRANS_TITLE }} <i class="fa fa-credit-card"></i></h1></a>
     </div>
@@ -88,6 +88,7 @@
                 Total of {{$transactions->total()}} entries
             </label>
         </div>
+    </div>
     </div>
  
 @stop

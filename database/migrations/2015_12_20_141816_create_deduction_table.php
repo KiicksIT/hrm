@@ -14,7 +14,7 @@ class CreateDeductionTable extends Migration
     {
         Schema::create('deductions', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('amount', 15, 2)->nullable();
+            $table->decimal('deduct_amount', 15, 2)->nullable();
             $table->timestamps();
 
             $table->integer('deductitem_id')->unsigned()->nullable();

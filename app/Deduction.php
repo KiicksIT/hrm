@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Deduction extends Model
 {
     protected $fillable = [
-        'amount', 'deductitem_id', 'payslip_id'
+        'deduct_amount', 'deductitem_id', 'payslip_id'
     ]; 
 
     public function deductitem()

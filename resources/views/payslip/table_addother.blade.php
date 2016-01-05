@@ -28,7 +28,7 @@
                 ng-controller="repeatController3" pagination-id="3">
                     <td class="col-md-1 text-center">@{{ number }}</td>
                     <td class="col-md-7">@{{ addother.addotheritem.name }}</td>
-                    <td class="col-md-3 text-right">@{{ (addother.amount/100 * 100).toFixed(2) }}</td>
+                    <td class="col-md-3 text-right">@{{ (addother.addother_amount/100 * 100).toFixed(2) }}</td>
                     <td class="col-md-1 text-center">
                         @if($payslip->status == 'Pending')
                             <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete3(addother.id)">Delete</button>
@@ -68,7 +68,7 @@
             <div class="col-md-3">
                 <div class="form-group"> 
                     {!! Form::label('amount', 'Amount ($)', ['class'=>'control-label']) !!}
-                    {!! Form::text('amount', null, ['class'=>'form-control']) !!}
+                    {!! Form::text('addother_amount', null, ['class'=>'form-control']) !!}
                 </div>
             </div>
             <div class="col-md-2">

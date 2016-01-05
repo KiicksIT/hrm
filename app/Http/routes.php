@@ -33,7 +33,6 @@ get('/transaction/item/{person_id}', 'TransactionController@getItem');
 get('/transaction/person/{person_id}/item/{item_id}', 'TransactionController@getPrice');
 
 post('/payslip/download/{payslip_id}', 'PayslipController@generatePayslip');
-get('/payslip/{payslip_id}/person', 'PayslipController@getPayslipPerson');
 get('/payslip/addother/{payslip_id}', 'PayslipController@getAddOther');
 get('/payslip/deduction/{payslip_id}', 'PayslipController@getDeduction');
 get('/payslip/addition/{payslip_id}', 'PayslipController@getAddition');

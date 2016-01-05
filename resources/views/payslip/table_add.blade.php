@@ -27,8 +27,8 @@
                 ng-controller="repeatController1" pagination-id="1">
                     <td class="col-md-1 text-center">@{{ number }}</td>
                     <td class="col-md-7">@{{ addition.additem.name }}</td>
-                    <td class="col-md-3 text-right" ng-if="addition.amount != NULL">@{{ (addition.amount/100 * 100).toFixed(2) }}</td>
-                    <td class="col-md-3 text-center" ng-if="addition.amount == NULL"><strong>TBC</strong></td>
+                    <td class="col-md-3 text-right" ng-if="addition.add_amount != NULL">@{{ (addition.add_amount/100 * 100).toFixed(2) }}</td>
+                    <td class="col-md-3 text-center" ng-if="addition.add_amount == NULL"><strong>TBC</strong></td>
                     <td class="col-md-1 text-center">
                         @if($payslip->status == 'Pending')
                             <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete1(addition.id)">Delete</button>
@@ -65,8 +65,8 @@
 
             <div class="col-md-3">
                 <div class="form-group"> 
-                    {!! Form::label('amount', 'Amount ($)', ['class'=>'control-label']) !!}
-                    {!! Form::text('amount', null, ['class'=>'form-control']) !!}
+                    {!! Form::label('add_amount', 'Amount ($)', ['class'=>'control-label']) !!}
+                    {!! Form::text('add_amount', null, ['class'=>'form-control']) !!}
                 </div>
             </div>
             <div class="col-md-2">

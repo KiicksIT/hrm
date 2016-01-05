@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Deduction;
 use App\DeductItem;
 use Laracasts\Flash\Flash;
+use App\Payslip;
 
 class DeductionController extends Controller
 {
@@ -45,6 +46,8 @@ class DeductionController extends Controller
         $input = $request->all();  
 
         $deduction = Deduction::create($input);
+    
+        $this->syncDeductTotal($request->payslip_id);      
 
         if($deduction){
 
@@ -71,6 +74,8 @@ class DeductionController extends Controller
 
         $deduction->delete();
 
+        $this->syncDeductTotal($deduction->payslip_id);
+
         if($deduction){
 
             Flash::success('Successfully Deleted');
@@ -82,5 +87,21 @@ class DeductionController extends Controller
         }          
 
         return $deduction->name . 'has been successfully deleted';
-    }     
+    } 
+
+    private function syncDeductTotal($payslip_id)
+    {
+        $deduction = Deduction::wherePayslipId($payslip_id)->get();
+
+        $payslip = Payslip::findOrFail($payslip_id);
+
+        $deduct_total = $deduction->sum('deduct_amount');
+
+        $payslip->deduct_total = $deduct_total;
+
+        $payslip->net_pay = $payslip->basic + $payslip->add_total
+                            - $deduct_total + $payslip->ot_total + $payslip->other_total;
+
+        $payslip->save();        
+    }        
 }

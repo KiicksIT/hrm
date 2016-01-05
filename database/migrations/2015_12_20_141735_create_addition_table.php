@@ -14,7 +14,7 @@ class CreateAdditionTable extends Migration
     {
         Schema::create('additions', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('amount', 15, 2)->nullable();
+            $table->decimal('add_amount', 15, 2)->nullable();
             $table->timestamps();
 
             $table->integer('additem_id')->unsigned()->nullable();

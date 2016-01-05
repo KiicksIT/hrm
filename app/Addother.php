@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Addother extends Model
 {
     protected $fillable = [
-        'amount', 'addotheritem_id', 'payslip_id'
+        'addother_amount', 'addotheritem_id', 'payslip_id'
     ];
 
     public function addotheritem()

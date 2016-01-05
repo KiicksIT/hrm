@@ -19,10 +19,10 @@
             {!! Form::text('plus_all', null, ['class'=>'hidden form-control', 'ng-model'=>'plusAllModel']) !!}
             {!! Form::text('employercont_epf', null, ['class'=>'hidden form-control', 'ng-model'=>'employerEpfModel']) !!}
             {!! Form::text('employee_epf', null, ['class'=>'hidden form-control', 'ng-model'=>'employeeEpfModel']) !!}
-            {!! Form::text('add_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalAddModel']) !!}
-            {!! Form::text('deduct_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalDeductModel']) !!}
-            {!! Form::text('other_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalAddotherModel']) !!}
-            {!! Form::text('net_pay', null, ['class'=>'hidden form-control', 'ng-model'=>'netPayModel']) !!}
+            {{-- {!! Form::text('add_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalAddModel']) !!} --}}
+            {{-- {!! Form::text('deduct_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalDeductModel']) !!} --}}
+            {{-- {!! Form::text('other_total', null, ['class'=>'hidden form-control', 'ng-model'=>'totalAddotherModel']) !!} --}}
+            {{-- {!! Form::text('net_pay', null, ['class'=>'hidden form-control', 'ng-model'=>'netPayModel']) !!} --}}
                 @include('payslip.form')
             
                 <div class="col-md-12">
@@ -36,9 +36,6 @@
                         <a href="/payslip" class="btn btn-default">Cancel</a>            
                     </div>
                     <div class="pull-left" style="padding: 30px 0px 0px 95px;">
-                      {{--   {!! Form::open(['method'=>'DELETE', 'action'=>['PayslipController@destroy', $payslip->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
-                            {!! Form::submit('Delete', ['class'=> 'btn btn-danger']) !!}
-                        {!! Form::close() !!} --}}
                         <button class="btn btn-danger btn-delete" ng-click="confirmDelete({{$payslip->id}})">Delete</button> 
                     </div>                
                 </div>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Addother;
 use App\Addotheritem;
 use Laracasts\Flash\Flash;
+use App\Payslip;
 
 class AddOtherController extends Controller
 {
@@ -45,6 +46,8 @@ class AddOtherController extends Controller
 
         $addother = Addother::create($input);
 
+        $this->syncAddotherTotal($request->payslip_id);
+
         if($addother){
 
             Flash::success('Successfully Created');
@@ -70,6 +73,8 @@ class AddOtherController extends Controller
 
         $addother->delete();
 
+        $this->syncAddotherTotal($addother->payslip_id);        
+
         if($addother){
 
             Flash::success('Successfully Deleted');
@@ -81,5 +86,21 @@ class AddOtherController extends Controller
         }          
 
         return $addother->name . 'has been successfully deleted';
-    }  
+    }
+
+    private function syncAddotherTotal($payslip_id)
+    {
+        $addother = Addother::wherePayslipId($payslip_id)->get();
+
+        $payslip = Payslip::findOrFail($payslip_id);
+
+        $other_total = $addother->sum('deduct_amount');
+
+        $payslip->other_total = $other_total;
+
+        $payslip->net_pay = $payslip->basic + $payslip->add_total
+                            - $payslip->deduct_total + $payslip->ot_total + $other_total;
+
+        $payslip->save();        
+    }       
 }

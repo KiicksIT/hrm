@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Addition;
 use App\AddItem;
 use Laracasts\Flash\Flash;
+use App\Payslip;
 
 class AdditionController extends Controller
 {
@@ -45,7 +46,10 @@ class AdditionController extends Controller
 
         $addition = Addition::create($input);
 
+        $this->syncAddTotal($request->payslip_id);
+
         if($addition){
+
 
             Flash::success('Successfully Created');
 
@@ -70,6 +74,8 @@ class AdditionController extends Controller
 
         $addition->delete();
 
+        $this->syncAddTotal($addition->payslip_id);
+
         if($addition){
 
             Flash::success('Successfully Deleted');
@@ -81,5 +87,21 @@ class AdditionController extends Controller
         }          
 
         return $addition->name . 'has been successfully deleted';
-    }             
+    } 
+
+    private function syncAddTotal($payslip_id)
+    {
+        $addition = Addition::wherePayslipId($payslip_id)->get();
+
+        $payslip = Payslip::findOrFail($payslip_id);
+
+        $add_total = $addition->sum('add_amount');
+
+        $payslip->add_total = $add_total;
+
+        $payslip->net_pay = $payslip->basic + $add_total 
+                            - $payslip->deduct_total + $payslip->ot_total + $payslip->other_total;
+
+        $payslip->save();        
+    }            
 }

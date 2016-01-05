@@ -102,7 +102,8 @@ class PayslipController extends Controller
      */
     public function show($id)
     {
-        $payslip = Payslip::findOrFail($id);
+
+        $payslip = Payslip::with('person')->findOrFail($id);              
 
         return $payslip;
     }
@@ -129,6 +130,24 @@ class PayslipController extends Controller
      */
     public function update(PayslipRequest $request, $id)
     {
+
+/*        // init net pay
+        $total = 0;
+
+        // get the total from A B C D E
+        $basic = $request->basic;
+
+        $add = $request->add_total;
+
+        $deduct = $request->deduct_total;
+
+        $ot = $request->ot_total;
+
+        $other = $request->other_total;
+
+        // A + B - C + D + E
+        $total = $basic + $add - $deduct + $ot + $other;*/
+
         // lookup which button click, save or confirm
         if($request->input('save')){
 
@@ -144,13 +163,15 @@ class PayslipController extends Controller
 
         }
 
+        // $request->merge(array('net_pay' => $total));
+
         // update the respective payslip
         $payslip = Payslip::findOrFail($id);
 
         $payslip->update($request->all());
 
         //update epf when submit
-        $this->epfUpdate($payslip);
+        $this->calculateTotal($request, $payslip);
 
         if($payslip){
 
@@ -162,15 +183,8 @@ class PayslipController extends Controller
 
         }        
 
-        if($request->input('save')){
-
-            return redirect('payslip');
-
-        }else{
-
-            return Redirect::action('PayslipController@edit', $payslip->id);
-
-        }        
+        return Redirect::action('PayslipController@edit', $payslip->id);
+      
     }
 
     /**
@@ -231,7 +245,7 @@ class PayslipController extends Controller
         return $person;
     } 
 
-    // add item section (B)
+    // add item section (B) angular
     public function getAddition($payslip_id)
     {
         $additions = Addition::wherePayslipId($payslip_id)->with('additem')->get();
@@ -239,7 +253,7 @@ class PayslipController extends Controller
         return $additions;
     } 
 
-    // deduct item section (C)
+    // deduct item section (C) angular
     public function getDeduction($payslip_id)
     {
         $deductions = Deduction::wherePayslipId($payslip_id)->with('deductitem')->get();
@@ -247,23 +261,13 @@ class PayslipController extends Controller
         return $deductions;
     }         
 
-    // addother section (E)
+    // addother section (E) angular
     public function getAddOther($payslip_id)
     {
         $addothers = Addother::wherePayslipId($payslip_id)->with('addotheritem')->get();
 
         return $addothers;
     } 
-
-    // return person based on payslip id
-    public function getPayslipPerson($payslip_id)
-    {
-        $payslip = Payslip::findOrFail($payslip_id);
-
-        $person = Person::findOrFail($payslip->person_id);
-
-        return $person;
-    }
 
     // printing pdf version of payslip
     public function generatePayslip($id)    
@@ -299,36 +303,171 @@ class PayslipController extends Controller
 
     }            
 
-    // create epf item as first item for Singaporean/ PR
+    // create cpf item as first item for Singaporean/ PR
     private function createCPFDeduction($payslip)
     {
         $deductitem = DeductItem::firstOrFail();
 
         $deduction = new Deduction;
 
-        $deduction->amount = NULL;
+        $deduction->deduct_amount = NULL;
 
         $deduction->deductitem_id = $deductitem->id;
 
         $deduction->payslip_id = $payslip->id;
 
         $deduction->save();
-    }  
 
-    // update epf when submit button
-    private function epfUpdate($payslip)
+        return $deduction;
+    } 
+
+
+
+    // update cpf when submit button
+    private function calculateTotal($request, $payslip)
     {
         $person = Person::findOrFail($payslip->person_id);
 
         if($person->resident == 'Yes'){
 
+            $age = Carbon::createFromFormat('d-F-Y', $person->dob)->age;
+
+            $totalPositive = $this->calCPFFormula($request, $payslip->id);
+
+            if($age <=  50){
+
+                $employerCpf = $totalPositive * 17/100;
+
+                $employeeCpf = $totalPositive * 20/100;
+
+            }else if($age > 50 && $age <= 55){
+
+                $employerCpf = $totalPositive * 16/100;
+
+                $employeeCpf = $totalPositive * 19/100;
+
+            }else if($age > 55 && $age <= 60){
+
+                $employerCpf = $totalPositive * 12/100;
+
+                $employeeCpf = $totalPositive * 13/100;
+
+            }else if($age > 60 && $age <= 65){
+
+                $employerCpf = $totalPositive * 8.5/100;
+
+                $employeeCpf = $totalPositive * 7.5/100;
+
+            }else{
+
+                $employerCpf = $totalPositive * 7.5/100;
+
+                $employeeCpf = $totalPositive * 5/100;
+
+            }
+
+            $payslip->employee_epf = $employeeCpf;
+
+            $payslip->employercont_epf = $employerCpf;
+
+            $payslip->save();
+
+            // dd($payslip->employee_epf);
+
             $deduction = Deduction::wherePayslipId($payslip->id)->whereDeductitemId(1)->first();
 
-            $deduction->amount = $payslip->employee_epf;
+            if(! $deduction){
+
+                $deduction = $this->createCPFDeduction($payslip); 
+            }
+
+            $deduction->deduct_amount = $payslip->employee_epf;
 
             $deduction->save();
-        }        
-    }                  
+
+        }
+            // cal net pay (A+B-C+D+E)
+            $payslip->net_pay = $this->getBasic($request) + $this->getAdditionSum($payslip->id) 
+                                - $this->getDeductionSum($payslip->id) + $this->getOtSum($request) + $this->getAddotherSum($payslip->id);
+
+            $payslip->save();
+        
+    }
+
+    // Get A given the request
+    private function getBasic($request)                 
+    {
+        $basic = $request->basic;
+
+        return $basic;
+    }    
+
+
+    // Get B given the payslip id
+    private function getAdditionSum($payslip_id)                 
+    {
+        $addition = Addition::wherePayslipId($payslip_id)->get();
+
+        $add_total = $addition->sum('add_amount');
+
+        $payslip = Payslip::findOrFail($payslip_id);
+
+        $payslip->add_total = $add_total;
+
+        $payslip->save();        
+
+        return $add_total;
+    }
+
+    // Get C given the payslip id
+    private function getDeductionSum($payslip_id)                 
+    {
+        $deduction = Deduction::wherePayslipId($payslip_id)->get();
+
+        $deduct_total = $deduction->sum('deduct_amount');
+
+        $payslip = Payslip::findOrFail($payslip_id);
+
+        $payslip->deduct_total = $deduct_total;
+
+        $payslip->save();        
+
+        return $deduct_total;
+    } 
+
+    // Get D given the request
+    private function getOtSum($request)                 
+    {
+        $ot_total = $request->ot_total;
+
+        return $ot_total;
+    }     
+
+    // Get E given the payslip id
+    private function getAddotherSum($payslip_id)                 
+    {
+        $addother = Addother::wherePayslipId($payslip_id)->get();
+
+        $addother_total = $addother->sum('addother_amount');
+
+        $payslip = Payslip::findOrFail($payslip_id);
+
+        $payslip->other_total = $addother_total;
+
+        $payslip->save();
+
+        return $addother_total;
+    }
+
+    // Suppose get the % after all the addition and deduction (A+B-C+D+E)
+    private function calCPFFormula($request, $payslip_id)
+    {
+        $totalPositive = $this->getBasic($request) + $this->getOtSum($request);
+
+        return $totalPositive;
+    } 
+
+
 
 
 }

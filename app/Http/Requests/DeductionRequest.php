@@ -25,7 +25,7 @@ class DeductionRequest extends Request
     {
         return [
             'deductitem_id' => 'required',
-            'amount' => 'required|numeric',
+            'deduct_amount' => 'required|numeric',
         ];
     }
 }
