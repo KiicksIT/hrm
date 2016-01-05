@@ -51,7 +51,7 @@
 
             {{-- payslip from and to --}}
             <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 text-center" style="font-size:16px">
+                <div class="col-xs-10 col-xs-offset-1 text-center" style="font-size:16px; padding-top: 50px;">
                     <span>Payslip for <strong>{{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->payslip_from)->format('d M Y') }}</strong> to <strong>{{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->payslip_to)->format('d M Y')}}</strong></span>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 
             {{-- employer name --}}
             <div class="row">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><strong>Name of Employer</strong></h3> 
                     </div>
@@ -74,7 +74,7 @@
 
             {{-- employee name --}}
             <div class="row">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><strong>Name of Employee</strong></h3> 
                     </div>
@@ -86,7 +86,7 @@
 
             {{-- showing items --}}
             <div class="row">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <div class="row">
@@ -169,7 +169,7 @@
 
             {{-- payment date --}}
             <div class="row">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><strong>Date of Payment</strong></h3> 
                     </div>
@@ -181,7 +181,7 @@
 
             {{-- payment mode --}}
             <div class="row">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><strong>Mode of Payment</strong></h3> 
                     </div>
@@ -193,7 +193,7 @@
 
             {{-- overtiem details --}}
             <div class="row">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title"><strong>Overtime Details</strong></h3> 
                     </div>
@@ -234,7 +234,7 @@
 
             {{-- showing addother --}}
             <div class="row">
-                <div class="panel panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <div class="row">
