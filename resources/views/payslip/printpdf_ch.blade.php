@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh_CN">
     <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style type="text/css">
         .inline {

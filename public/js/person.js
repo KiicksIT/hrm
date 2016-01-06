@@ -57,11 +57,9 @@ $('.checkall').change(function(){
                         url: '/person/data/' + id
                     })
                     .success(function(data){
-                        console.log(data);
                         location.reload();
                     })
                     .error(function(data){
-                        console.log(data);
                         alert('Unable to delete');
                     })
                 }else{
