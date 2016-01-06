@@ -55,7 +55,7 @@ class Payslip extends Model
 
     public function getCreatedAtAttribute($date)
     {
-        return Carbon::parse($date)->format('d-F-Y');
+        return Carbon::parse($date)->format('d-M-Y');
     }
 
     public function getWorkdayActualAttribute($value)
