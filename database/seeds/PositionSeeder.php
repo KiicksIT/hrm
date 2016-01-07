@@ -18,7 +18,6 @@ class PositionSeeder extends Seeder
             'work_hour' => 8,
             'work_day' => 5,
             'work_off' => 2,
-            'prob_length' => '3 Months',
         ]); 
 
         Position::create([
@@ -27,7 +26,6 @@ class PositionSeeder extends Seeder
             'work_hour' => 5,
             'work_day' => 4,
             'work_off' => 2,
-            'prob_length' => '6 Months',
         ]);
 
         Position::create([
@@ -36,7 +34,6 @@ class PositionSeeder extends Seeder
             'work_hour' => 10,
             'work_day' => 5.5,
             'work_off' => 1.5,
-            'prob_length' => '1 Month',
         ]);                  
     }
 }
