@@ -16,7 +16,7 @@
             {!! Form::model($department,['method'=>'PATCH','action'=>['DeptController@update', $department->id]]) !!}
                 {!! Form::text('department_id', $department->id, ['id'=>'department_id', 'class'=>'hidden form-control']) !!}            
 
-                @include('department.form_ch')
+                @include('department.form')
 
                 <div class="col-md-12">
                     <div class="pull-right form_button_right">
@@ -40,11 +40,11 @@
     <label class="pull-right " >Total @{{people.length}} employee(s) for this department</label>     
 
     <div style="padding-bottom: 10px">
-        {{-- <label for="search_name" class="search">Search Name:</label> --}}
-        <label for="search_name" class="search">Search Name 名字:</label>
+        <label for="search_name" class="search">Search Name:</label>
+        {{-- <label for="search_name" class="search">Search Name 名字:</label> --}}
         <input type="text" ng-model="search.name">
-        {{-- <label for="search_dept" class="search" style="padding-left: 10px;">Search Position:</label> --}}
-        <label for="search_dept" class="search" style="padding-left: 10px;">Search Position 职位:</label>
+        <label for="search_dept" class="search" style="padding-left: 10px;">Search Position:</label>
+        {{-- <label for="search_dept" class="search" style="padding-left: 10px;">Search Position 职位:</label> --}}
         <input type="text" ng-model="search.position.name">        
     </div>
 
@@ -61,25 +61,25 @@
             </th>
             <th class="col-md-3 text-center">
                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                {{-- Name --}}
-                Name 名字
+                Name
+                {{-- Name 名字 --}}
                 <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>                
             </th>                     
             <th class="col-md-2 text-center">
                 <a href="#" ng-click="sortType = 'position.name'; sortReverse = !sortReverse">
-                {{-- Position --}}
-                Position 职位
+                Position
+                {{-- Position 职位 --}}
                 <span ng-show="sortType == 'position.name' && !sortReverse" class="fa fa-caret-down"></span>
                 <span ng-show="sortType == 'position.name' && sortReverse" class="fa fa-caret-up"></span>                 
             </th>
             <th class="col-md-2 text-center">
-                {{-- Contact --}}
-                Contact 联络号码
+                Contact
+                {{-- Contact 联络号码 --}}
             </th>
             <th class="col-md-3 text-center">
-                {{-- Email --}}
-                Email 电子邮件
+                Email
+                {{-- Email 电子邮件 --}}
             </th>                                                                                               
         </tr>
 

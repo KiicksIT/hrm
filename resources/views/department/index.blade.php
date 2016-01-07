@@ -31,8 +31,8 @@
 
             <div class="panel-body">
                 <div style="padding-bottom: 10px">
-                    {{-- <label for="search_name" class="search">Search Dept:</label> --}}
-                    <label for="search_name" class="search">Search Dept 部门:</label>
+                    <label for="search_name" class="search">Search Dept:</label>
+                    {{-- <label for="search_name" class="search">Search Dept 部门:</label> --}}
                     <input type="text" ng-model="search.name">
                 </div>
                 <table class="table table-list-search table-hover table-bordered">
@@ -42,14 +42,14 @@
                         </th>                    
                         <th class="col-md-4 text-center">
                             <a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
-                            {{-- Dept Name --}}
-                            Dept Name 部门
+                            Dept Name
+                            {{-- Dept Name 部门 --}}
                             <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
                             <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>                            
                         </th>
                         <th class="col-md-5 text-center">
-                            {{-- Remark --}}
-                            Remark 备注
+                            Remark
+                            {{-- Remark 备注 --}}
                         </th>                                             
                         <th class="col-md-2 text-center">
                             Action

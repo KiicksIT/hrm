@@ -16,7 +16,7 @@
         {!! Form::close() !!}     
         {!! Form::model($person,['method'=>'PATCH','action'=>['PersonController@update', $person->id]]) !!}            
 
-            @include('person.form_ch')
+            @include('person.form')
 
             <div class="col-md-12 row" style="padding-top: 10px;">
                 <div class="pull-right">

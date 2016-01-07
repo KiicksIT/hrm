@@ -14,7 +14,7 @@
     <div class="panel-body">
         {!! Form::model($position = new \App\Position, ['action'=>'PositionController@store']) !!}
 
-            @include('position.form_ch')
+            @include('position.form')
 
             <div class="col-md-12">
                 <div class="form-group pull-right">
