@@ -10,6 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+post('/person/download/{person_id}', 'PersonController@generateKET');
 get('person/transac/{person_id}', 'PersonController@showTransac');
 get('/person/data', 'PersonController@getData');
 delete('/person/data/{id}', 'PersonController@destroyAjax');
@@ -19,18 +20,6 @@ delete('person/{id}/file', 'PersonController@removeFile');
 
 resource('profile', 'ProfileController');
 // resource('sale', 'SaleController');
-
-resource('price', 'PriceController');
-
-get('/transaction/create/{id}', 'TransactionController@createWPerson');
-post('/transaction/log/{trans_id}', 'TransactionController@generateLogs');
-post('/transaction/download/{trans_id}', 'TransactionController@generateInvoice');
-post('/transaction/{trans_id}/editpersoncode', 'TransactionController@storeCustcode');
-put('/transaction/{trans_id}/editperson', 'TransactionController@storeCust');
-put('/transaction/{trans_id}/total', 'TransactionController@storeTotal');
-get('/transaction/person/{person_id}', 'TransactionController@getCust');
-get('/transaction/item/{person_id}', 'TransactionController@getItem');
-get('/transaction/person/{person_id}/item/{item_id}', 'TransactionController@getPrice');
 
 post('/payslip/download/{payslip_id}', 'PayslipController@generatePayslip');
 get('/payslip/addother/{payslip_id}', 'PayslipController@getAddOther');
@@ -57,17 +46,6 @@ get('/leave/data/', 'LeaveController@getData');
 delete('/leave/data/{id}', 'LeaveController@destroyAjax');
 resource('leave', 'LeaveController');
 
-get('/scheduler/data1', 'SchedulerController@getData1');
-get('/scheduler/data2', 'SchedulerController@getData2');
-delete('/scheduler/data/{id}', 'SchedulerController@destroyAjax');
-resource('scheduler', 'SchedulerController');
-
-get('/report', 'RptController@index');
-post('/report/person', 'RptController@generatePerson');
-post('/report/item', 'RptController@generateItem');
-post('/report/transaction', 'RptController@generateTransaction');
-post('/report/campaign', 'RptController@generateCampaign');
-
 resource('/massemail', 'MassEmailController');
 
 get('/user/data', 'UserController@getData');
@@ -77,10 +55,12 @@ resource('user', 'UserController');
 get('/role/data', 'RoleController@getData');
 resource('role', 'RoleController');
 
+get('/position/people/{position_id}', 'PositionController@getPositionPeople');
 get('/position/data', 'PositionController@getData');
 delete('/position/data/{id}', 'PositionController@destroyAjax');
 resource('position', 'PositionController');
 
+get('/department/people/{department_id}', 'DeptController@getDepartmentPeople');
 get('/department/data/', 'DeptController@getData');
 delete('/department/data/{id}', 'DeptController@destroyAjax');
 resource('department', 'DeptController');

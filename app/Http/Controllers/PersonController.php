@@ -15,6 +15,8 @@ use App\Price;
 use App\Transaction;
 use Laracasts\Flash\Flash;
 use App\Leave;
+use App\Profile;
+use PDF;
 
 class PersonController extends Controller
 {
@@ -66,6 +68,9 @@ class PersonController extends Controller
      */
     public function store(PersonRequest $request)
     {
+
+        $request->merge(array('prob_end' => $this->calProbLength($request->prob_start, $request->prob_length)));
+
         $input = $request->all();
 
         $person = Person::create($input);
@@ -130,8 +135,10 @@ class PersonController extends Controller
      */
     public function update(PersonRequest $request, $id)
     {
-        // dd($request->all());
+
         $person = Person::findOrFail($id);
+
+        $request->merge(array('prob_end' => $this->calProbLength($request->prob_start, $request->prob_length)));
 
         $input = $request->all();
 
@@ -257,7 +264,29 @@ class PersonController extends Controller
     public function showTransac($person_id)
     {
         return Transaction::with('user')->wherePersonId($person_id)->get();
-    } 
+    }
+
+    // printing pdf version of payslip
+    public function generateKET($id)    
+    {
+        $person = Person::findOrFail($id);
+
+        $profile = Profile::firstOrFail();
+
+        $data = [
+            'person'   =>  $person,
+            'profile'  =>  $profile,
+        ];
+
+        $name = 'KET_('.$person->name.')-'.Carbon::now()->format('dmYHis').'.pdf';
+
+        $pdf = PDF::loadView('person.printket', $data);
+
+        $pdf->setPaper('A4', 'landscape');
+        
+        return $pdf->download($name);
+
+    }      
 
     // create leave records for the person
     private function initLeave($request, $person)
@@ -273,6 +302,36 @@ class PersonController extends Controller
         $leave->person_id = $person->id;
 
         $leave->save();        
+    }
+
+    private function calProbLength($prob_start, $prob_length)
+    {
+        switch($prob_length){
+
+            case 0: 
+                $prob_end = null;
+                break;
+
+            case 1:
+                $prob_end = Carbon::parse($prob_start)->addMonth();
+                break;
+
+            case 2;
+                $prob_end = Carbon::parse($prob_start)->addMonths(2);
+                break;
+
+            case 3;
+                $prob_end = Carbon::parse($prob_start)->addMonths(3);
+                break;
+
+            case 4;
+                $prob_end = Carbon::parse($prob_start)->addMonths(6);
+                break;                                
+        }
+
+        $prob_end = $prob_end->format('d-F-Y');
+
+        return $prob_end;
     }              
   
 }

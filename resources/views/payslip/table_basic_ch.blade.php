@@ -7,13 +7,13 @@
         <div class="col-md-10 col-md-offset-1">
 
             <div class="form-group">
-                {!! Form::label('basic', 'Basic ($) ', ['class'=>'control-label']) !!}
+                {!! Form::label('basic', 'Basic 基本工资 ($) ', ['class'=>'control-label']) !!}
                 {!! Form::text('basic', null, ['class'=>'form-control', 'id'=>'basic', 'ng-model'=>'basicModel']) !!}
             </div> 
 
             <div class="form-group">
                 <div class="col-md-12 row">
-                    {!! Form::label('workday', 'Actual/Total Working Day(s)', ['class'=>'control-label']) !!}
+                    {!! Form::label('workday 工作天', 'Actual/Total Working Day(s)', ['class'=>'control-label']) !!}
                 </div>
                 <div class="row">
                     <div class="col-md-2">

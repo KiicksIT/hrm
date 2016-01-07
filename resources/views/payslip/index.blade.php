@@ -30,16 +30,28 @@
             </div>
 
             <div class="panel-body">
+            <div class="row">
                 <div style="padding-bottom: 10px">
-                    <label for="search_name" class="search">Search Name:</label>
+                    {{-- <label for="search_name" class="search">Search Name:</label> --}}
+                    <label for="search_name" class="search" style="padding-left: 10px">Search Name 名字:</label>
                     <input type="text" ng-model="search.id">
-                    <label for="search_company" class="search" style="padding-left: 10px">Dept:</label>
+                    {{-- <label for="search_company" class="search" style="padding-left: 10px">Dept:</label> --}}
+                    <label for="search_company" class="search" style="padding-left: 10px">Dept 部门:</label>
                     <input type="text" ng-model="search.person.department.name">
-                    <label for="search_status" class="search" style="padding-left: 10px">Position:</label>
-                    <input type="text" ng-model="search.person.position.name">
-                    <label for="search_status" class="search" style="padding-left: 10px">Status:</label>
-                    <input type="text" ng-model="search.status">                     
+                    {{-- <label for="search_status" class="search" style="padding-left: 10px">Position:</label> --}}
+                    <label for="search_status" class="search" style="padding-left: 10px">Position 职位:</label>
+                    <input type="text" ng-model="search.person.position.name">                     
+{{--                     <label for="search_status" class="search" style="padding-left: 10px">Status:</label>
+                    <input type="text" ng-model="search.status">   --}}                  
                 </div>
+            </div>
+            <div class="row">
+                <div style="padding-bottom: 10px">
+                    <label for="search_status" class="search" style="padding-left: 10px">Status 状态:</label>
+                    <input type="text" ng-model="search.status">                
+                </div>
+            </div>           
+
                 <div class="table-responsive">
                     <table class="table table-list-search table-hover table-bordered">
                         <tr style="background-color: #DDFDF8">
@@ -54,19 +66,23 @@
                             </th>                       
                             <th class="col-md-2 text-center">
                                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                                Name
+                                {{-- Name --}}
+                                Name 名字
                                 <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
                             <th class="col-md-2 text-center">
-                                Department                          
+                                {{-- Department --}}
+                                Department 部门                         
                             </th>
                             <th class="col-md-2 text-center">
-                                Positions                        
+                                {{-- Positions --}}
+                                Positions 职位                      
                             </th>
                             <th class="col-md-1 text-center">
                                 <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">                         
-                                Status
+                                {{-- Status --}}
+                                Status 状态
                                 <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>                          
                             </th>

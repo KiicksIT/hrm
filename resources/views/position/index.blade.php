@@ -31,7 +31,8 @@
 
             <div class="panel-body">
                 <div style="padding-bottom: 10px">
-                    <label for="search_name" class="search">Search Position:</label>
+                    {{-- <label for="search_name" class="search">Search Position:</label> --}}
+                    <label for="search_name" class="search">Search Position 职位:</label>
                     <input type="text" ng-model="search.name">
                 </div>
                 <table class="table table-list-search table-hover table-bordered">
@@ -40,13 +41,15 @@
                             #
                         </th>                    
                         <th class="col-md-3 text-center">
-                            <a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
-                            Position
-                            <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>                            
+                            <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                            {{-- Position --}}
+                            Position 职位
+                            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>                            
                         </th>
                         <th class="col-md-6 text-center">
-                            Remark
+                            {{-- Remark --}}
+                            Remark 备注
                         </th>                     
                          <th class="col-md-2 text-center">
                             Action
@@ -58,7 +61,7 @@
                             <td class="col-md-1 text-center">@{{ number }} </td>
                             <td class="col-md-3">@{{ position.name }}</td>
                             <td class="col-md-6">@{{ position.remark }}</td>
-                            <td class="col-md-2">
+                            <td class="col-md-2 text-center">
                             <a href="/position/@{{ position.id }}/edit" class="btn btn-sm btn-primary">Edit</a>
                             <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(position.id)">Delete</button>
                             </td>

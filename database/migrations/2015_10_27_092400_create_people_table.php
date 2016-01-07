@@ -33,6 +33,7 @@ class CreatePeopleTable extends Migration
             $table->decimal('ot_rate', 3, 1);
             $table->text('person_remark')->nullable();
             $table->timestamp('prob_start')->nullable();
+            $table->string('prob_length')->nullable();
             $table->timestamp('prob_end')->nullable();
             $table->integer('department_id')->unsigned()->nullable();
             $table->foreign('department_id')->references('id')->on('departments');

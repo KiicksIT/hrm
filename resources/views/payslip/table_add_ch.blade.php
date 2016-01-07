@@ -2,7 +2,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title"><strong>(B) Allowance</strong></h3>
+        <h3 class="panel-title"><strong>(B) Allowance 补贴</strong></h3>
     </div>
 
     <div class="panel-body">
@@ -12,10 +12,10 @@
                     #
                 </th>
                 <th class="col-md-7 text-center">
-                    Name
+                    Name 项目
                 </th>          
                 <th class="col-md-3 text-center">
-                    Amount
+                    Amount 款额($)
                 </th> 
                 <th class="col-md-1 text-center">
                     Action

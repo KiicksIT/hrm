@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Position;
 use Laracasts\Flash\Flash;
+use App\Person;
 
 class PositionController extends Controller
 {
@@ -175,5 +176,13 @@ class PositionController extends Controller
         }         
 
         return $position->name . 'has been successfully deleted';
-    }    
+    } 
+
+    // get people based on position
+    public function getPositionPeople($id)
+    {
+        $people = Person::wherePositionId($id)->with('department')->get();
+
+        return $people;
+    }   
 }

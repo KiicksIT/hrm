@@ -20,7 +20,7 @@ class Person extends Model
         'hour_remark', 'day_remark', 'off_remark',
         'position_id', 'basic_rate', 'paid_leave',
         'mc', 'hospital_leave', 'medic_exam',
-        'benefit_remark'
+        'benefit_remark', 'prob_length'
         ];
 
     /**
@@ -70,7 +70,35 @@ class Person extends Model
             $this->attributes['dob'] = null;
 
         }
-    }               
+    } 
+
+    public function setProbStartAttribute($date)
+    {
+        if($date){
+
+            $this->attributes['prob_start'] = Carbon::parse($date);
+            // $this->attributes['dob'] = Carbon::createFromFormat('d-F-Y', $date)->toDateTimeString();
+
+        }else{
+
+            $this->attributes['prob_start'] = null;
+
+        }
+    } 
+
+    public function setProbEndAttribute($date)
+    {
+        if($date){
+
+            $this->attributes['prob_end'] = Carbon::parse($date);
+            // $this->attributes['dob'] = Carbon::createFromFormat('d-F-Y', $date)->toDateTimeString();
+
+        }else{
+
+            $this->attributes['prob_end'] = null;
+
+        }
+    }                       
 
     // dates format
     public function getDobAttribute($date)
@@ -99,7 +127,17 @@ class Person extends Model
     public function getCreatedAtAttribute($date)
     {
         return Carbon::parse($date)->format('d-F-Y');
-    }  
+    }
+
+    public function getProbStartAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-F-Y');
+    }
+
+    public function getProbEndAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-F-Y');
+    }          
 
     public function getResidentAttribute($data)
     {

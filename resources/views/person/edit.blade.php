@@ -12,15 +12,17 @@
     </div>
 
     <div class="panel-body">
+        {!! Form::open(['id'=>'form_print', 'method'=>'POST', 'action'=>['PersonController@generateKET', $person->id]]) !!}
+        {!! Form::close() !!}     
         {!! Form::model($person,['method'=>'PATCH','action'=>['PersonController@update', $person->id]]) !!}            
 
-            @include('person.form')
+            @include('person.form_ch')
 
-            <div class="col-md-12">
+            <div class="col-md-12 row" style="padding-top: 10px;">
                 <div class="pull-right">
-                    {!! Form::submit('Edit Profile', ['class'=> 'btn btn-primary']) !!}
+                    {!! Form::submit('Edit Profile', ['class'=> 'btn btn-warning']) !!}
         {!! Form::close() !!}
-
+                    {!! Form::submit('Print', ['name'=>'print', 'class'=> 'btn btn-primary', 'form'=>'form_print']) !!}
                     <a href="/person" class="btn btn-default">Cancel</a>            
                 </div>
                 <div class="pull-left">

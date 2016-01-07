@@ -17,7 +17,7 @@
             {!! Form::text('payslip_id', $payslip->id, ['id'=>'payslip_id','class'=>'hidden form-control']) !!}
             {!! Form::text('ot_total', null, ['class'=>'hidden form-control', 'ng-model'=>'ottotalModel']) !!}
 
-                @include('payslip.form')
+                @include('payslip.form_ch')
             
                 <div class="col-md-12">
                     <div class="pull-right" style="padding: 30px 95px 0px 0px;">
@@ -38,35 +38,35 @@
 
     <div class="row">
         <div class="col-md-12">
-            @include('payslip.table_basic')
+            @include('payslip.table_basic_ch')
         </div>
     </div>
             {!! Form::close() !!}
     <div class="row">
         <div class="col-md-6">
-            @include('payslip.table_add')
+            @include('payslip.table_add_ch')
         </div>
             
         <div class="col-md-6">
-            @include('payslip.table_deduct')
+            @include('payslip.table_deduct_ch')
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            @include('payslip.table_ot')
+            @include('payslip.table_ot_ch')
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            @include('payslip.table_addother')
+            @include('payslip.table_addother_ch')
         </div>
     </div> 
 
     <div class="row">
         <div class="col-md-12">
-            @include('payslip.table_total')
+            @include('payslip.table_total_ch')
         </div>
     </div>            
 

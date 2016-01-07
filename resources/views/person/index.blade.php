@@ -33,11 +33,14 @@
 
             <div class="panel-body">
                 <div style="padding-bottom: 10px">
-                    <label for="search_company" class="search">Search Name:</label>
+                    {{-- <label for="search_company" class="search">Search Name:</label> --}}
+                    <label for="search_company" class="search">Search Name 名字:</label>
                     <input type="text" ng-model="search.name">
-                    <label for="search_contact" class="search" style="padding-left: 10px">Dept:</label>
+                    {{-- <label for="search_contact" class="search" style="padding-left: 10px">Dept:</label> --}}
+                    <label for="search_contact" class="search" style="padding-left: 10px">Dept 部门:</label>
                     <input type="text" ng-model="search.department.name">                    
-                    <label for="search_name" class="search" style="padding-left: 10px">Position:</label>
+                    {{-- <label for="search_name" class="search" style="padding-left: 10px">Position:</label> --}}
+                    <label for="search_name" class="search" style="padding-left: 10px">Position 职位:</label>
                     <input type="text" ng-model="search.position.name">                    
 
                 </div>
@@ -54,19 +57,24 @@
                                 ID                           
                             </th>
                             <th class="col-md-2 text-center">
-                                Name
+                                {{-- Name --}}
+                                Name 名字
                             </th>                            
                             <th class="col-md-2 text-center">
-                                Position
+                                {{-- Position --}}
+                                Position 职位
                             </th>
                             <th class="col-md-1 text-center">
-                                Department
+                                {{-- Department --}}
+                                Department 部门
                             </th>                             
                             <th class="col-md-1 text-center">
-                                Contact
+                                {{-- Contact --}}
+                                Contact 联络号码
                             </th>  
                             <th class="col-md-1 text-center">
-                                Email
+                                {{-- Email --}}
+                                Email 电子邮件
                             </th>                                                                            
                             <th class="col-md-2 text-center">
                                 Action

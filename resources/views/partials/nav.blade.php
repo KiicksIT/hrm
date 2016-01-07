@@ -52,9 +52,9 @@
              {{--    <li class="{{ strpos(Request::path(), 'report') !== false ? 'active' : '' }}">
                     <a href="/report"><i class="fa fa-fw fa fa-file-text-o"></i> {{ $REPORT_TITLE }}</a>
                 </li>  --}}        
-                <li class="{{ strpos(Request::path(), 'massemail') !== false ? 'active' : '' }}">
+             {{--    <li class="{{ strpos(Request::path(), 'massemail') !== false ? 'active' : '' }}">
                     <a href="/massemail"><i class="fa fa-fw fa fa-envelope-o"></i> {{ $EMAIL_TITLE }}</a>
-                </li>                                                                             
+                </li>   --}}                                                                           
             </ul>
         </div>
         @endunless       

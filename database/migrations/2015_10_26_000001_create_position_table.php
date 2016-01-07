@@ -18,8 +18,7 @@ class CreatePositionTable extends Migration
             $table->text('remark')->nullable();
             $table->decimal('work_hour', 5, 2);
             $table->decimal('work_day', 3, 1);
-            $table->decimal('work_off', 3, 1);
-            $table->string('prob_length');            
+            $table->decimal('work_off', 3, 1);            
             $table->timestamps();
         });          
     }

@@ -16,7 +16,7 @@
             <div class="panel-body">
                 {!! Form::model($mainindex = new \App\MainIndex, ['action'=>'MainIndexController@store']) !!}
 
-                    @include('mainindex.form')
+                    @include('mainindex.form_ch')
 
                     <div class="col-md-10 col-md-offset-1">
                         <div class="form-group pull-right" style="padding: 20px 0px 0px 0px;">
