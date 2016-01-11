@@ -17,6 +17,7 @@ use Laracasts\Flash\Flash;
 use App\Leave;
 use App\Profile;
 use PDF;
+use App\User;
 
 class PersonController extends Controller
 {
@@ -68,8 +69,19 @@ class PersonController extends Controller
      */
     public function store(PersonRequest $request)
     {
+        if($request->prob_length){
+            
+            $request->merge(array('prob_end' => $this->calProbLength($request->prob_start, $request->prob_length)));
 
-        $request->merge(array('prob_end' => $this->calProbLength($request->prob_start, $request->prob_length)));
+        }
+
+        $resident = $request->has('resident')? 1 : 0;
+
+        $medic_exam = $request->has('medic_exam')? 1 : 0; 
+
+        $request->merge(['resident'=>$resident]);
+
+        $request->merge(['medic_exam'=>$medic_exam]);        
 
         $input = $request->all();
 
@@ -138,7 +150,17 @@ class PersonController extends Controller
 
         $person = Person::findOrFail($id);
 
+        $request->merge(array('contract_end' => $this->calContractLength($request->contract_start, $request->contract_length)));
+
         $request->merge(array('prob_end' => $this->calProbLength($request->prob_start, $request->prob_length)));
+
+        $resident = $request->has('resident')? 1 : 0;
+
+        $medic_exam = $request->has('medic_exam')? 1 : 0; 
+
+        $request->merge(['resident'=>$resident]);
+
+        $request->merge(['medic_exam'=>$medic_exam]);      
 
         $input = $request->all();
 
@@ -266,6 +288,48 @@ class PersonController extends Controller
         return Transaction::with('user')->wherePersonId($person_id)->get();
     }
 
+    public function convertToUser($person_id)
+    {
+        $person = Person::findOrFail($person_id);
+
+        if(! $person->user_id){
+
+            $user = new User();
+
+            $user->name = $person->name;
+
+            $user->email = $person->email;
+
+            $user->username = strtolower(preg_replace('/\s+/', '', $person->name));
+
+            $user->password = 'abcde12345';
+
+            $user->contact = $person->contact;
+
+            $user->save();
+
+            $person->user_id = $user->id;
+
+            $person->save();
+
+            if($person){
+
+                Flash::success('User Added');
+
+            }else{
+
+                Flash::error('Please Try Again');
+
+            }        
+
+        }else{
+
+            Flash::error('This Employee has already been added as user');
+        }
+
+        return Redirect::action('PersonController@edit', $person->id);        
+    }
+
     // printing pdf version of payslip
     public function generateKET($id)    
     {
@@ -304,34 +368,74 @@ class PersonController extends Controller
         $leave->save();        
     }
 
+    // calculate probabtion length
     private function calProbLength($prob_start, $prob_length)
     {
         switch($prob_length){
 
-            case 0: 
+            case 'None': 
                 $prob_end = null;
                 break;
 
-            case 1:
+            case '1 Month':
                 $prob_end = Carbon::parse($prob_start)->addMonth();
                 break;
 
-            case 2;
+            case '2 Months';
                 $prob_end = Carbon::parse($prob_start)->addMonths(2);
                 break;
 
-            case 3;
+            case '3 Months';
                 $prob_end = Carbon::parse($prob_start)->addMonths(3);
                 break;
 
-            case 4;
+            case '6 Months';
                 $prob_end = Carbon::parse($prob_start)->addMonths(6);
                 break;                                
         }
 
-        $prob_end = $prob_end->format('d-F-Y');
+        if($prob_end != null){
+
+            $prob_end = $prob_end->format('d-F-Y');
+
+        }
 
         return $prob_end;
-    }              
+    }
+
+    // calculate contract length
+    private function calContractLength($contract_start, $contract_length)
+    {
+        switch($contract_length){
+
+            case 'None': 
+                $contract_end = null;
+                break;
+
+            case '1 Year':
+                $contract_end = Carbon::parse($contract_start)->addYear();
+                break;
+
+            case '2 Years';
+                $contract_end = Carbon::parse($contract_start)->addYears(2);
+                break;
+
+            case '3 Years';
+                $contract_end = Carbon::parse($contract_start)->addYears(3);
+                break;
+
+            case '4 Years';
+                $contract_end = Carbon::parse($contract_start)->addYears(4);
+                break;                                
+        }
+
+        if($contract_end != null){
+
+            $contract_end = $contract_end->format('d-F-Y');
+
+        }
+
+        return $contract_end;
+    }                  
   
 }

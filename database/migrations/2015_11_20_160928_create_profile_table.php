@@ -23,8 +23,13 @@ class CreateProfileTable extends Migration
             $table->string('header')->nullable();
             $table->string('logo')->nullable();
             $table->string('footer')->nullable();
-            $table->string('salary_period');
-            $table->string('ot_period');            
+            $table->integer('payslip_start')->nullable();
+            $table->integer('payslip_end')->nullable();
+            $table->integer('payslip_otstart')->nullable();
+            $table->integer('payslip_otend')->nullable();
+            $table->integer('payday')->nullable();
+            $table->integer('ot_payday')->nullable();
+            $table->text('notice')->nullable();
             $table->timestamps();
         });
     }

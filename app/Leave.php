@@ -14,7 +14,12 @@ class Leave extends Model
     public function person()
     {
         return $this->belongsTo('App\Person');
-    } 
+    }
+
+    public function applyleave()
+    {
+        return $this->hasOne('App\ApplyLeave');
+    }       
 
     public function getTotalPaidleaveAttribute($value)
     {

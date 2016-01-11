@@ -18,17 +18,22 @@
 
             @include('person.form')
 
-            <div class="col-md-12 row" style="padding-top: 10px;">
+            <div class="col-md-12 " style="padding-top: 10px;">
                 <div class="pull-right">
                     {!! Form::submit('Edit Profile', ['class'=> 'btn btn-warning']) !!}
         {!! Form::close() !!}
                     {!! Form::submit('Print', ['name'=>'print', 'class'=> 'btn btn-primary', 'form'=>'form_print']) !!}
                     <a href="/person" class="btn btn-default">Cancel</a>            
                 </div>
-                <div class="pull-left">
-                    {!! Form::open(['method'=>'DELETE', 'action'=>['PersonController@destroy', $person->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
-                        {!! Form::submit('Delete', ['class'=> 'btn btn-danger']) !!}
-                    {!! Form::close() !!}
+                <div class="pull-left row">
+                        <div class="col-md-3">
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['PersonController@destroy', $person->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                            {!! Form::submit('Delete', ['class'=> 'btn btn-danger']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                        <a href="/person/user/{{$person->id}}" class="btn btn-success">Convert to User</a>
+                    </div>
                 </div>                
             </div>
     </div>

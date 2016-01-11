@@ -2,8 +2,15 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
 
     function leaveController($scope, $http){
 
-    $scope.currentPage = 1;
-    $scope.itemsPerPage = 10;        
+    $scope.currentPage1 = 1;
+    $scope.itemsPerPage1 = 10; 
+    $scope.currentPage2 = 1;
+    $scope.itemsPerPage2 = 10;            
+        
+        $http.get('/applyleaves/data').success(function(applyleaves){
+        $scope.applyleaves = applyleaves;
+        });        
+
         $http.get('/leave/data').success(function(leaves){
         $scope.leaves = leaves;
         });
@@ -28,11 +35,18 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
         } 
     }  
 
-function repeatController($scope) {
+function repeatController1($scope) {
     $scope.$watch('$index', function(index) {
-        $scope.number = ($scope.$index + 1) + ($scope.currentPage - 1) * $scope.itemsPerPage;
+        $scope.number = ($scope.$index + 1) + ($scope.currentPage1 - 1) * $scope.itemsPerPage1;
+    })
+}
+
+function repeatController2($scope) {
+    $scope.$watch('$index', function(index) {
+        $scope.number = ($scope.$index + 1) + ($scope.currentPage2 - 1) * $scope.itemsPerPage2;
     })
 }    
 
 app.controller('leaveController', leaveController);
-app.controller('repeatController', repeatController);
+app.controller('repeatController1', repeatController1);
+app.controller('repeatController2', repeatController2);

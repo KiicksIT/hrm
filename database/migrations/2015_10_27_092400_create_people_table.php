@@ -17,6 +17,9 @@ class CreatePeopleTable extends Migration
             $table->string('name');
             $table->string('nric_fin');
             $table->string('contract_type');
+            $table->timestamp('contract_start')->nullable();
+            $table->timestamp('contract_end')->nullable();
+            $table->string('contract_length')->nullable();
             $table->string('gender');
             $table->datetime('dob');
             $table->string('nationality');
@@ -31,6 +34,7 @@ class CreatePeopleTable extends Migration
             $table->decimal('basic', 10, 2);
             $table->decimal('basic_rate', 10, 2);
             $table->decimal('ot_rate', 3, 1);
+            $table->text('salary_component')->nullable();
             $table->text('person_remark')->nullable();
             $table->timestamp('prob_start')->nullable();
             $table->string('prob_length')->nullable();
@@ -45,8 +49,11 @@ class CreatePeopleTable extends Migration
             $table->decimal('paid_leave', 3, 1);                         
             $table->decimal('mc', 3, 1);
             $table->decimal('hospital_leave', 3, 1);
-            $table->string('medic_exam')->nullable();
+            $table->integer('medic_exam')->nullable();
+            $table->text('other_leave')->nullable();
             $table->text('benefit_remark')->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');            
             $table->timestamps();
             $table->softDeletes();
         });  

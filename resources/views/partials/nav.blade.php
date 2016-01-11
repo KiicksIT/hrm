@@ -25,6 +25,7 @@
         @unless (Auth::guest())
         <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarCollapse">
             <ul class="nav navbar-nav side-nav">
+                @can('approve_leave')
                 <li class="{{ strpos(Request::path(), 'mainindex') !== false ? 'active' : '' }}">
                     <a href="/mainindex"><i class="fa fa-fw fa-dashboard"></i> {{ $MAININDEX_TITLE }}</a>
                 </li>
@@ -42,10 +43,18 @@
                 </li> 
                 <li class="{{ strpos(Request::path(), 'leave') !== false ? 'active' : '' }}">
                     <a href="/leave"><i class="fa fa-fw fa-calendar-times-o"></i> {{ $LEAVE_TITLE }}</a>
-                </li>                                  
+                </li>
                 <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
                     <a href="/user"><i class="fa fa-fw fa-user"></i> {{ $USER_TITLE }}</a>
                 </li>
+                @endcan
+
+                @can('apply_leave')                
+                <li class="{{ strpos(Request::path(), 'applyleave') !== false ? 'active' : '' }}">
+                    <a href="/applyleave"><i class="fa fa-fw fa-calendar-times-o"></i> {{ $APPLEAVE_TITLE }}</a>
+                </li>
+                @endcan                  
+
             {{--     <li class="{{ strpos(Request::path(), 'scheduler') !== false ? 'active' : '' }}">
                     <a href="/scheduler"><i class="fa fa-fw fa fa-clock-o"></i> {{ $SCHEDULER_TITLE }}</a>
                 </li> --}} 

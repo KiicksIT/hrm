@@ -10,6 +10,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+get('/person/user/{person_id}', 'PersonController@convertToUser');
 post('/person/download/{person_id}', 'PersonController@generateKET');
 get('person/transac/{person_id}', 'PersonController@showTransac');
 get('/person/data', 'PersonController@getData');
@@ -18,8 +19,8 @@ resource('person', 'PersonController');
 post('person/{id}/file', 'PersonController@addFile');
 delete('person/{id}/file', 'PersonController@removeFile');
 
+get('/profile/{id}/edit/policy', 'ProfileController@editPolicy');
 resource('profile', 'ProfileController');
-// resource('sale', 'SaleController');
 
 post('/payslip/download/{payslip_id}', 'PayslipController@generatePayslip');
 get('/payslip/addother/{payslip_id}', 'PayslipController@getAddOther');
@@ -45,6 +46,11 @@ resource('addother', 'AddOtherController');
 get('/leave/data/', 'LeaveController@getData');
 delete('/leave/data/{id}', 'LeaveController@destroyAjax');
 resource('leave', 'LeaveController');
+
+get('/applyleaves/data/', 'ApplyLeaveController@getAllData');
+get('/applyleave/data/', 'ApplyLeaveController@getData');
+delete('/applyleave/data/{id}', 'ApplyLeaveController@destroyAjax');
+resource('applyleave', 'ApplyLeaveController');
 
 resource('/massemail', 'MassEmailController');
 

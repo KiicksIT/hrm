@@ -16,7 +16,14 @@ class ProfileSeeder extends Seeder
             'name' => 'Dude',
             'roc_no' => '',
             'address' => '',
-            'contact' => ''
+            'contact' => '',
+            'payslip_start' => 1,
+            'payslip_end' => 31,
+            'payslip_otstart' => 1,
+            'payslip_otend' => 31,
+            'payday' => 28,
+            'ot_payday' => 28,
+            'notice' => '1 month notice or 1 month salary in lieu of notice',
         ]); 
     }
 }

@@ -20,7 +20,9 @@ class Person extends Model
         'hour_remark', 'day_remark', 'off_remark',
         'position_id', 'basic_rate', 'paid_leave',
         'mc', 'hospital_leave', 'medic_exam',
-        'benefit_remark', 'prob_length'
+        'benefit_remark', 'prob_length', 'contract_start',
+        'contract_end', 'contract_length', 'other_leave',
+        'salary_component', 'user_id'
         ];
 
     /**
@@ -29,7 +31,8 @@ class Person extends Model
      * @var array
      */
     protected $dates = [
-        'dob', 'start_date', 'end_date' ,'deleted_at', 'prob_start', 'prob_end'
+        'dob', 'start_date', 'end_date' ,'deleted_at', 'prob_start', 'prob_end',
+        'contract_start', 'contract_end'
     ]; 
 
     public function setStartDateAttribute($date)
@@ -98,7 +101,43 @@ class Person extends Model
             $this->attributes['prob_end'] = null;
 
         }
-    }                       
+    }
+
+    public function setContractStartAttribute($date)
+    {
+        if($date){
+
+            $this->attributes['contract_start'] = Carbon::parse($date);
+
+        }else{
+
+            $this->attributes['contract_start'] = null;
+
+        }
+    } 
+
+    public function setContractEndAttribute($date)
+    {
+        if($date){
+
+            $this->attributes['contract_end'] = Carbon::parse($date);
+
+        }else{
+
+            $this->attributes['contract_end'] = null;
+
+        }
+    }        
+
+    public function getContractStartAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-F-Y');
+    }
+
+    public function getContractEndAttribute($date)
+    {
+        return Carbon::parse($date)->format('d-F-Y');
+    }                              
 
     // dates format
     public function getDobAttribute($date)
@@ -136,21 +175,16 @@ class Person extends Model
 
     public function getProbEndAttribute($date)
     {
-        return Carbon::parse($date)->format('d-F-Y');
-    }          
+        if($date){
 
-    public function getResidentAttribute($data)
-    {
-        if($data == 1){
-
-            return 'Yes';
-
+            return Carbon::parse($date)->format('d-F-Y');
+                
         }else{
 
-            return 'No';
-
+            return null;
         }
-    }      
+        
+    }                   
 
     public function transaction()
     {
@@ -185,7 +219,12 @@ class Person extends Model
     public function leave()
     {
         return $this->hasOne('App\Leave');
-    }                  
+    }  
+
+    public function applyleave()
+    {
+        return $this->hasOne('App\ApplyLeave');
+    }                      
  
 
     /**

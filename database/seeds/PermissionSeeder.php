@@ -66,6 +66,18 @@ class PermissionSeeder extends Seeder
             'name' => 'view_permission',
             'label' => 'View Permission',
             'remark' => '',
-        ]);                                                       
+        ]); 
+
+        Permission::create([
+            'name' => 'approve_leave',
+            'label' => 'Approve Leave',
+            'remark' => '',
+        ]); 
+
+        Permission::create([
+            'name' => 'apply_leave',
+            'label' => 'Apply Leave',
+            'remark' => '',
+        ]);                                                                       
     } 
 }

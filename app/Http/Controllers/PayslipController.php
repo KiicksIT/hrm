@@ -52,7 +52,7 @@ class PayslipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('payslip.create');
     }
@@ -75,7 +75,7 @@ class PayslipController extends Controller
 
         $person = Person::findOrFail($request->person_id);
 
-        if($person->resident == 'Yes'){
+        if($person->resident == 1){
 
             $this->createCPFDeduction($payslip);            
 
@@ -295,7 +295,7 @@ class PayslipController extends Controller
 
         $name = 'Payslip_('.$person->name.')-'.Carbon::now()->format('dmYHis').'.pdf';
 
-        $pdf = PDF::loadView('payslip.printpdf_ch', $data);
+        $pdf = PDF::loadView('payslip.printpdf', $data);
 
         $pdf->setPaper('a4');
         
@@ -328,7 +328,7 @@ class PayslipController extends Controller
     {
         $person = Person::findOrFail($payslip->person_id);
 
-        if($person->resident == 'Yes'){
+        if($person->resident == 1){
 
             $age = Carbon::createFromFormat('d-F-Y', $person->dob)->age;
 

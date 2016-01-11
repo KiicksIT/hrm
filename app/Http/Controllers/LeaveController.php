@@ -96,6 +96,7 @@ class LeaveController extends Controller
      */
     public function update(LeaveRequest $request, $id)
     {
+
         $leave = Leave::findOrFail($id);
 
         $input = $request->all();

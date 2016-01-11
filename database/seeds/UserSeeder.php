@@ -27,13 +27,6 @@ class UserSeeder extends Seeder
             'password' => 'user',
             'contact' => '83089699',
         ]); 
-
-        User::create([
-            'name' => 'happyice',
-            'email' => 'happyice@gmail.com',
-            'username' => 'happyice',
-            'password' => 'happyice',
-            'contact' => '8888888',
-        ]);               
+              
     }    
 }

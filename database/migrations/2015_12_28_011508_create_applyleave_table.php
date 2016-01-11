@@ -18,13 +18,14 @@ class CreateApplyleaveTable extends Migration
             $table->timestamp('leave_from');
             $table->timestamp('leave_to');
             $table->decimal('day_num', 4 , 1);
+            $table->string('status');
+            $table->string('handover_person')->nullable();
+            $table->text('reason');
+            $table->text('leaveremark')->nullable();
             $table->timestamps();
 
             $table->integer('person_id')->unsigned();
-            $table->foreign('person_id')->references('id')->on('people');
-
-            $table->integer('leave_id')->unsigned();
-            $table->foreign('leave_id')->references('id')->on('leaves');                         
+            $table->foreign('person_id')->references('id')->on('people');                       
         });
     }
 

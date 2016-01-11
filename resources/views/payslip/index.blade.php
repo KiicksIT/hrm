@@ -1,3 +1,5 @@
+@inject('profile', 'App\Profile')
+
 @extends('template')
 @section('title')
 {{ $PAYSLIP_TITLE }}
@@ -24,7 +26,8 @@
                     </div>
 
                     <div class="pull-right">
-                        <a href="/payslip/create" class="btn btn-success">+ New {{ $PAYSLIP_TITLE }}</a>                        
+                        <a href="/profile/{{$profile::firstOrFail()->id}}/edit/policy" class="btn btn-primary">Payslip Policy</a>                    
+                        <a href="/payslip/create" class="btn btn-success" name="btn_create">+ New {{ $PAYSLIP_TITLE }}</a>
                     </div>
                 </div>
             </div>
