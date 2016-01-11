@@ -45,7 +45,7 @@
         .panel-body .border{
             border: solid thin;
             height: 55px;
-            width: 239px;
+            width: 241px;
         }        
         .row.no-pad {
           margin-right:0;
