@@ -103,7 +103,9 @@
                                     <div class="col-xs-6 border">
                                         <span class="subtitle"><strong>职位、主要职务与责任</strong></span>
                                         <br> 
-                                        <span class="content">{{$person->position->name}} - {{$person->position->remark}}</span>
+                                        <span class="content">{{$person->position->name}}</span> 
+                                        <br>- 
+                                        <span style="font-size:65%;">{{$person->position->remark}}</span>
                                     </div>
                                 </div>
                                 <div class="row">
