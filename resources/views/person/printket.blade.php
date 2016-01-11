@@ -56,11 +56,11 @@
           padding-left:0;
         }
         .subtitle{
-            font-size: 11px;
+            font-size: 10px;
         }
         .content{
             padding-top: 15px;
-            font-size: 13px;
+            font-size: 12px;
         }                
     </style>
     </head>
