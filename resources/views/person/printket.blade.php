@@ -325,14 +325,14 @@
                                     {{-- leaves --}}
                                     <div class="col-xs-6 border" style="height: 120px;">
                                         <div class="row">
-                                            <div class="col-xs-7">
+                                            <div class="col-xs-8">
                                                 <span class="subtitle"><strong>Length of Probation:</strong></span>
                                                 <br>
                                                 <span class="subtitle"><strong>Probation Start:</strong></span>
                                                 <br> 
                                                 <span class="subtitle"><strong>Probation End:</strong></span>
                                             </div>
-                                            <div class="col-xs-5">
+                                            <div class="col-xs-4">
                                                 <span class="content text-right">{{$person->prob_length}}</span>
                                                 <br>
                                                 @if($person->prob_end and $person->prob_length)
