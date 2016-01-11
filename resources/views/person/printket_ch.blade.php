@@ -269,7 +269,7 @@
                                     <div class="col-xs-6 border" style="height: 120px;">
                                         <span class="subtitle"><strong>休假种类</strong></span> 
                                         <br> 
-                                        <span>(至少工作满3个月,休假福利方可生效)</span>
+                                        <span style="font-size:65%;">(至少工作满3个月,休假福利方可生效)</span>
                                         <br>
                                         <div class="row">
                                             <div class="col-xs-10">
@@ -347,7 +347,7 @@
                                     <div class="col-xs-6 border" style="height:120px;">
                                         <span class="subtitle"><strong>终止雇用合约的提前通知期</strong></span>
                                         <br> 
-                                        <span>(双方所给予彼此的通知期须为对等)</span>
+                                        <span style="font-size:65%;">(双方所给予彼此的通知期须为对等)</span>
                                         <br>
                                         <span class="content">{{$profile->notice}}</span>
                                     </div>                                  

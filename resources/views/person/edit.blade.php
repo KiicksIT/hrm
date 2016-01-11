@@ -22,7 +22,7 @@
                 <div class="pull-right">
                     {!! Form::submit('Edit Profile', ['class'=> 'btn btn-warning']) !!}
         {!! Form::close() !!}
-                    {!! Form::submit('Print', ['name'=>'print', 'class'=> 'btn btn-primary', 'form'=>'form_print']) !!}
+                    {!! Form::submit('Print KET', ['name'=>'print', 'class'=> 'btn btn-primary', 'form'=>'form_print']) !!}
                     <a href="/person" class="btn btn-default">Cancel</a>            
                 </div>
                 <div class="pull-left row">

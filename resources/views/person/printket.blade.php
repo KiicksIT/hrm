@@ -269,7 +269,7 @@
                                     <div class="col-xs-6 border" style="height: 120px;">
                                         <span class="subtitle"><strong>Types of Leave</strong></span> 
                                         <br> 
-                                        <span>(applicable if service is at least 3 months)</span>
+                                        <span style="font-size:65%;">(applicable if service is at least 3 months)</span>
                                         <br>
                                         <div class="row">
                                             <div class="col-xs-10">
@@ -347,7 +347,7 @@
                                     <div class="col-xs-6 border" style="height:120px;">
                                         <span class="subtitle"><strong>Notice Period for Termination of Employment</strong></span>
                                         <br> 
-                                        <span>(Initiated by either party whereby the length shall be the same)</span>
+                                        <span style="font-size:65%;">(Initiated by either party whereby the length shall be the same)</span>
                                         <br>
                                         <span class="content">{{$profile->notice}}</span>
                                     </div>                                  
