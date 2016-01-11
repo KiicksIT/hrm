@@ -17,33 +17,33 @@ class AppServiceProvider extends ServiceProvider
         view()->share('APP_NAME', 'HRM');
 
         //Person
-        view()->share('MAININDEX_TITLE', 'Dashboard');
-        // view()->share('MAININDEX_TITLE', 'Dashboard 仪表');
+        // view()->share('MAININDEX_TITLE', 'Dashboard');
+        view()->share('MAININDEX_TITLE', 'Dashboard 仪表');
         view()->share('MAININDEX_PREFIX', 'B');        
 
         //Person
-        view()->share('PERSON_TITLE', 'Employee');
-        // view()->share('PERSON_TITLE', 'Employee 员工');
+        // view()->share('PERSON_TITLE', 'Employee');
+        view()->share('PERSON_TITLE', 'Employee 员工');
         view()->share('PERSON_PREFIX', 'E');
 
         //Position
-        view()->share('POSITION_TITLE', 'Position');
-        // view()->share('POSITION_TITLE', 'Position 职位');
+        // view()->share('POSITION_TITLE', 'Position');
+        view()->share('POSITION_TITLE', 'Position 职位');
         view()->share('POSITION_PREFIX', 'L');        
 
         //Dept
-        view()->share('DEPT_TITLE', 'Department');
-        // view()->share('DEPT_TITLE', 'Department 部门');
+        // view()->share('DEPT_TITLE', 'Department');
+        view()->share('DEPT_TITLE', 'Department 部门');
         view()->share('DEPT_PREFIX', 'D'); 
 
         //Dept
-        view()->share('PAYSLIP_TITLE', 'Payslip');
-        // view()->share('PAYSLIP_TITLE', 'Payslip 薪水单');
+        // view()->share('PAYSLIP_TITLE', 'Payslip');
+        view()->share('PAYSLIP_TITLE', 'Payslip 薪水单');
         view()->share('PAYSLIP_PREFIX', 'P');                 
 
         //User
-        view()->share('USER_TITLE', 'User');
-        // view()->share('USER_TITLE', 'User 用户');
+        // view()->share('USER_TITLE', 'User');
+        view()->share('USER_TITLE', 'User 用户');
         view()->share('USER_PREFIX', 'U');
 
         //Transaction

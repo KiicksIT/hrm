@@ -41,9 +41,9 @@
                 <li class="{{ strpos(Request::path(), 'department') !== false ? 'active' : '' }}">
                     <a href="/department"><i class="fa fa-fw fa-building-o"></i> {{ $DEPT_TITLE }}</a>
                 </li> 
-                <li class="{{ strpos(Request::path(), 'leave') !== false ? 'active' : '' }}">
+               {{--  <li class="{{ strpos(Request::path(), 'leave') !== false ? 'active' : '' }}">
                     <a href="/leave"><i class="fa fa-fw fa-calendar-times-o"></i> {{ $LEAVE_TITLE }}</a>
-                </li>
+                </li> --}}
                 <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
                     <a href="/user"><i class="fa fa-fw fa-user"></i> {{ $USER_TITLE }}</a>
                 </li>

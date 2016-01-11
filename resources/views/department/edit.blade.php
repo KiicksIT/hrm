@@ -16,7 +16,7 @@
             {!! Form::model($department,['method'=>'PATCH','action'=>['DeptController@update', $department->id]]) !!}
                 {!! Form::text('department_id', $department->id, ['id'=>'department_id', 'class'=>'hidden form-control']) !!}            
 
-                @include('department.form')
+                @include('department.form_ch')
 
                 <div class="col-md-12">
                     <div class="pull-right form_button_right">

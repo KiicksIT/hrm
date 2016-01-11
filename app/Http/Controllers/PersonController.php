@@ -344,7 +344,7 @@ class PersonController extends Controller
 
         $name = 'KET_('.$person->name.')-'.Carbon::now()->format('dmYHis').'.pdf';
 
-        $pdf = PDF::loadView('person.printket', $data);
+        $pdf = PDF::loadView('person.printket_ch', $data);
 
         $pdf->setPaper('A4', 'landscape');
         

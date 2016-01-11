@@ -16,7 +16,7 @@
             {!! Form::model($position,['method'=>'PATCH','action'=>['PositionController@update', $position->id]]) !!}
                 {!! Form::text('position_id', $position->id, ['id'=>'position_id', 'class'=>'hidden form-control']) !!}            
 
-                @include('position.form')
+                @include('position.form_ch')
 
                 <div class="col-md-12">
                     <div class="pull-right form_button_right">

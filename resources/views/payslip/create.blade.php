@@ -15,8 +15,8 @@
             {!! Form::model($item = new \App\Payslip, ['action'=>'PayslipController@store']) !!}
             <div class="col-md-8 col-md-offset-2">    
                 <div class="form-group">
-                    {!! Form::label('search_person', 'Select Person', ['class'=>'control-label']) !!}
-                    {{-- {!! Form::label('search_person', 'Select Person 选择员工', ['class'=>'control-label']) !!} --}}
+                    {{-- {!! Form::label('search_person', 'Select Person', ['class'=>'control-label']) !!} --}}
+                    {!! Form::label('search_person', 'Select Person 选择员工', ['class'=>'control-label']) !!}
                     <select id="person_id" name="person_id" class="select form-control" 
                             ng-model="personModel" ng-change="onPersonSelected(personModel)">
                             <option value=""></option>
