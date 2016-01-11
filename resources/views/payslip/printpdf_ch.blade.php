@@ -27,14 +27,14 @@
             height: 100%;
         } 
         .panel{
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .panel-heading{
             height: 25px;
             padding-top: 5px;
             padding-bottom: 0px;
-            font-size: 18px;
+            font-size: 17px;
         }
         .panel-body{
             height: 60%;
@@ -51,10 +51,6 @@
                 <div class="col-xs-10 col-xs-offset-1 text-center" style="font-size:16px;">
                     <span>薪水单（工资期） Payslip for <strong>{{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->payslip_from)->format('d M Y') }}</strong> to <strong>{{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->payslip_to)->format('d M Y')}}</strong></span>
                 </div>
-            </div>
-
-            <div class="row">
-                <span class="col-md-12"></span>
             </div>
 
             {{-- employer name --}}
