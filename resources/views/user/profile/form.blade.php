@@ -43,18 +43,6 @@
     <div class="form-group">
         {!! Form::label('footer', 'Footer', ['class'=>'control-label']) !!}
         {!! Form::file('footer', ['class'=>'form-control']) !!}
-    </div>         
-
-    <hr>
-
-    <div class="form-group">
-        {!! Form::label('salary_period', 'Salary Payday', ['class'=>'control-label']) !!}
-        {!! Form::text('salary_period', null, ['class'=>'form-control', 'placeholder'=>'Every n-th Day of the Month']) !!}
-    </div> 
-
-    <div class="form-group">
-        {!! Form::label('ot_period', 'OT Payday', ['class'=>'control-label']) !!}
-        {!! Form::text('ot_period', null, ['class'=>'form-control', 'placeholder'=>'Every n-th Day of the Month']) !!}
-    </div>     
+    </div>             
    
 </div>

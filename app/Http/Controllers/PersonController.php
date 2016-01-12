@@ -69,7 +69,7 @@ class PersonController extends Controller
      */
     public function store(PersonRequest $request)
     {
-        if($request->prob_length){
+        if($request->prob_length and $request->prob_start){
             
             $request->merge(array('prob_end' => $this->calProbLength($request->prob_start, $request->prob_length)));
 

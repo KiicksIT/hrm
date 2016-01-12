@@ -21,7 +21,7 @@ Payslip Policy
                     {!! Form::submit('Edit', ['class'=> 'btn btn-primary']) !!}
         {!! Form::close() !!}
 
-                    <a href="/payslip" class="btn btn-default">Cancel</a>            
+                    <a href="/payslip" class="btn btn-default">Back</a>            
                 </div>              
             </div>
     </div>

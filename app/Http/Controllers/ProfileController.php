@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Laracasts\Flash\Flash;
 
 use App\Profile;
 
@@ -107,7 +108,17 @@ class ProfileController extends Controller
 
         $profile->update($input);
 
-        return redirect('user');
+        if($profile){
+
+            Flash::success('Successfully Updated');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }
+
+        return redirect()->back();
     }
 
     /**
