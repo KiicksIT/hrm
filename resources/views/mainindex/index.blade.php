@@ -5,7 +5,7 @@
 @section('content')
     
     <div class="row">        
-    <a class="title_hyper pull-left" href="/position"><h1>{{ $MAININDEX_TITLE }} <i class="fa fa-dashboard"></i></h1></a>
+    <a class="title_hyper pull-left" href="/mainindex"><h1>{{ $MAININDEX_TITLE }} <i class="fa fa-dashboard"></i></h1></a>
     </div>
 
     {{-- create main index --}}
