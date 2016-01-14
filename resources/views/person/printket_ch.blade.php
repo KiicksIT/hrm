@@ -27,6 +27,7 @@
             height: 100%;
         } 
         .panel{
+            border:solid thin black;            
             margin-bottom: 7px;
         }
 
