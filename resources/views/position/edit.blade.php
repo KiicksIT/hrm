@@ -42,12 +42,9 @@
     <label class="pull-right " >Total @{{people.length}} employee(s) for this position</label>     
 
     <div style="padding-bottom: 10px">
-        <label for="search_name" class="search">Search Name:</label>
-        {{-- <label for="search_name" class="search">Search Name 名字:</label> --}}
+        {{-- <label for="search_name" class="search">Search Name:</label> --}}
+        <label for="search_name" class="search">Search Name 名字:</label>
         <input type="text" ng-model="search.name">
-        <label for="search_dept" class="search" style="padding-left: 10px;">Search Dept:</label>
-        {{-- <label for="search_dept" class="search" style="padding-left: 10px;">Search Dept 部门:</label> --}}
-        <input type="text" ng-model="search.department.name">        
     </div>
 
     <table class="table table-list-search table-hover table-bordered">
@@ -63,36 +60,28 @@
             </th>
             <th class="col-md-3 text-center">
                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                Name
-                {{-- Name 名字 --}}
+                {{-- Name --}}
+                Name 名字
                 <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>                
             </th>                     
             <th class="col-md-2 text-center">
-                <a href="#" ng-click="sortType = 'department.name'; sortReverse = !sortReverse">
-                Dept
-                {{-- Dept 部门 --}}
-                <span ng-show="sortType == 'department.name' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'department.name' && sortReverse" class="fa fa-caret-up"></span>                 
-            </th>
-            <th class="col-md-2 text-center">
-                Contact
-                {{-- Contact 联络号码 --}}
+                {{-- Contact --}}
+                Contact 联络号码
             </th>
             <th class="col-md-3 text-center">
-                Email
-                {{-- Email 电子邮件 --}}
+                {{-- Email --}}
+                Email 电子邮件
             </th>                                                                                               
         </tr>
 
         <tbody>
             <tr dir-paginate="person in people | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage">
-                <td class="col-md-1 text-center">@{{ $index + 1 }} </td>
-                <td class="col-md-1">@{{ person.id }}</td>
-                <td class="col-md-3">@{{ person.name }}</td>
-                <td class="col-md-2">@{{ person.department.name }}</td>
-                <td class="col-md-3">@{{ person.contact }}</td>
-                <td class="col-md-3">@{{ person.email }}</td>
+                <td class="col-md-1 text-center"> @{{ $index + 1 }} </td>
+                <td class="col-md-1 text-center">@{{ person.id }}</td>
+                <td class="col-md-3 text-center">@{{ person.name }}</td>
+                <td class="col-md-3 text-center">@{{ person.contact }}</td>
+                <td class="col-md-3 text-center">@{{ person.email }}</td>
 
             </tr>
             <tr ng-show="(people | filter:search).length == 0 || ! people.length">

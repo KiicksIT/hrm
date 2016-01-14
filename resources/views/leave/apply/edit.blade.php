@@ -25,7 +25,7 @@
                     @can('approve_leave')             
                     {!! Form::submit('Edit', ['name'=>'btn_edit' ,'class'=> 'btn btn-primary', 'form'=>'form_submit']) !!}       
                     @endcan
-                    <a href="/applyleave" class="btn btn-default">Cancel</a>            
+                    <a href="javascript:history.go(-1)" class="btn btn-default">Cancel</a>            
                 </div>
                 <div class="pull-left form_button_left">
                     @can('approve_leave')

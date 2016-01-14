@@ -6,12 +6,12 @@
 
     @if(isset($applyleave->id))
     <div class="form-group">
-        {!! Form::label('status', 'Status', ['class'=>'control-label']) !!}
+        {!! Form::label('status', 'Status 状态', ['class'=>'control-label']) !!}
         {!! Form::text('status', $applyleave->status, ['class'=>'form-control', 'disabled'=>'disabled']) !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('leave_type', 'Leave Type', ['class'=>'control-label']) !!}
+        {!! Form::label('leave_type', 'Leave Type 假期种类', ['class'=>'control-label']) !!}
         @if($applyleave->status == 'Pending')    
             @if($applyleave->leave_type == 'Paid Leave')
                 {!! Form::text('leave_type', 
@@ -30,7 +30,7 @@
                                             'Unpaid Leave', 
                                             ['class'=>'form-control', 'disabled'=>'disabled']) !!}                                        
             @endif
-            <p><em>*Calculation only valid after Leave has been Approved</em></p>
+            <p><em>*指定假期将在状态确定后扣除</em></p>
         @else
             @if($applyleave->leave_type == 'Paid Leave')
                 {!! Form::text('leave_type', 
@@ -55,7 +55,7 @@
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
-                {!! Form::label('leave_from', 'Leave From', ['class'=>'control-label']) !!}
+                {!! Form::label('leave_from', 'Leave From 从', ['class'=>'control-label']) !!}
                 <div class="input-group date">
                 {!! Form::text('leave_from', null, ['class'=>'form-control', 'id'=>'leave_from', 'disabled'=>'disabled']) !!}
                 <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
@@ -65,7 +65,7 @@
 
         <div class="col-md-5">
             <div class="form-group">
-                {!! Form::label('leave_to', 'Leave To', ['class'=>'control-label']) !!}
+                {!! Form::label('leave_to', 'Leave To 到', ['class'=>'control-label']) !!}
                 <div class="input-group date">
                 {!! Form::text('leave_to', null, ['class'=>'form-control', 'id'=>'leave_to', 'disabled'=>'disabled']) !!}
                 <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
@@ -75,29 +75,29 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                {!! Form::label('day_num', 'Total Day', ['class'=>'control-label']) !!}
+                {!! Form::label('day_num', 'Total Day 总天数', ['class'=>'control-label']) !!}
                 {!! Form::text('day_num', null, ['class'=>'form-control', 'disabled'=>'disabled']) !!}
             </div>            
         </div>
     </div>
 
     <div class="form-group">
-        {!! Form::label('reason', 'Reason', ['class'=>'control-label']) !!}
+        {!! Form::label('reason', 'Reason 原因', ['class'=>'control-label']) !!}
         {!! Form::textarea('reason', null, ['class'=>'form-control', 'rows'=>'2', 'disabled'=>'disabled']) !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('leave_type', 'Handover To', ['class'=>'control-label']) !!}
+        {!! Form::label('leave_type', 'Handover To 代替', ['class'=>'control-label']) !!}
         {!! Form::text('leave_type', $applyleave->handover_person, ['class'=>'form-control', 'disabled'=>'disabled']) !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('leaveremark', 'Remark', ['class'=>'control-label']) !!}
+        {!! Form::label('leaveremark', 'Remark 备注', ['class'=>'control-label']) !!}
         {!! Form::textarea('leaveremark', null, ['class'=>'form-control', 'rows'=>'2']) !!}
     </div>    
     @else
     <div class="form-group">
-        {!! Form::label('leave_type', 'Leave Type', ['class'=>'control-label']) !!}
+        {!! Form::label('leave_type', 'Leave Type 假期种类', ['class'=>'control-label']) !!}
         {!! Form::select('leave_type', [
                                             ''  => null,
                                             '1' =>'Paid Leave'.' - '.$person->leave->total_paidleave.' day(s) available', 
@@ -111,7 +111,7 @@
     <div class="row">
         <div class="col-md-5">
             <div class="form-group">
-                {!! Form::label('leave_from', 'Leave From', ['class'=>'control-label']) !!}
+                {!! Form::label('leave_from', 'Leave From 从', ['class'=>'control-label']) !!}
                 <div class="input-group date">
                 {!! Form::text('leave_from', null, ['class'=>'form-control', 'id'=>'leave_from']) !!}
                 <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
@@ -121,7 +121,7 @@
 
         <div class="col-md-5">
             <div class="form-group">
-                {!! Form::label('leave_to', 'Leave To', ['class'=>'control-label']) !!}
+                {!! Form::label('leave_to', 'Leave To 到', ['class'=>'control-label']) !!}
                 <div class="input-group date">
                 {!! Form::text('leave_to', null, ['class'=>'form-control', 'id'=>'leave_to']) !!}
                 <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
@@ -131,19 +131,19 @@
 
         <div class="col-md-2">
             <div class="form-group">
-                {!! Form::label('day_num', 'Total Day', ['class'=>'control-label']) !!}
+                {!! Form::label('day_num', 'Total Day 总天数', ['class'=>'control-label']) !!}
                 {!! Form::text('day_num', null, ['class'=>'form-control']) !!}
             </div>            
         </div>
     </div>
 
     <div class="form-group">
-        {!! Form::label('reason', 'Reason', ['class'=>'control-label']) !!}
+        {!! Form::label('reason', 'Reason 原因', ['class'=>'control-label']) !!}
         {!! Form::textarea('reason', null, ['class'=>'form-control', 'rows'=>'2']) !!}
     </div>
 
     <div class="form-group">
-        {!! Form::label('handover_person', 'Handover To', ['class'=>'control-label']) !!}
+        {!! Form::label('handover_person', 'Handover To 代替', ['class'=>'control-label']) !!}
         <select id="handover_person" name="handover_person" class="select form-control" 
                 ng-model="applyleaveModel">
                 <option value=""></option>

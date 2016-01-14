@@ -63,12 +63,12 @@ class AppServiceProvider extends ServiceProvider
         view()->share('EMAIL_PREFIX', ''); 
 
         //Leave                              
-        view()->share('LEAVE_TITLE', 'Leave');
-        // view()->share('LEAVE_TITLE', 'Leave 假期');
+        // view()->share('LEAVE_TITLE', 'Leave');
+        view()->share('LEAVE_TITLE', 'Leave 假期');
         view()->share('LEAVE_PREFIX', ''); 
 
         //Apply Leave                              
-        view()->share('APPLEAVE_TITLE', 'Apply Leave');
+        view()->share('APPLEAVE_TITLE', 'Apply Leave 请假');
         view()->share('APPLEAVE_PREFIX', '');                   
                 
     }

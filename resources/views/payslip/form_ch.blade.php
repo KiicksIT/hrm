@@ -3,7 +3,7 @@
     <div class="form-group">
         {!! Form::label('person_id', 'Employee 员工', ['class'=>'control-label']) !!}
         {!! Form::text('person_id', 
-        $payslip->person->department->name.' - '.$payslip->person->position->name.' - '.$payslip->person->id.' - '.$payslip->person->name, 
+        $payslip->person->position->name.' - '.$payslip->person->id.' - '.$payslip->person->name, 
         ['class'=>'form-control', 'disabled'=>'disabled']) !!}
     </div>
 

@@ -12,8 +12,8 @@
     <div class="panel panel-warning">
         <div class="panel-heading">
             <ul class="nav nav-pills nav-justified" role="tablist">
-                <li class="active"><a href="#application" role="tab" data-toggle="tab">Leave Application</a></li>
-                <li><a href="#setting" role="tab" data-toggle="tab">Leave Setting</a></li>
+                <li class="active"><a href="#application" role="tab" data-toggle="tab">Leave Application 假期申请</a></li>
+                <li><a href="#setting" role="tab" data-toggle="tab">Leave Setting 假期设置</a></li>
             </ul>
         </div>
 
@@ -40,17 +40,15 @@
 
                         <div class="panel-body">
                             <div style="padding-bottom: 10px">
-                                <label for="search_name" class="search">Search Name:</label>
+                                <label for="search_name" class="search">Search Name 名字:</label>
                                 <input type="text" ng-model="search.person.name">
-                                <label for="search_company" class="search" style="padding-left: 10px">Dept:</label>
-                                <input type="text" ng-model="search.person.department.name">
-                                <label for="search_contact" class="search" style="padding-left: 10px">Position:</label>
+                                <label for="search_contact" class="search" style="padding-left: 10px">Position 职位:</label>
                                 <input type="text" ng-model="search.person.positon.name">
                             </div>
                             <div style="padding-bottom: 10px">
-                                <label for="search_name" class="search">Status:</label>
+                                <label for="search_name" class="search">Status 状态:</label>
                                 <input type="text" ng-model="search.status">
-                                <label for="search_company" class="search" style="padding-left: 10px">Apply On:</label>
+                                <label for="search_company" class="search" style="padding-left: 10px">Apply On 申请日期:</label>
                                 <input type="text" ng-model="search.created_at">
                             </div>                            
                             <div class="table-responsive">
@@ -60,22 +58,19 @@
                                             #
                                         </th>                    
                                         <th class="col-md-2 text-center">
-                                            Name                                                       
+                                            Name 名字                                                 
                                         </th>
                                         <th class="col-md-2 text-center">
-                                            Department                      
-                                        </th>
-                                        <th class="col-md-2 text-center">
-                                            Position
+                                            Position 职位
                                         </th>                                                
                                         <th class="col-md-2 text-center">
-                                            Leave Type
+                                            Leave Type 假期种类
+                                        </th>
+                                        <th class="col-md-2 text-center">
+                                            Apply On 申请日期
                                         </th>
                                         <th class="col-md-1 text-center">
-                                            Apply On
-                                        </th>
-                                        <th class="col-md-1 text-center">
-                                            Status
+                                            Status 状态
                                         </th>                                                        
                                         <th class="col-md-1 text-center">
                                             Action
@@ -86,10 +81,9 @@
                                         <tr dir-paginate="applyleave in applyleaves | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage1"  current-page="currentPage1" ng-controller="repeatController1" pagination-id="1">
                                             <td class="col-md-1 text-center">@{{ number }} </td>
                                             <td class="col-md-2 text-center">@{{ applyleave.person.name }}</td>
-                                            <td class="col-md-2">@{{ applyleave.person.department.name }}</td>
                                             <td class="col-md-2">@{{ applyleave.person.position.name }}</td>
                                             <td class="col-md-2 text-center">@{{ applyleave.leave_type }}</td>
-                                            <td class="col-md-1 text-center">@{{ applyleave.created_at }}</td>
+                                            <td class="col-md-2 text-center">@{{ applyleave.created_at }}</td>
                                             <td class="col-md-1 text-center">@{{ applyleave.status }}</td>
                                             <td class="col-md-1 text-center">
                                                 <a href="/applyleave/@{{ applyleave.id }}/edit" class="btn btn-sm btn-primary">Edit</a>
@@ -132,11 +126,9 @@
 
                         <div class="panel-body">
                             <div style="padding-bottom: 10px">
-                                <label for="search_name" class="search">Search Name:</label>
+                                <label for="search_name" class="search">Search Name 名字:</label>
                                 <input type="text" ng-model="search.person.name">
-                                <label for="search_company" class="search" style="padding-left: 10px">Dept:</label>
-                                <input type="text" ng-model="search.person.department.name">
-                                <label for="search_contact" class="search" style="padding-left: 10px">Position:</label>
+                                <label for="search_contact" class="search" style="padding-left: 10px">Position 职位:</label>
                                 <input type="text" ng-model="search.person.positon.name">
                             </div>
                             <div class="table-responsive">
@@ -146,24 +138,21 @@
                                             #
                                         </th>                    
                                         <th class="col-md-2 text-center">
-                                            Name                                                       
+                                            Name 名字                                                   
                                         </th>
                                         <th class="col-md-2 text-center">
-                                            Department                      
-                                        </th>
-                                        <th class="col-md-2 text-center">
-                                            Position
+                                            Position 职位
                                         </th>                                                
-                                        <th class="col-md-1 text-center">
-                                            Paid Leave
+                                        <th class="col-md-2 text-center">
+                                            Paid Leave 带薪年假
                                         </th>
-                                        <th class="col-md-1 text-center">
-                                            Sick Leave
+                                        <th class="col-md-2 text-center">
+                                            Sick Leave 门诊带薪病假 
                                         </th>
-                                        <th class="col-md-1 text-center">
-                                            Hospt Leave
+                                        <th class="col-md-2 text-center">
+                                            Hospt Leave 住院带薪病假
                                         </th>                                                        
-                                         <th class="col-md-2 text-center">
+                                         <th class="col-md-1 text-center">
                                             Action
                                         </th>                                                                                                
                                     </tr>
@@ -172,12 +161,11 @@
                                         <tr dir-paginate="leave in leaves | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage2"  current-page="currentPage2" ng-controller="repeatController2" pagination-id="2">
                                             <td class="col-md-1 text-center">@{{ number }} </td>
                                             <td class="col-md-2 text-center">@{{ leave.person.name }}</td>
-                                            <td class="col-md-2">@{{ leave.person.department.name }}</td>
                                             <td class="col-md-2">@{{ leave.person.position.name }}</td>
-                                            <td class="col-md-1 text-center">@{{ leave.total_paidleave }}</td>
-                                            <td class="col-md-1 text-center">@{{ leave.total_paidsickleave }}</td>
-                                            <td class="col-md-1 text-center">@{{ leave.total_paidhospleave }}</td>
-                                            <td class="col-md-2 text-center">
+                                            <td class="col-md-2 text-center">@{{ leave.total_paidleave }}</td>
+                                            <td class="col-md-2 text-center">@{{ leave.total_paidsickleave }}</td>
+                                            <td class="col-md-2 text-center">@{{ leave.total_paidhospleave }}</td>
+                                            <td class="col-md-1 text-center">
                                                 <a href="/leave/@{{ leave.id }}/edit" class="btn btn-sm btn-primary">Edit</a>
                                                 {{-- <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(leave.id)">Delete</button> --}}
                                             </td>

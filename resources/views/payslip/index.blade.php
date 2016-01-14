@@ -39,21 +39,21 @@
                     <label for="search_name" class="search" style="padding-left: 16px">Search Name 名字:</label>
                     <input type="text" ng-model="search.id">
                     {{-- <label for="search_company" class="search" style="padding-left: 10px">Dept:</label> --}}
-                    <label for="search_company" class="search" style="padding-left: 10px">Dept 部门:</label>
-                    <input type="text" ng-model="search.person.department.name">
+{{--                     <label for="search_company" class="search" style="padding-left: 10px">Dept 部门:</label>
+                    <input type="text" ng-model="search.person.department.name"> --}}
                     {{-- <label for="search_status" class="search" style="padding-left: 10px">Position:</label> --}}
                     <label for="search_status" class="search" style="padding-left: 10px">Position 职位:</label>
                     <input type="text" ng-model="search.person.position.name">                     
-                    {{-- <label for="search_status" class="search" style="padding-left: 10px">Status:</label>
-                    <input type="text" ng-model="search.status">  --}}                   
+                    <label for="search_status" class="search" style="padding-left: 10px">Status 状态:</label>
+                    <input type="text" ng-model="search.status">                    
                 </div>
             </div>
-            <div class="row">
+{{--             <div class="row">
                 <div style="padding-bottom: 10px">
                     <label for="search_status" class="search" style="padding-left: 10px">Status 状态:</label>
                     <input type="text" ng-model="search.status">                
                 </div>
-            </div>           
+            </div>   --}}         
 
                 <div class="table-responsive">
                     <table class="table table-list-search table-hover table-bordered">
@@ -74,13 +74,13 @@
                                 <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
-                            <th class="col-md-2 text-center">
-                                {{-- Department --}}
+{{--                             <th class="col-md-2 text-center">
+                                Department
                                 Department 部门                         
-                            </th>
+                            </th> --}}
                             <th class="col-md-2 text-center">
                                 {{-- Positions --}}
-                                Positions 职位                      
+                                Position 职位                      
                             </th>
                             <th class="col-md-1 text-center">
                                 <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">                         
@@ -90,7 +90,7 @@
                                 <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>                          
                             </th>
 
-                            <th class="col-md-1 text-center">
+                            <th class="col-md-2 text-center">
                                 <a href="#" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">                         
                                 Created On
                                 <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
@@ -110,10 +110,10 @@
                                 @{{ payslip.person.name }}
                                 </a>
                                 </td>
-                                <td class="col-md-2 text-center">@{{ payslip.person.department.name }}</td>
+                                {{-- <td class="col-md-2 text-center">@{{ payslip.person.department.name }}</td> --}}
                                 <td class="col-md-2 text-center">@{{ payslip.person.position.name }}</td>                                
                                 <td class="col-md-1 text-center">@{{ payslip.status }}</td>
-                                <td class="col-md-1 text-center">@{{ payslip.created_at }}</td>
+                                <td class="col-md-2 text-center">@{{ payslip.created_at }}</td>
                                 <td class="col-md-2 text-center">
                                         <a href="/payslip/@{{ payslip.id }}/edit" class="btn btn-sm btn-primary">Edit</a>
                                         <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(payslip.id)">Delete</button>  

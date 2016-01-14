@@ -5,7 +5,7 @@
 @section('content')
     
     <div class="row">        
-    <a class="title_hyper pull-left" href="/applyleave"><h1> {{ $APPLEAVE_TITLE }} <i class="fa fa-calendar-times-o"></i></h1></a>
+    <a class="title_hyper pull-left" href="/applyleave"><h1> {{ $APPLEAVE_TITLE }}<i class="fa fa-calendar-times-o"></i></h1></a>
     </div>
     <div ng-app="app" ng-controller="applyleaveController">
 
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="pull-right">                    
-                        <a href="/applyleave/create" class="btn btn-success" name="btn_create">+ Apply Leave</a>
+                        <a href="/applyleave/create" class="btn btn-success" name="btn_create">+ {{ $APPLEAVE_TITLE }}</a>
                     </div>                    
                 </div>
             </div>
@@ -35,12 +35,18 @@
                         <tr style="background-color: #f5f5dc">
                             <th class="col-md-4 text-center">
                                 Available Paid Leave Day(s)
+                                <br>
+                                可申请带薪年假(天)
                             </th>
                             <th class="col-md-4 text-center">
                                 Available Paid Sick Leave Day(s)
+                                <br>
+                                可申请门诊带薪病假(天)
                             </th>
                             <th class="col-md-4 text-center">
                                 Available Paid Hospotalisation Leave Day(s)
+                                <br>
+                                可申请住院带薪病假(天)
                             </th>                                        
                         </tr>
                         <tbody>
@@ -61,11 +67,11 @@
                 <p style="margin-top:-10px"><em>*Be Deducted after Status have been confirmed</em></p>
                            
                 <div style="padding: 20px 0px 10px 0px;">
-                    <label for="search_name" class="search">Search Leave Date From:</label>
+                    <label for="search_name" class="search">Search Leave Date From 从:</label>
                     <input type="text" ng-model="search.leave_from">
-                    <label for="search_company" class="search" style="padding-left: 10px">Leave Date To:</label>
+                    <label for="search_company" class="search" style="padding-left: 10px">Leave Date To 到:</label>
                     <input type="text" ng-model="search.leave_to">
-                    <label for="search_contact" class="search" style="padding-left: 10px">Apply On:</label>
+                    <label for="search_contact" class="search" style="padding-left: 10px">Apply On 申请日:</label>
                     <input type="text" ng-model="search.created_at">
                 </div>
                 <div class="table-responsive">
@@ -75,22 +81,30 @@
                                 #
                             </th>                    
                             <th class="col-md-3 text-center">
-                                Reason                                                       
+                                Reason
+                                <br> 
+                                原因                                                  
                             </th>
                             <th class="col-md-2 text-center">
-                                Leave Type                      
+                                Leave Type 
+                                <br>
+                                假期种类                     
                             </th>
                             <th class="col-md-1 text-center">
-                                Leave From
+                                Leave From 从
                             </th>                                                
                             <th class="col-md-1 text-center">
-                                Leave To
+                                Leave To 到
                             </th>
                             <th class="col-md-1 text-center">
-                                Status
+                                Status 
+                                <br>
+                                状态
                             </th>
                             <th class="col-md-1 text-center">
-                                Applied On
+                                Applied On 
+                                <br>
+                                申请日
                             </th>                                                        
                             <th class="col-md-2 text-center">
                                 Action

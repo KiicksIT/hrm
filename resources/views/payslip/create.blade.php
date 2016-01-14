@@ -21,7 +21,7 @@
                             ng-model="personModel" ng-change="onPersonSelected(personModel)">
                             <option value=""></option>
                             <option ng-repeat="person in people" ng-value="person.id" value="@{{person.id}}">
-                                @{{person.department.name}} - @{{person.position.name}} - @{{person.id}} - @{{person.name}}
+                                @{{person.position.name}} - @{{person.id}} - @{{person.name}}
                             </option>                            
                     </select>
                 </div>

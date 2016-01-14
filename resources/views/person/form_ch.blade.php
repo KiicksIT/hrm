@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-6">    
                 <div class="form-group">
-                    {!! Form::label('nationality 国籍', 'Nationality', ['class'=>'control-label']) !!}
+                    {!! Form::label('nationality', 'Nationality 国籍', ['class'=>'control-label']) !!}
                     {!! Form::text('nationality', null, ['class'=>'form-control']) !!}
                 </div>     
             </div>
@@ -39,8 +39,8 @@
 
             <div class="col-md-6">
                 <div class="form-group">
-                    {!! Form::checkbox('resident') !!}
-                    {!! Form::label('resident', 'Singaporean/ PR （公民／永久居民)', ['class'=>'control-label']) !!}
+                    {!! Form::checkbox('resident', $person->resident) !!}
+                    {!! Form::label('resident', 'Singaporean/ PR（公民／永久居民)', ['class'=>'control-label']) !!}
                 </div>  
             </div> 
         </div>                      
@@ -61,10 +61,10 @@
             </select>     
         </div> 
 
-        <div class="form-group">
+{{--         <div class="form-group">
             {!! Form::label('department', 'Department 部门', ['class'=>'control-label']) !!}
             {!! Form::select('department_id', $departments::lists('name', 'id'), null, ['id'=>'department_id', 'class'=>'select form-control']) !!}
-        </div> 
+        </div> --}} 
 
         <div class="form-group">
             {!! Form::label('position', 'Position 职位', ['class'=>'control-label']) !!}
@@ -114,14 +114,20 @@
             </div>
         </div> 
 
-        <div class="form-group">
-            {!! Form::label('hour_remark', 'Work Hour Details 工作时间细节', ['class'=>'control-label']) !!}
-            {!! Form::textarea('hour_remark', null, ['class'=>'form-control', 'rows'=>'2', 'placeholder'=>'e.g. Mon - Fri: 9am - 6pm &#10;       Lunch break 1 hr']) !!}
-        </div>   
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('hour_remark', 'Work Hour Details 工作时间细节', ['class'=>'control-label']) !!}
+                    {!! Form::textarea('hour_remark', null, ['class'=>'form-control', 'rows'=>'2', 'placeholder'=>'e.g. Mon - Fri: 9am - 6pm &#10;       Lunch break 1 hr']) !!}
+                </div>
+            </div>
 
-        <div class="form-group">
-            {!! Form::label('day_remark', 'Work Day Details 每周工作天数', ['class'=>'control-label']) !!}
-            {!! Form::textarea('day_remark', null, ['class'=>'form-control', 'rows'=>'2', 'placeholder'=>'e.g. How Many Days per Week']) !!}
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('day_remark', 'Work Day Details 每周工作天数', ['class'=>'control-label']) !!}
+                    {!! Form::textarea('day_remark', null, ['class'=>'form-control', 'rows'=>'2', 'placeholder'=>'e.g. How Many Days per Week']) !!}
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -130,25 +136,32 @@
         </div>                  
             
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
-                    {!! Form::label('basic', 'Basic/ Month 基本工资/月 ($)', ['class'=>'control-label']) !!}
+                    {!! Form::label('basic', 'Basic/ Month 基本工资/月($)', ['class'=>'control-label']) !!}
                     {!! Form::text('basic', null, ['class'=>'form-control', 'placeholder'=>'Total Basic for a Month, Numeric']) !!}
                 </div> 
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
-                    {!! Form::label('basic_rate', 'Hourly Basic Rate/ Hour 基本工资率／小时($)', ['class'=>'control-label']) !!}
+                    {!! Form::label('basic_rate', 'Basic Rate/Hour 基本工资率／小时($)', ['class'=>'control-label']) !!}
                     {!! Form::text('basic_rate', null, ['class'=>'form-control', 'placeholder'=>'Numeric']) !!}
                 </div>     
             </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    {!! Form::label('ot_rate', 'OT Rate 加班率(e.g. 1.5)', ['class'=>'control-label']) !!}
+                    {!! Form::text('ot_rate', null, ['class'=>'form-control', 'placeholder'=>'Multiply Hourly Basic Rate, Fill if Applicable']) !!}
+                </div>
+            </div>            
         </div>
 
         <div class="form-group">
-            {!! Form::label('ot_rate', 'OT Rate 加班率 (e.g. 1.5)', ['class'=>'control-label']) !!}
-            {!! Form::text('ot_rate', null, ['class'=>'form-control', 'placeholder'=>'Multiply Hourly Basic Rate, Fill if Applicable']) !!}
-        </div> 
+            {!! Form::label('salary_component', 'Salary Related Components 工资相关项目', ['class'=>'control-label']) !!}
+            {!! Form::textarea('salary_component', null, ['class'=>'form-control', 'rows'=>'2', 'placeholder'=>'Fixed Allowances, Deductions, Claims']) !!}
+        </div>         
 
         <div class="row">
             <div class="col-md-4">
@@ -174,9 +187,15 @@
         </div>
 
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-6">
                 <div class="form-group">
-                    {!! Form::checkbox('medic_exam') !!}
+                    {!! Form::label('other_leave', 'Other Types of Leave 其它休假种类', ['class'=>'control-label']) !!}
+                    {!! Form::textarea('other_leave', null, ['class'=>'form-control', 'rows'=>'2']) !!}
+                </div>     
+            </div>         
+            <div class="col-md-6" style="padding-top: 40px;">
+                <div class="form-group">
+                    {!! Form::checkbox('medic_exam', $person->medic_exam) !!}
                     {!! Form::label('medic_exam', 'Paid Medical Examination Fee 所承担的医药费用', ['class'=>'control-label']) !!}
                 </div>  
             </div>
@@ -202,15 +221,40 @@
                 <div class="form-group">
                     {!! Form::label('prob_length', 'Probation Length 试用期限', ['class'=>'control-label']) !!}
                     {!! Form::select('prob_length', [
-                                                        0 =>'None', 
-                                                        1 => '1 Month',
-                                                        2 => '2 Months',
-                                                        3 => '3 Months',
-                                                        4 => '6 Months' 
+                                                        'None' =>'None', 
+                                                        '1 Month' => '1 Month',
+                                                        '2 Months' => '2 Months',
+                                                        '3 Months' => '3 Months',
+                                                        '6 Months' => '6 Months' 
                                                     ], null, ['class'=>'select form-control']) !!}
                 </div>
             </div>
-        </div>                   
+        </div> 
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('contract_start', 'Contract Start 合约开始', ['class'=>'control-label']) !!}
+                    <div class="input-group date">
+                    {!! Form::text('contract_start', null, ['class'=>'form-control', 'id'=>'prob_start']) !!}
+                    <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('contract_length', 'Contract Length 合约期限', ['class'=>'control-label']) !!}
+                    {!! Form::select('contract_length', [
+                                                        'None' =>'None', 
+                                                        '1 Year' => '1 Year',
+                                                        '2 Years' => '2 Years',
+                                                        '3 Years' => '3 Years',
+                                                        '5 Years' => '5 Years' 
+                                                    ], null, ['class'=>'select form-control']) !!}
+                </div>
+            </div>
+        </div>                           
     </div>
 </div>
 
@@ -219,47 +263,48 @@
     <hr>
 
     <div class="row">
+        @if($person->end_date or $person->leave_reason)
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('status', 'Status', ['class'=>'control-label']) !!}
+                {!! Form::text('status', 'Terminated 停职', ['class'=>'form-control', 'readonly'=>'readonly']) !!}
+            </div>
+        </div>
+        @else
+            @if($person->prob_end != null and $person->prob_end < \Carbon\Carbon::now())
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('status', 'Status', ['class'=>'control-label']) !!}
+                        {!! Form::text('status', 'Active & Probation In Progress 试用中', ['class'=>'form-control', 'readonly'=>'readonly']) !!}
+                    </div>
+                </div>
+            @else            
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {!! Form::label('status', 'Status', ['class'=>'control-label']) !!}
+                        {!! Form::text('status', 'Active & Confirmed 正式员工', ['class'=>'form-control', 'readonly'=>'readonly']) !!}
+                    </div>
+                </div>            
+            @endif         
+        @endif
+
         @if($person->prob_end != null)
         <div class="col-md-6">
             <div class="form-group">
                 <div class="form-group">
-                    {!! Form::label('prob_end', 'Probation End 试用期结束', ['class'=>'control-label']) !!}
+                    {!! Form::label('prob_end', 'Probation End 试用结束', ['class'=>'control-label']) !!}
                     {!! Form::text('prob_end', null, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
                 </div> 
             </div>
         </div>
         @endif
-
-        @if($person->end_date or $person->leave_reason)
-        <div class="col-md-6">
-            <div class="form-group">
-                {!! Form::label('status', 'Status 状态', ['class'=>'control-label']) !!}
-                {!! Form::text('status', 'Terminated', ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-            </div>
-        </div>
-        @else
-            @if($person->prob_end < \Carbon\Carbon::now())
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {!! Form::label('status', 'Status 状态', ['class'=>'control-label']) !!}
-                        {!! Form::text('status', 'Active & Probation In Progress', ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-                    </div>
-                </div>
-            @else
-                <div class="col-md-6">
-                    <div class="form-group">
-                        {!! Form::label('status', 'Status 状态', ['class'=>'control-label']) !!}
-                        {!! Form::text('status', 'Active & Confirmed', ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-                    </div>
-                </div>            
-            @endif
-        @endif       
+              
     </div>
 
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                {!! Form::label('end_date', 'Work End 工作结束', ['class'=>'control-label']) !!}
+                {!! Form::label('end_date', 'Work End 停职日期', ['class'=>'control-label']) !!}
                 <div class="input-group date">
                 {!! Form::text('end_date', null, ['class'=>'form-control', 'id'=>'end_date', 'placeholder'=>'Optional, if Staff Leaves Company']) !!}
                 <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
@@ -268,7 +313,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                {!! Form::label('leave_reason', 'Leave Reason 离开原因', ['class'=>'control-label']) !!}
+                {!! Form::label('leave_reason', 'Leave Reason 停职原因', ['class'=>'control-label']) !!}
                 {!! Form::text('leave_reason', null, ['class'=>'form-control', 'placeholder'=>'Reason why stop working']) !!}
             </div>
         </div>
