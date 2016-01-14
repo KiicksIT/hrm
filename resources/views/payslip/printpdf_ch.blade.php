@@ -38,7 +38,7 @@
             font-size: 17px;
         }
         .panel-heading .panel-title{
-            border:solid thin black;
+            border-bottom: solid thin black;
         }
         .panel-body{
             height: 60%;
