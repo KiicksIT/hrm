@@ -32,6 +32,7 @@
         }
 
         .panel-heading{
+            border:solid thin black;
             height: 25px;
             padding-top: 5px;
             padding-bottom: 0px;
