@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(ProfileSeeder::class);
-        $this->call(PositionSeeder::class);
-        $this->call(DeptSeeder::class);
+        // $this->call(PositionSeeder::class);
+        // $this->call(DeptSeeder::class);
         $this->call(DeductItemSeeder::class);
-        $this->call(PersonSeeder::class);
-        $this->call(LeaveSeeder::class);
+        // $this->call(PersonSeeder::class);
+        // $this->call(LeaveSeeder::class);
         Model::reguard();
     }
 }

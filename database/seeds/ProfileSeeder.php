@@ -13,7 +13,7 @@ class ProfileSeeder extends Seeder
     public function run()
     {
         Profile::create([
-            'name' => 'Dude',
+            'name' => 'Sai Hup Furniture and Decoration Pte Ltd',
             'roc_no' => '',
             'address' => '',
             'contact' => '',
