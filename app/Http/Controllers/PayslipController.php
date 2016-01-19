@@ -69,6 +69,8 @@ class PayslipController extends Controller
             'person_id' => 'required',
         ]);
 
+        $request->merge(array('status' => 'Pending'));
+
         $input = $request->all();
 
         $payslip = Payslip::create($input);
@@ -136,13 +138,8 @@ class PayslipController extends Controller
 
         if($request->input('save')){
 
-            if(isset($payslip->status)){
+            $request->merge(array('status' => 'Confirmed'));
 
-                $request->merge(array('status' => 'Pending'));
-            }else{
-
-                $request->merge(array('status' => 'Confirmed'));
-            }
         }elseif($request->input('print')){
 
             $this->generatePayslip($id);
