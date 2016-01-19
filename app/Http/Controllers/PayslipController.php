@@ -132,11 +132,7 @@ class PayslipController extends Controller
      */
     public function update(PayslipRequest $request, $id)
     {
-
-        // update the respective payslip
-        $payslip = Payslip::findOrFail($id);
-
-        if($request->input('save')){
+        if($request->input('confirm')){
 
             $request->merge(array('status' => 'Confirmed'));
 
@@ -144,6 +140,9 @@ class PayslipController extends Controller
 
             $this->generatePayslip($id);
         }
+
+        // update the respective payslip
+        $payslip = Payslip::findOrFail($id);
 
         $payslip->update($request->all());
 
