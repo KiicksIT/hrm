@@ -254,7 +254,14 @@ class PayslipController extends Controller
 
         $deductions = Deduction::with('deductitem')->wherePayslipId($payslip->id)->get();
 
-        $employeecpf = Deduction::wherePayslipId($payslip->id)->whereDeductitemId(1)->first()->deduct_amount;
+        if($person->resident){
+
+            $employeecpf = Deduction::wherePayslipId($payslip->id)->whereDeductitemId(1)->first()->deduct_amount;
+        }else{
+            
+            $employeecpf = '';
+        }
+        
 
         $addothers = AddOther::wherePayslipId($payslip->id)->get();
 
