@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-8 col-md-offset-2">
     <div class="form-group">
         {!! Form::label('name', 'Position 职位', ['class'=>'control-label']) !!}
         {!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -10,7 +10,7 @@
     </div>                      
 </div>
 
-<div class="col-md-6">
+{{-- <div class="col-md-6">
     <div class="form-group">
         {!! Form::label('work_hour', 'Work Hour(s)/ Day 每天工作小时', ['class'=>'control-label']) !!}
         {!! Form::text('work_hour', null, ['class'=>'form-control', 'placeholder'=>'Numeric']) !!}
@@ -25,7 +25,7 @@
         {!! Form::label('work_off', 'Off Day(s)/ Week 每周休日', ['class'=>'control-label']) !!}
         {!! Form::text('work_off', null, ['class'=>'form-control', 'placeholder'=>'Numeric']) !!}
     </div>          
-</div>
+</div> --}}
 
 <script>
     $('.select').select2({

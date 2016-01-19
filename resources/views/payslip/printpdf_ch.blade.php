@@ -8,14 +8,14 @@
             display:inline;
         }
         body{
-            font-size: 14px;
+            font-size: 13px;
         }
         table{
-            font-size: 14px;
+            font-size: 13px;
             font-family: 'Times New Roman';
         }    
         th{
-            font-size: 17px;
+            font-size: 15px;
         }
         footer{
             position: fixed;
@@ -28,20 +28,20 @@
         } 
         .panel{
             border:solid thin black;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .panel-heading{
             height: 25px;
             padding-top: 5px;
             padding-bottom: 0px;
-            font-size: 17px;
+            font-size: 13px;
         }
         .panel-heading .panel-title{
             border-bottom: solid thin black;
         }
         .panel-body{
-            height: 60%;
+            height: 50%;
         }
     
     </style>
@@ -52,7 +52,7 @@
 
             {{-- payslip from and to --}}
             <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 text-center" style="font-size:16px;">
+                <div class="col-xs-10 col-xs-offset-1 text-center" style="font-size:14px; padding-top:0px;">
                     <span>薪水单（工资期） Payslip for <strong>{{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->payslip_from)->format('d M Y') }}</strong> to <strong>{{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->payslip_to)->format('d M Y')}}</strong></span>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                                     {{$addition->additem->name}}
                                 </span>
                                 <span class="col-xs-8">
-                                    {{$addition->amount}}
+                                    {{$addition->add_amount}}
                                 </span> 
                             </li>                                                       
                         @endforeach
@@ -155,7 +155,7 @@
                                     {{$deduction->deductitem->name}}
                                 </span>
                                 <span class="col-xs-8">
-                                    {{$deduction->amount}}
+                                    {{$deduction->deduct_amount}}
                                 </span> 
                             </li>                                                        
                         @endforeach                                                
@@ -198,7 +198,9 @@
                     <ul class="list-group">
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                Overtime Payment Period(s) 加班费支付周期
+                                Overtime Payment Period(s) 
+                                <br>
+                                加班费支付周期
                             </span>
                             <span class="col-xs-8">
                                 <strong>
@@ -208,7 +210,9 @@
                         </li>
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                Overtime Hours Worked 加班时数
+                                Overtime Hours Worked 
+                                <br>
+                                加班时数
                             </span>
                             <span class="col-xs-8">
                                 {{$payslip->ot_hour}}
@@ -247,7 +251,9 @@
                         {{-- total addother --}}
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                <strong>Other Additional Payments 其它付款</strong> <br> <span style="font-size:70%;">(Breakdown shown below 细节如下)</span>
+                                <strong>Other Additional Payments 
+                                <br>
+                                其它付款</strong> <br> <span style="font-size:70%;">(Breakdown shown below 细节如下)</span>
                             </span>
                             <span class="col-xs-7">
                                 <strong>{{$payslip->other_total}}</strong>
@@ -279,16 +285,30 @@
                                 <strong>{{$payslip->net_pay}}</strong>
                             </span> 
                         </li> 
-
+                        @if($person->resident)
                         {{-- employer cpf contri --}}
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                Employer's CPF Contribution 雇主公积金缴交额
+                                Employer's CPF Contribution 
+                                <br>
+                                雇主公积金缴交额
                             </span>
                             <span class="col-xs-8">
-                                <strong>{{$payslip->employercont_epf}}</strong>
+                                {{$payslip->employercont_epf}}
                             </span> 
-                        </li>                                                
+                        </li> 
+                        {{-- employee cpf --}}
+                        <li class="list-group-item row">
+                            <span class="col-xs-4">
+                                Total CPF Amount 
+                                <br>
+                                总公积金缴交额
+                            </span>
+                            <span class="col-xs-8">
+                                <strong>{{number_format($payslip->employercont_epf + $employeecpf, 2)}}
+                            </span> 
+                        </li>
+                        @endif                                                                        
                     </ul>                    
                 </div>
             </div>                                                                                      

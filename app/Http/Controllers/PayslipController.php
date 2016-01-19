@@ -131,42 +131,22 @@ class PayslipController extends Controller
     public function update(PayslipRequest $request, $id)
     {
 
-/*        // init net pay
-        $total = 0;
+        // update the respective payslip
+        $payslip = Payslip::findOrFail($id);
 
-        // get the total from A B C D E
-        $basic = $request->basic;
-
-        $add = $request->add_total;
-
-        $deduct = $request->deduct_total;
-
-        $ot = $request->ot_total;
-
-        $other = $request->other_total;
-
-        // A + B - C + D + E
-        $total = $basic + $add - $deduct + $ot + $other;*/
-
-        // lookup which button click, save or confirm
         if($request->input('save')){
 
-            $request->merge(array('status' => 'Pending'));
+            if(isset($payslip->status)){
 
-        }elseif($request->input('confirm')){
+                $request->merge(array('status' => 'Pending'));
+            }else{
 
-            $request->merge(array('status' => 'Confirmed'));
-
+                $request->merge(array('status' => 'Confirmed'));
+            }
         }elseif($request->input('print')){
 
             $this->generatePayslip($id);
-
         }
-
-        // $request->merge(array('net_pay' => $total));
-
-        // update the respective payslip
-        $payslip = Payslip::findOrFail($id);
 
         $payslip->update($request->all());
 
@@ -233,8 +213,6 @@ class PayslipController extends Controller
             Flash::error('Please Try Again');
 
         }         
-
-        return view('payslip.index');
     }
 
     // get person data based on person id
@@ -280,6 +258,8 @@ class PayslipController extends Controller
 
         $deductions = Deduction::with('deductitem')->wherePayslipId($payslip->id)->get();
 
+        $employeecpf = Deduction::wherePayslipId($payslip->id)->whereDeductitemId(1)->first()->deduct_amount;
+
         $addothers = AddOther::wherePayslipId($payslip->id)->get();
 
         $profile = Profile::firstOrFail();
@@ -291,6 +271,7 @@ class PayslipController extends Controller
             'deductions'=>  $deductions,
             'addothers' =>  $addothers,
             'profile'  =>  $profile,
+            'employeecpf'  =>  $employeecpf,
         ];
 
         $name = 'Payslip_('.$person->name.')-'.Carbon::now()->format('dmYHis').'.pdf';
@@ -334,27 +315,21 @@ class PayslipController extends Controller
 
             $totalPositive = $this->calCPFFormula($request, $payslip->id);
 
-            if($age <=  50){
+            if($age <=  55){
 
                 $employerCpf = $totalPositive * 17/100;
 
                 $employeeCpf = $totalPositive * 20/100;
 
-            }else if($age > 50 && $age <= 55){
-
-                $employerCpf = $totalPositive * 16/100;
-
-                $employeeCpf = $totalPositive * 19/100;
-
             }else if($age > 55 && $age <= 60){
 
-                $employerCpf = $totalPositive * 12/100;
+                $employerCpf = $totalPositive * 13/100;
 
                 $employeeCpf = $totalPositive * 13/100;
 
             }else if($age > 60 && $age <= 65){
 
-                $employerCpf = $totalPositive * 8.5/100;
+                $employerCpf = $totalPositive * 9/100;
 
                 $employeeCpf = $totalPositive * 7.5/100;
 

@@ -33,13 +33,8 @@
 
             <div class="panel-body">
                 <div style="padding-bottom: 10px">
-                    {{-- <label for="search_company" class="search">Search Name:</label> --}}
                     <label for="search_company" class="search">Search Name 名字:</label>
                     <input type="text" ng-model="search.name">
-                    {{-- <label for="search_contact" class="search" style="padding-left: 10px">Dept:</label> --}}
-                   {{--  <label for="search_contact" class="search" style="padding-left: 10px">Dept 部门:</label>
-                    <input type="text" ng-model="search.department.name">  --}}                   
-                    {{-- <label for="search_name" class="search" style="padding-left: 10px">Position:</label> --}}
                     <label for="search_name" class="search" style="padding-left: 10px">Position 职位:</label>
                     <input type="text" ng-model="search.position.name">                    
 
@@ -53,29 +48,26 @@
                             <th class="col-md-1 text-center">
                                 #
                             </th>                    
-                            <th class="col-md-1 text-center">
-                                ID                           
-                            </th>
-                            <th class="col-md-2 text-center">
-                                {{-- Name --}}
-                                Name 名字
+                            <th class="col-md-4 text-center">
+                                Name 
+                                <br>
+                                名字
                             </th>                            
                             <th class="col-md-2 text-center">
-                                {{-- Position --}}
-                                Position 职位
-                            </th>
-                        {{--     <th class="col-md-1 text-center">
-                                Department
-                                Department 部门
-                            </th> --}}                             
-                            <th class="col-md-1 text-center">
-                                {{-- Contact --}}
-                                Contact 联络号码
-                            </th>  
+                                Position 
+                                <br>
+                                职位
+                            </th>                            
                             <th class="col-md-2 text-center">
-                                {{-- Email --}}
-                                Email 电子邮件
-                            </th>                                                                            
+                                Contact 
+                                <br>
+                                联络号码
+                            </th>  
+{{--                             <th class="col-md-2 text-center">
+                                Email 
+                                <br>
+                                电子邮件
+                            </th>  --}}                                                                           
                             <th class="col-md-2 text-center">
                                 Action
                             </th>                                                                                                
@@ -87,12 +79,10 @@
                                     {!! Form::checkbox('name', '@{{person.id}}', false,  ['ng-model'=>"person.SELECTED", 'ng-true-value'=>"'Y'", 'ng-false-value'=>"'N'"]) !!}
                                 </td>
                                 <td class="col-md-1 text-center">@{{ number }} </td>
-                                <td class="col-md-1">@{{ person.id }}</td>
-                                <td class="col-md-2">@{{ person.name }}</td>
+                                <td class="col-md-4">@{{ person.name }}</td>
                                 <td class="col-md-2 text-center">@{{ person.position.name }}</td>
-                                {{-- <td class="col-md-1 text-center">@{{ person.department.name }}</td> --}}
-                                <td class="col-md-1">@{{ person.contact }}</td>
-                                <td class="col-md-2">@{{ person.email }}</td>
+                                <td class="col-md-2 text-center">@{{ person.contact }}</td>
+                                {{-- <td class="col-md-2">@{{ person.email }}</td> --}}
                                 <td class="col-md-2 text-center">
                                     <a href="/person/@{{ person.id }}/edit" class="btn btn-sm btn-primary">Profile</a>
                                     <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(person.id)">Delete</button>

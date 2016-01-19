@@ -58,19 +58,44 @@
                                             #
                                         </th>                    
                                         <th class="col-md-2 text-center">
-                                            Name 名字                                                 
+                                        <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                                            Name 
+                                            <br>
+                                            名字
+                                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
-                                            Position 职位
+                                        <a href="" ng-click="sortType = 'person.position.name'; sortReverse = !sortReverse">
+                                            Position 
+                                            <br>
+                                            职位
+                                        <span ng-show="sortType == 'person.position.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'person.position.name' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>                                                
                                         <th class="col-md-2 text-center">
-                                            Leave Type 假期种类
+                                        <a href="" ng-click="sortType = 'person.leave_type'; sortReverse = !sortReverse">
+                                            Leave Type 
+                                            <br>
+                                            假期种类
+                                        <span ng-show="sortType == 'person.leave_type' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'person.leave_type' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
-                                            Apply On 申请日期
+                                        <a href="" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">
+                                            Apply On 
+                                            <br>
+                                            申请日期
+                                        <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'created_at' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-1 text-center">
-                                            Status 状态
+                                        <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
+                                            Status 
+                                            <br>
+                                            状态
+                                        <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></spa>
                                         </th>                                                        
                                         <th class="col-md-1 text-center">
                                             Action
@@ -138,19 +163,44 @@
                                             #
                                         </th>                    
                                         <th class="col-md-2 text-center">
-                                            Name 名字                                                   
+                                        <a href="" ng-click="sortType = 'person.name'; sortReverse = !sortReverse">
+                                            Name 
+                                            <br>
+                                            名字
+                                        <span ng-show="sortType == 'person.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'person.name' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
-                                            Position 职位
+                                        <a href="" ng-click="sortType = 'person.position.name'; sortReverse = !sortReverse">
+                                            Position 
+                                            <br>
+                                            职位
+                                        <span ng-show="sortType == 'person.position.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'person.position.name' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>                                                
                                         <th class="col-md-2 text-center">
-                                            Paid Leave 带薪年假
+                                        <a href="" ng-click="sortType = 'total_paidleave'; sortReverse = !sortReverse">
+                                            Paid Leave 
+                                            <br>
+                                            带薪年假
+                                        <span ng-show="sortType == 'total_paidleave' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'total_paidleave' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
-                                            Sick Leave 门诊带薪病假 
+                                        <a href="" ng-click="sortType = 'total_paidsickleave'; sortReverse = !sortReverse">
+                                            Sick Leave 
+                                            <br>
+                                            门诊带薪病假 
+                                        <span ng-show="sortType == 'total_paidsickleave' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'total_paidsickleave' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
-                                            Hospt Leave 住院带薪病假
+                                        <a href="" ng-click="sortType = 'total_paidhospleave'; sortReverse = !sortReverse">
+                                            Hospt Leave 
+                                            <br>
+                                            住院带薪病假
+                                        <span ng-show="sortType == 'total_paidhospleave' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'total_paidhospleave' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>                                                        
                                          <th class="col-md-1 text-center">
                                             Action

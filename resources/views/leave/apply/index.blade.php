@@ -81,30 +81,52 @@
                                 #
                             </th>                    
                             <th class="col-md-3 text-center">
+                            <a href="" ng-click="sortType = 'reason'; sortReverse = !sortReverse">
                                 Reason
                                 <br> 
-                                原因                                                  
+                                原因 
+                            <span ng-show="sortType == 'reason' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'reason' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
                             <th class="col-md-2 text-center">
+                            <a href="" ng-click="sortType = 'leave_type'; sortReverse = !sortReverse">
                                 Leave Type 
                                 <br>
-                                假期种类                     
+                                假期种类 
+                            <span ng-show="sortType == 'leave_type' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'leave_type' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
                             <th class="col-md-1 text-center">
-                                Leave From 从
+                            <a href="" ng-click="sortType = 'leave_from'; sortReverse = !sortReverse">
+                                Leave From 
+                                <br>
+                                从
+                            <span ng-show="sortType == 'leave_from' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'leave_from' && sortReverse" class="fa fa-caret-up"></span>
                             </th>                                                
                             <th class="col-md-1 text-center">
-                                Leave To 到
+                            <a href="" ng-click="sortType = 'leave_to'; sortReverse = !sortReverse">
+                                Leave To 
+                                <br>
+                                到
+                            <span ng-show="sortType == 'leave_to' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'leave_to' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
                             <th class="col-md-1 text-center">
+                            <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
                                 Status 
                                 <br>
                                 状态
+                            <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
                             <th class="col-md-1 text-center">
+                            <a href="" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">
                                 Applied On 
                                 <br>
                                 申请日
+                            <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'created_at' && sortReverse" class="fa fa-caret-up"></span>
                             </th>                                                        
                             <th class="col-md-2 text-center">
                                 Action

@@ -11,7 +11,7 @@
                 {!! Form::text('basic', null, ['class'=>'form-control', 'id'=>'basic', 'ng-model'=>'basicModel']) !!}
             </div> 
 
-            <div class="form-group">
+{{--             <div class="form-group">
                 <div class="col-md-12 row">
                     {!! Form::label('workday 工作天', 'Actual/Total Working Day(s)', ['class'=>'control-label']) !!}
                 </div>
@@ -26,7 +26,7 @@
                         {!! Form::text('workday_total', null, ['class'=>'form-control']) !!}days
                     </div>
                 </div>
-            </div> 
+            </div>  --}}
 
         </div>
     </div>

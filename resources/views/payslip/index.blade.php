@@ -35,57 +35,39 @@
             <div class="panel-body">
             <div class="row">
                 <div style="padding-bottom: 10px">
-                    {{-- <label for="search_name" class="search" style="padding-left: 16px">Search Name:</label> --}}
                     <label for="search_name" class="search" style="padding-left: 16px">Search Name 名字:</label>
-                    <input type="text" ng-model="search.id">
-                    {{-- <label for="search_company" class="search" style="padding-left: 10px">Dept:</label> --}}
-{{--                     <label for="search_company" class="search" style="padding-left: 10px">Dept 部门:</label>
-                    <input type="text" ng-model="search.person.department.name"> --}}
-                    {{-- <label for="search_status" class="search" style="padding-left: 10px">Position:</label> --}}
+                    <input type="text" ng-model="search.name">
                     <label for="search_status" class="search" style="padding-left: 10px">Position 职位:</label>
                     <input type="text" ng-model="search.person.position.name">                     
                     <label for="search_status" class="search" style="padding-left: 10px">Status 状态:</label>
                     <input type="text" ng-model="search.status">                    
                 </div>
-            </div>
-{{--             <div class="row">
-                <div style="padding-bottom: 10px">
-                    <label for="search_status" class="search" style="padding-left: 10px">Status 状态:</label>
-                    <input type="text" ng-model="search.status">                
-                </div>
-            </div>   --}}         
+            </div>      
 
                 <div class="table-responsive">
                     <table class="table table-list-search table-hover table-bordered">
                         <tr style="background-color: #DDFDF8">
                             <th class="col-md-1 text-center">
                                 #
-                            </th>                    
-                            <th class="col-md-1 text-center">
-                                <a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
-                                ID
-                                <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>                                                       
-                            </th>                       
-                            <th class="col-md-2 text-center">
+                            </th>                                        
+                            <th class="col-md-3 text-center">
                                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                                {{-- Name --}}
-                                Name 名字
+                                Name 
+                                <br>
+                                名字
                                 <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
-{{--                             <th class="col-md-2 text-center">
-                                Department
-                                Department 部门                         
-                            </th> --}}
                             <th class="col-md-2 text-center">
-                                {{-- Positions --}}
-                                Position 职位                      
+                                Position 
+                                <br>
+                                职位                      
                             </th>
                             <th class="col-md-1 text-center">
                                 <a href="#" ng-click="sortType = 'status'; sortReverse = !sortReverse">                         
-                                {{-- Status --}}
-                                Status 状态
+                                Status 
+                                <br>
+                                状态
                                 <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>                          
                             </th>
@@ -104,8 +86,7 @@
                         <tbody>
                             <tr dir-paginate="payslip in payslips | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage"  current-page="currentPage" ng-controller="repeatController">
                                 <td class="col-md-1 text-center">@{{ number }} </td>
-                                <td class="col-md-1 text-center">@{{ payslip.id }} </td>
-                                <td class="col-md-2 text-center">
+                                <td class="col-md-3 text-center">
                                 <a href="/person/@{{ payslip.person.id }}">
                                 @{{ payslip.person.name }}
                                 </a>

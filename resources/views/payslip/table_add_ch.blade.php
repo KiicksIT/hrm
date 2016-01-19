@@ -30,11 +30,7 @@
                     <td class="col-md-3 text-right" ng-if="addition.add_amount != NULL">@{{ (addition.add_amount/100 * 100).toFixed(2) }}</td>
                     <td class="col-md-3 text-center" ng-if="addition.add_amount == NULL"><strong>TBC</strong></td>
                     <td class="col-md-1 text-center">
-                        @if($payslip->status == 'Pending')
-                            <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete1(addition.id)">Delete</button>
-                        @else
-                            <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete1(addition.id)" disabled>Delete</button>
-                        @endif
+                        <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete1(addition.id)">Delete</button>
                     </td>
                 </tr>
                 <tr ng-if="additions.length">

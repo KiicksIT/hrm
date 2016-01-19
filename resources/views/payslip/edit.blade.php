@@ -22,11 +22,11 @@
                 <div class="col-md-12">
                     <div class="pull-right" style="padding: 30px 95px 0px 0px;">
                         @if($payslip->status == 'Pending')
-                            {!! Form::submit('Confirm', ['name'=>'confirm', 'class'=> 'btn btn-primary', 'form'=>'form_submit']) !!}
+                            {!! Form::submit('Confirm', ['name'=>'confirm', 'class'=> 'btn btn-success', 'form'=>'form_submit']) !!}
                         @else
                             {!! Form::submit('Print', ['name'=>'print', 'class'=> 'btn btn-primary', 'form'=>'form_print']) !!}
                         @endif
-                        {!! Form::submit('Save', ['name'=>'save', 'class'=> 'btn btn-default', 'form'=>'form_submit']) !!}
+                        {!! Form::submit('Confirm', ['name'=>'confirm', 'class'=> 'btn btn-success', 'form'=>'form_submit']) !!}
                         <a href="/payslip" class="btn btn-default">Cancel</a>            
                     </div>
                     <div class="pull-left" style="padding: 30px 0px 0px 95px;">

@@ -29,6 +29,7 @@
         .panel{
             border:solid thin black;            
             margin-bottom: 7px;
+            margin-left: 10px;
         }
 
         .panel-heading{
@@ -46,7 +47,7 @@
         .panel-body .border{
             border: solid thin;
             height: 55px;
-            width: 239px;
+            width: 242px;
         }        
         .row.no-pad {
           margin-right:0;
@@ -77,10 +78,23 @@
                             <br> 
                             <span style="font-size:55%;">除不适用者,所有表格中项目必须填写</span>                        
                         </div>
-                        <div class="col-xs-5" style="border: solid thin; padding-left: 6px; height: 90%">
+                        <div class="col-xs-5" style="border: solid thin; padding-left: 15px; height: 90%">
                              <span style="margin-bottom: -20px"><strong>发放日: {{Carbon\Carbon::createFromFormat('d-F-Y', $person->created_at)->format('d/m/Y') }}</strong></span>
                             <br> 
                             <span style="font-size:65%;" class="text-center">所有信息于发放日准确无误</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="panel panel-default" style="padding-top: 5px; width:133px; height:171px">
+                            <div class="panel-heading" style="padding-top: 5px; width:133px; height:171px">
+                                <h3 class="panel-title">
+                                    <strong>Image | 照片</strong>
+                                </h3> 
+                            </div>
+                            <div class="panel-body" style="width:0%">
+                                
+                            </div>
                         </div>
                     </div>
 
@@ -132,7 +146,7 @@
                                     <div class="col-xs-6 border">
                                         <span class="subtitle"><strong>受雇时期</strong></span>
                                         <br>
-                                        @if($person->contract_length and $person->contract_end) 
+                                        @if($person->contract_length and $person->contract_end and ($person->contract_start != $person->contract_end)) 
                                         <span class="content">{{Carbon\Carbon::createFromFormat('d-F-Y', $person->contract_start)->format('d/m/Y')}}</span>
                                         -
                                         <span class="content">{{Carbon\Carbon::createFromFormat('d-F-Y', $person->contract_end)->format('d/m/Y')}}
@@ -193,8 +207,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                   
+                </div>
 
+                <div class="col-xs-6">
                     <div class="row">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -255,10 +271,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
-                </div>
-
-                <div class="col-xs-6">
+                    </div>                 
                     <div class="row">
                         <div class="panel panel-default">
                             <div class="panel-heading">

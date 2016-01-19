@@ -58,7 +58,15 @@ var app = angular.module('app', [   'ui.bootstrap',
             $scope.netPayModel = payslip.net_pay;
 
             // retrieve resident isSingporean
-            $scope.residentModel = payslip.person.resident;
+            if(payslip.person.resident){
+
+                $scope.residentModel = 'Yes'
+
+            }else{
+
+                $scope.residentModel = 'No'
+            }
+            // $scope.residentModel = payslip.person.resident;
 
             // worked ot pay
             $scope.onOtHourChange = function(){

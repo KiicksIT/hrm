@@ -19,18 +19,6 @@ class RoleSeeder extends Seeder
         ]); 
 
         Role::create([
-            'name' => 'rgm',
-            'label' => 'Regional Manager',
-            'remark' => '',
-        ]);
-
-        Role::create([
-            'name' => 'manager',
-            'label' => 'Manager',
-            'remark' => '',
-        ]);
-
-        Role::create([
             'name' => 'user',
             'label' => 'User',
             'remark' => '',

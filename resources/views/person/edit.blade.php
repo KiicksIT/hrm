@@ -76,6 +76,7 @@
                 <tr>
                     <td class="col-md-1 text-center">{{ $index++ }} </td>
                     <td class="col-md-7">
+                        {!! Html::image($file->path, 'alt', array( 'width' => 200, 'height' => 200 )) !!}
                         <a href="{{$file->path}}">
                         {!! str_replace("/person_asset/file/", "", "$file->path"); !!}
                         </a>                            
