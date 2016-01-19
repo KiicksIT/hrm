@@ -97,7 +97,7 @@
             <div class="form-group">
                 {!! Form::label('ot_hour', 'OT Worked Hour(s) 加班时数 (小时)', ['class'=>'control-label']) !!}
                 {!! Form::text('ot_hour', null, ['class'=>'form-control', 'ng-model'=>'othourModel', 
-                'ng-change'=>'onOtHourChange()', 'ng-model-options'=>'{debounce:800}', 'placeholder'=>'Fill if Applicable']) !!}
+                'ng-change'=>'onOtHourChange()', 'placeholder'=>'Fill if Applicable']) !!}
             </div>        
         </div>                   
     </div>  

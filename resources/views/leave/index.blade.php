@@ -95,7 +95,7 @@
                                             <br>
                                             状态
                                         <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></spa>
+                                        <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>                                                        
                                         <th class="col-md-1 text-center">
                                             Action
