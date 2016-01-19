@@ -25,8 +25,6 @@ class PayslipRequest extends Request
     {
         return [
             'basic' => 'required',
-            'workday_actual' => 'required', 
-            'workday_total' => 'required',
         ];
     }
 }

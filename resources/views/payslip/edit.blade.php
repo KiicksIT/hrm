@@ -24,9 +24,9 @@
                         @if($payslip->status == 'Pending')
                             {!! Form::submit('Confirm', ['name'=>'confirm', 'class'=> 'btn btn-success', 'form'=>'form_submit']) !!}
                         @else
+                            {!! Form::submit('Confirm', ['name'=>'confirm', 'class'=> 'btn btn-success', 'form'=>'form_submit']) !!}
                             {!! Form::submit('Print', ['name'=>'print', 'class'=> 'btn btn-primary', 'form'=>'form_print']) !!}
                         @endif
-                        {!! Form::submit('Confirm', ['name'=>'confirm', 'class'=> 'btn btn-success', 'form'=>'form_submit']) !!}
                         <a href="/payslip" class="btn btn-default">Cancel</a>            
                     </div>
                     <div class="pull-left" style="padding: 30px 0px 0px 95px;">
