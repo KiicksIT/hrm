@@ -38,6 +38,7 @@
             padding-bottom: 5px;
             padding-right:0px;
             font-size: 18px;
+            background-color: #d7d7db;
         }
         .panel-body{
             padding-top: 0px;
@@ -63,7 +64,13 @@
         .content{
             padding-top: 15px;
             font-size: 13px;
-        }                
+        }
+
+    @media print {
+        .panel > .panel-heading{
+            background-color: #d7d7db !important;
+        }
+      }                         
     </style>
     </head>
 
@@ -87,13 +94,8 @@
 
                     <div class="row">
                         <div class="panel panel-default" style="padding-top: 5px; width:133px; height:171px">
-                            <div class="panel-heading" style="padding-top: 5px; width:133px; height:171px">
-                                <h3 class="panel-title">
-                                    <strong>Image | 照片</strong>
-                                </h3> 
-                            </div>
-                            <div class="panel-body" style="width:0%">
-                                
+                            <div class="panel-body">
+                                <strong>Image | 照片</strong>
                             </div>
                         </div>
                     </div>

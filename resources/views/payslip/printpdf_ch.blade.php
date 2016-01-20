@@ -37,12 +37,15 @@
             padding-bottom: 0px;
             font-size: 13px;
         }
-        .panel-heading .panel-title{
-            border-bottom: solid thin black;
-        }
         .panel-body{
             height: 50%;
         }
+
+    @media print {
+        .panel > .panel-heading{
+            background-color: #d7d7db !important;
+        }
+      }         
     
     </style>
     </head>
@@ -98,7 +101,7 @@
                     {{-- total basic pay --}}
                     <ul class="list-group">
                         <li class="list-group-item row">
-                            <span class="col-xs-4">
+                            <span class="col-xs-4" style="border-right: solid thin black inherit;">
                                 <strong>Basic Pay 基本工资</strong>
                             </span>
                             <span class="col-xs-7">
