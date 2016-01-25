@@ -49,25 +49,29 @@
                                 #
                             </th>                    
                             <th class="col-md-4 text-center">
+                                <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                                 Name 
                                 <br>
                                 名字
+                                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>                                
                             </th>                            
                             <th class="col-md-2 text-center">
+                                <a href="#" ng-click="sortType = 'position.name'; sortReverse = !sortReverse">
                                 Position 
                                 <br>
                                 职位
+                                <span ng-show="sortType == 'position.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'position.name' && sortReverse" class="fa fa-caret-up"></span>
                             </th>                            
                             <th class="col-md-2 text-center">
+                                <a href="#" ng-click="sortType = 'contact'; sortReverse = !sortReverse">
                                 Contact 
                                 <br>
                                 联络号码
-                            </th>  
-{{--                             <th class="col-md-2 text-center">
-                                Email 
-                                <br>
-                                电子邮件
-                            </th>  --}}                                                                           
+                                <span ng-show="sortType == 'contact' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'contact' && sortReverse" class="fa fa-caret-up"></span>
+                            </th>                                                                          
                             <th class="col-md-2 text-center">
                                 Action
                             </th>                                                                                                
@@ -82,7 +86,6 @@
                                 <td class="col-md-4">@{{ person.name }}</td>
                                 <td class="col-md-2 text-center">@{{ person.position.name }}</td>
                                 <td class="col-md-2 text-center">@{{ person.contact }}</td>
-                                {{-- <td class="col-md-2">@{{ person.email }}</td> --}}
                                 <td class="col-md-2 text-center">
                                     <a href="/person/@{{ person.id }}/edit" class="btn btn-sm btn-primary">Profile</a>
                                     <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(person.id)">Delete</button>

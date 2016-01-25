@@ -146,6 +146,9 @@
                                     </select>
                                     <label for="display_num2" style="padding-right: 20px">per Page</label>
                                 </div>
+                                <div class="pull-right">
+                                    <a href="/leave/create" class="btn btn-success" name="btn_create">+ New Leave Setup</a>
+                                </div>                                
                             </div>
                         </div>
 

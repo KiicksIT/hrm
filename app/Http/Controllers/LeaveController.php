@@ -49,7 +49,7 @@ class LeaveController extends Controller
      */
     public function create()
     {
-        //
+        return view('leave.create');
     }
 
     /**
@@ -60,7 +60,23 @@ class LeaveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+                'person_id',
+            ]);
+
+        $leave = Leave::create($request->all());
+
+        if($leave){
+
+            Flash::success('Successfully Created');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        }        
+
+        return redirect('leave');        
     }
 
     /**

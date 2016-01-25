@@ -1,5 +1,8 @@
+@inject('people', 'App\Person')
+
 <div class="col-md-8 col-md-offset-2">
 
+@if(isset($leave->id))
     <div class="form-group">
         {!! Form::label('employee', 'Employee 员工', ['class'=>'control-label']) !!}
         {!! Form::text('employee', 
@@ -7,6 +10,19 @@
         ['class'=>'form-control', 'disabled'=>'disabled']) 
         !!}
     </div>
+@else
+    <div class="form-group">
+        {!! Form::label('employee', 'Employee 员工', ['class'=>'control-label']) !!}
+        {!! Form::select('person_id', 
+            $people::select(DB::raw("CONCAT(name) AS full, id"))->lists('full', 'id'), 
+            null, 
+            [
+            'id'=>'person_id', 
+            'class'=>'select form-control', 
+            ]) 
+        !!}
+    </div>
+@endif  
 
     <div class="form-group">
         {!! Form::label('total_paidleave', 'Paid Annual Leave/ Year(Days)  每年带薪年假／天', ['class'=>'control-label']) !!}
@@ -24,3 +40,7 @@
     </div>           
     
 </div>
+
+<script>
+    $('.select').select2({});
+</script>
