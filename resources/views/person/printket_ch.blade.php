@@ -309,8 +309,12 @@
                                     {{-- other leave --}}
                                     <div class="col-xs-6 border" style="height:40px;">
                                         <span class="subtitle"><strong>其它休假种类</strong></span>
-                                        <br> 
-                                        <span class="content">{{$person->other_leave}}</span>
+                                        <br>
+                                        @if($person->other_leave) 
+                                            <span class="content">{{$person->other_leave}}</span>
+                                        @else
+                                            -
+                                        @endif
                                     </div>
                                     {{-- medical --}}
                                     <div class="col-xs-6 border" style="height:80px;">
@@ -323,8 +327,12 @@
                                         @endif
                                         <br>
                                         <span class="subtitle"><strong>其它福利</strong></span>
-                                        <br> 
-                                        <span class="content">{{$person->benefit_remark}}</span>                                        
+                                        <br>
+                                        @if($person->benefit_remark) 
+                                            <span class="content">{{$person->benefit_remark}}</span>                                        
+                                        @else
+                                            -
+                                        @endif
                                     </div>                                    
                                 </div>
                             </div>
@@ -372,7 +380,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div> 
+
+                        <div class="col-xs-6 col-xs-offset-6">
+                            <div class="form-group">
+                                <span class="text-center col-xs-12" style="margin-bottom:-1px; padding-top:80px">
+                                    _______________________________
+                                </span>
+                                <span class="text-center col-xs-12" style="margin-top:0px">
+                                    <strong>Agreed By</strong>
+                                </span>
+                            </div>                            
+                        </div>                                       
                 </div>
                 </div>                
             </div>
