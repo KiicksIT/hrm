@@ -248,7 +248,7 @@
                                     <div class="col-xs-6 border" style="height:72px;">
                                         <span class="subtitle"><strong>基本工资</strong>(每周期)</span>
                                         <br> 
-                                        <span class="content">{{$person->basic}}/小时</span>
+                                        <span class="content">{{$person->basic}} ({{$person->basic_rate}}/小时)</span>
                                         <br>
                                         <span class="subtitle"><strong>加班费</strong></span>
                                         <br> 
