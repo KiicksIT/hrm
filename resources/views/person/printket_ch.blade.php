@@ -148,7 +148,7 @@
                                     <div class="col-xs-6 border">
                                         <span class="subtitle"><strong>受雇时期</strong></span>
                                         <br>
-                                        @if($person->contract_length and $person->contract_end and ($person->contract_start != $person->contract_end)) 
+                                        @if($person->contract_length and $person->contract_end and ($person->contract_start != $person->contract_end) and $person->contract_length != 'None') 
                                         <span class="content">{{Carbon\Carbon::createFromFormat('d-F-Y', $person->contract_start)->format('d/m/Y')}}</span>
                                         -
                                         <span class="content">{{Carbon\Carbon::createFromFormat('d-F-Y', $person->contract_end)->format('d/m/Y')}}
@@ -248,7 +248,7 @@
                                     <div class="col-xs-6 border" style="height:72px;">
                                         <span class="subtitle"><strong>基本工资</strong>(每周期)</span>
                                         <br> 
-                                        <span class="content">{{$person->basic_rate}}/小时</span>
+                                        <span class="content">{{$person->basic}}/小时</span>
                                         <br>
                                         <span class="subtitle"><strong>加班费</strong></span>
                                         <br> 
