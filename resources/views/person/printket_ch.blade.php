@@ -146,7 +146,7 @@
                                     </div> 
                                     {{-- duration --}}
                                     <div class="col-xs-6 border">
-                                        <span class="subtitle"><strong>受雇时期</strong></span>
+                                        <span class="subtitle"><strong>受雇时期 (合约)</strong></span>
                                         <br>
                                         @if($person->contract_length and $person->contract_end and ($person->contract_start != $person->contract_end) and $person->contract_length != 'None') 
                                         <span class="content">{{Carbon\Carbon::createFromFormat('d-F-Y', $person->contract_start)->format('d/m/Y')}}</span>
@@ -154,7 +154,7 @@
                                         <span class="content">{{Carbon\Carbon::createFromFormat('d-F-Y', $person->contract_end)->format('d/m/Y')}}
                                         </span>
                                         <br>
-                                        ({{$person->contract_length}} 合约)
+                                        {{$person->contract_length}}
                                         @else
                                         -
                                         @endif
