@@ -28,7 +28,12 @@
         } 
         .panel{
             border:solid thin black;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
+        }
+
+        .row{
+            padding-top: 4px;
+            padding-bottom: 4px;
         }
 
         .panel-heading{
@@ -38,7 +43,7 @@
             font-size: 13px;
         }
         .panel-body{
-            height: 50%;
+            height: 30%;
         }
 
     @media print {
@@ -89,7 +94,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            <div class="row">
+                            <div class="row" style="margin-top: -3px;">
                                 <strong>
                                 <span class="col-xs-4">Item 项目</span>
                                 <span class="col-xs-8">Amount 款额</span>
@@ -241,7 +246,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            <div class="row">
+                            <div class="row" style="margin-top: -3px;">
                                 <strong>
                                 <span class="col-xs-4">Item 项目</span>
                                 <span class="col-xs-8">Amount 款额</span>
@@ -314,7 +319,19 @@
                         @endif                                                                        
                     </ul>                    
                 </div>
-            </div>                                                                                      
+            </div> 
 
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-6" >
+                    <div class="form-group" style="margin-left: 30px;">
+                        <span class="text-center col-xs-12" style="margin-bottom:-1px; padding-top:35px">
+                            _______________________________
+                        </span>
+                        <span class="text-center col-xs-12" style="margin-top:0px">
+                            <strong>Agreed By</strong>
+                        </span>
+                    </div>                            
+                </div> 
+            </div>
     </body>
 </html>    

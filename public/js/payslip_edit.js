@@ -58,7 +58,7 @@ var app = angular.module('app', [   'ui.bootstrap',
             $scope.netPayModel = payslip.net_pay;
 
             // retrieve resident isSingporean
-            if(payslip.person.resident){
+            if(payslip.person.resident == 1){
 
                 $scope.residentModel = 'Yes'
 

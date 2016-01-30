@@ -32,7 +32,7 @@ class PayslipController extends Controller
 
     public function getData()
     {
-        $payslip =  Payslip::with(['person.department', 'person.position', 'person'])->get();
+        $payslip =  Payslip::with(['person.department', 'person.position', 'person'])->latest()->get();
 
         return $payslip;
     }  
