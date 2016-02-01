@@ -440,7 +440,8 @@ class PayslipController extends Controller
     // Suppose get the % after all the addition and deduction (A+B-C+D+E)
     private function calCPFFormula($request, $payslip_id)
     {
-        $totalPositive = $this->getBasic($request) + $this->getOtSum($request);
+        // $totalPositive = $this->getBasic($request) + $this->getOtSum($request);
+        $totalPositive = $this->getBasic($request) + $this->getOtSum($request) + $this->getAdditionSum($payslip_id) + $this->getAddotherSum($payslip_id);
 
         return $totalPositive;
     } 
