@@ -23,7 +23,7 @@ class CreatePayslipTable extends Migration
             $table->decimal('workday_total', 4, 1)->nullable();
             $table->decimal('add_total', 10, 2)->nullable();
             $table->decimal('deduct_total', 10, 2)->nullable();
-            $table->timestamp('pay_date')->default(Carbon::now());
+            $table->timestamp('pay_date');
             $table->string('pay_mode');
             $table->timestamp('ot_from')->default(Carbon::now()->startOfMonth());
             $table->timestamp('ot_to')->default(Carbon::now()->endOfMonth());
