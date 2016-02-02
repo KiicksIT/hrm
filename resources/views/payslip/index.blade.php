@@ -50,7 +50,7 @@
                             <th class="col-md-1 text-center">
                                 #
                             </th>                                        
-                            <th class="col-md-3 text-center">
+                            <th class="col-md-2 text-center">
                                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                                 Name 
                                 <br>
@@ -73,12 +73,18 @@
                             </th>
 
                             <th class="col-md-2 text-center">
-                                <a href="#" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">                         
-                                Created On
-                                <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'created_at' && sortReverse" class="fa fa-caret-up"></span>                          
-                            </th>                        
-                             <th class="col-md-2 text-center">
+                                <a href="#" ng-click="sortType = 'payslip_from'; sortReverse = !sortReverse">                         
+                                Payslip From
+                                <span ng-show="sortType == 'payslip_from' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'payslip_from' && sortReverse" class="fa fa-caret-up"></span>                          
+                            </th> 
+                            <th class="col-md-2 text-center">
+                                <a href="#" ng-click="sortType = 'payslip_to'; sortReverse = !sortReverse">                         
+                                Payslip To
+                                <span ng-show="sortType == 'payslip_to' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'payslip_to' && sortReverse" class="fa fa-caret-up"></span>                          
+                            </th>                                                    
+                            <th class="col-md-2 text-center">
                                 Action
                             </th>                                                                                                
                         </tr>
@@ -86,11 +92,12 @@
                         <tbody>
                             <tr dir-paginate="payslip in payslips | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage"  current-page="currentPage" ng-controller="repeatController">
                                 <td class="col-md-1 text-center">@{{ number }} </td>
-                                <td class="col-md-3 text-center">@{{ payslip.person.name }}</td>
+                                <td class="col-md-2 text-center">@{{ payslip.person.name }}</td>
                                 {{-- <td class="col-md-2 text-center">@{{ payslip.person.department.name }}</td> --}}
                                 <td class="col-md-2 text-center">@{{ payslip.person.position.name }}</td>                                
                                 <td class="col-md-1 text-center">@{{ payslip.status }}</td>
-                                <td class="col-md-2 text-center">@{{ payslip.created_at }}</td>
+                                <td class="col-md-2 text-center">@{{ payslip.payslip_from }}</td>
+                                <td class="col-md-2 text-center">@{{ payslip.payslip_to }}</td>
                                 <td class="col-md-2 text-center">
                                         <a href="/payslip/@{{ payslip.id }}/edit" class="btn btn-sm btn-primary">Edit</a>
                                         <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(payslip.id)">Delete</button>  
