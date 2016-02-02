@@ -85,11 +85,11 @@
                             <br> 
                             <span style="font-size:55%;">除不适用者,所有表格中项目必须填写</span>                        
                         </div>
-                        <div class="col-xs-5" style="border: solid thin; padding-left: 15px; height: 90%">
+{{--                         <div class="col-xs-5" style="border: solid thin; padding-left: 15px; height: 90%">
                              <span style="margin-bottom: -20px"><strong>发放日: </strong></span>
                             <br> 
                             <span style="font-size:65%;" class="text-center">所有信息于发放日准确无误</span>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="row">
