@@ -70,6 +70,16 @@ class PayslipController extends Controller
         ]);
 
         $request->merge(array('status' => 'Pending'));
+        // set default dates
+        $request->merge(array('pay_date' => Carbon::now()));
+
+        $request->merge(array('payslip_from' => Carbon::now()->startOfMonth()));
+
+        $request->merge(array('payslip_to' => Carbon::now()->endOfMonth()));
+
+        $request->merge(array('ot_from' => Carbon::now()->startOfMonth()));
+
+        $request->merge(array('ot_to' => Carbon::now()->endOfMonth()));        
 
         $input = $request->all();
 
