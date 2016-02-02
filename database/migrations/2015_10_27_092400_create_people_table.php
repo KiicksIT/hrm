@@ -34,6 +34,7 @@ class CreatePeopleTable extends Migration
             $table->decimal('basic', 10, 2);
             $table->decimal('basic_rate', 10, 2);
             $table->decimal('ot_rate', 3, 1);
+            $table->string('total_earned');
             $table->text('salary_component')->nullable();
             $table->text('person_remark')->nullable();
             $table->timestamp('prob_start')->nullable();

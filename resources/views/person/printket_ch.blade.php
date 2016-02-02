@@ -227,6 +227,10 @@
                                         <span class="subtitle"><strong>工资周期</strong></span> 
                                         <br> 
                                         <span class="content">{{$profile->payslip_start}} - {{$profile->payslip_end}}</span>
+                                        <br>
+                                        <span class="subtitle"><strong>加班费支付周期</strong></span>
+                                        <br> 
+                                        <span class="content">{{$profile->payslip_otstart}} - {{$profile->payslip_otend}}</span>
                                     </div>
                                     {{-- payday --}}
                                     <div class="col-xs-6 border" style="height:72px;">
@@ -238,13 +242,7 @@
                                         <br> 
                                         <span class="content">每日历月份的 {{$profile->ot_payday}} 日</span>
                                     </div>  
-                                    {{-- ot payment --}}
-                                    <div class="col-xs-6 border" style="height:72px;">
-                                        <span class="subtitle"><strong>加班费支付周期</strong></span>
-                                        <br> 
-                                        <span class="content">{{$profile->payslip_otstart}} - {{$profile->payslip_otend}}</span>
-                                    </div>
-                                    {{-- payday --}}
+                                    {{-- payment --}}
                                     <div class="col-xs-6 border" style="height:72px;">
                                         <span class="subtitle"><strong>基本工资</strong>(每周期)</span>
                                         <br> 
@@ -254,11 +252,17 @@
                                         <br> 
                                         <span class="content">{{$person->ot_rate}} 每小时基本工资率</span>
                                     </div>
-                                    {{-- work day remark --}}
-                                    <div class="col-xs-6 border">
+                                    {{-- payday --}}
+                                    <div class="col-xs-6 border" style="height:72px;">
                                         <span class="subtitle"><strong>其它工资相关项目</strong></span>
                                         <br> 
                                         <span class="content">{{$person->salary_component}}</span>
+                                    </div>
+                                    {{-- work day remark --}}
+                                    <div class="col-xs-6 border">
+                                        <span class="subtitle"><strong>总工资</strong>(每周期)</span>
+                                        <br> 
+                                        <span class="content">{{$person->total_earned}}</span>
                                     </div>
                                     {{-- off day remark --}}
                                     <div class="col-xs-6 border">

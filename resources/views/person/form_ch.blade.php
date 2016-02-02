@@ -158,10 +158,23 @@
             </div>            
         </div>
 
-        <div class="form-group">
-            {!! Form::label('salary_component', 'Salary Related Components 工资相关项目', ['class'=>'control-label']) !!}
-            {!! Form::textarea('salary_component', null, ['class'=>'form-control', 'rows'=>'2', 'placeholder'=>'Fixed Allowances, Deductions, Claims']) !!}
-        </div>         
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('salary_component', 'Salary Related Components', ['class'=>'control-label', 'style'=>'margin-bottom:0px;']) !!}
+                    {!! Form::label('salary_component', '工资相关项目', ['class'=>'control-label', 'style'=>'padding-top:0px;']) !!}
+                    {!! Form::textarea('salary_component', null, ['class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Fixed Allowances, Deductions, Claims']) !!}
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    {!! Form::label('total_earned', 'Total/ Month', ['class'=>'col-md-12 row control-label', 'style'=>'margin-bottom:0px;']) !!}
+                    {!! Form::label('total_earned', '总工资／月($)', ['class'=>'col-md-12 row control-label', 'style'=>'padding-top:0px;']) !!}
+                    {!! Form::text('total_earned', null, ['class'=>'form-control', 'placeholder'=>'Total Earned Salary for a Month']) !!}
+                </div>
+            </div>
+        </div>                 
 
         <div class="row">
             <div class="col-md-4">
