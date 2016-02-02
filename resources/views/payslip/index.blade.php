@@ -86,11 +86,7 @@
                         <tbody>
                             <tr dir-paginate="payslip in payslips | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage"  current-page="currentPage" ng-controller="repeatController">
                                 <td class="col-md-1 text-center">@{{ number }} </td>
-                                <td class="col-md-3 text-center">
-                                <a href="/person/@{{ payslip.person.id }}">
-                                @{{ payslip.person.name }}
-                                </a>
-                                </td>
+                                <td class="col-md-3 text-center">@{{ payslip.person.name }}</td>
                                 {{-- <td class="col-md-2 text-center">@{{ payslip.person.department.name }}</td> --}}
                                 <td class="col-md-2 text-center">@{{ payslip.person.position.name }}</td>                                
                                 <td class="col-md-1 text-center">@{{ payslip.status }}</td>
