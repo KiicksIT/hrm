@@ -36,7 +36,7 @@
             <div class="row">
                 <div style="padding-bottom: 10px">
                     <label for="search_name" class="search" style="padding-left: 16px">Search Name 名字:</label>
-                    <input type="text" ng-model="search.name">
+                    <input type="text" ng-model="search.person.name">
                     <label for="search_status" class="search" style="padding-left: 10px">Position 职位:</label>
                     <input type="text" ng-model="search.person.position.name">                     
                     <label for="search_status" class="search" style="padding-left: 10px">Status 状态:</label>
@@ -51,12 +51,12 @@
                                 #
                             </th>                                        
                             <th class="col-md-2 text-center">
-                                <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                                <a href="#" ng-click="sortType = 'person.name'; sortReverse = !sortReverse">
                                 Name 
                                 <br>
                                 名字
-                                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                                <span ng-show="sortType == 'person.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'person.name' && sortReverse" class="fa fa-caret-up"></span>
                             </th>
                             <th class="col-md-2 text-center">
                                 Position 
