@@ -224,7 +224,12 @@ class Person extends Model
     public function applyleave()
     {
         return $this->hasOne('App\ApplyLeave');
-    }                      
+    } 
+
+    public function leaveattaches()
+    {
+        return $this->hasMany('App\LeaveAttach');
+    }                         
  
 
     /**

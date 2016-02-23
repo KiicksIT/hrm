@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Requests\LeaveRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Laracasts\Flash\Flash;
 use App\Leave;
+use App\LeaveAttach;
+use Carbon\Carbon;
+//use App\Person;
 
 class LeaveController extends Controller
 {
@@ -100,7 +105,9 @@ class LeaveController extends Controller
     {
         $leave = Leave::findOrFail($id);
 
-        return view('leave.edit', compact('leave'));
+        $leaveattaches = LeaveAttach::wherePersonId($leave->person_id)->latest()->paginate(5);
+
+        return view('leave.edit', compact('leave', 'leaveattaches'));
     }
 
     /**
@@ -180,5 +187,76 @@ class LeaveController extends Controller
         }             
 
         return $leave->id . 'has been successfully deleted';
+    }
+
+    public function addLeaveAttach(Request $request, $id)
+    {
+        // dd($request->all());
+        $leave = Leave::findOrFail($id);
+        // $person = Person::findOrFail($id);
+
+        
+        if($request->file('leave_attach')){
+
+            $file = $request->file('leave_attach'); 
+            
+            $name = (Carbon::now()->format('dmYHi')).$file->getClientOriginalName();
+
+            $file->move('person_asset/'.$leave->person->name.'/', $name);
+
+            $leave->person->leaveattaches()->create(['path' => "/person_asset/".$leave->person->name."/{$name}", 'remark' => $request->remark]);               
+        
+        }else{
+
+            if($request->remark){
+
+                $leave->person->leaveattaches()->create(['remark' => $request->remark]);
+
+            }else{
+
+                Flash::error('Please Attach File or Fill in the Remark');
+            }
+
+        }
+
+
+        if($file){
+
+            Flash::success('Files Added');
+
+        }else{
+
+            Flash::error('Please Try Again');
+
+        } 
+
+        return Redirect::action('LeaveController@edit', $leave->id);
+    }
+
+    public function removeLeaveAttach($id)
+    {
+        $file = LeaveAttach::findOrFail($id);
+
+        $leave = Leave::wherePersonId($file->person_id)->first();
+
+        $filename = $file->path;
+
+        $path = public_path();
+
+        if (!File::delete($path.$filename))
+        {
+
+            Flash::error('Please Try Again');
+
+            return Redirect::action('LeaveController@edit', $leave->id);
+        }
+        else
+        {
+            $file->delete();
+
+            Flash::success('Files Deleted');
+
+            return Redirect::action('LeaveController@edit', $leave->id);
+        }
     }
 }

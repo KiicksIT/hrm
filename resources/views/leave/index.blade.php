@@ -214,7 +214,7 @@
                                         <tr dir-paginate="leave in leaves | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage2"  current-page="currentPage2" ng-controller="repeatController2" pagination-id="2">
                                             <td class="col-md-1 text-center">@{{ number }} </td>
                                             <td class="col-md-2 text-center">@{{ leave.person.name }}</td>
-                                            <td class="col-md-2">@{{ leave.person.position.name }}</td>
+                                            <td class="col-md-2 text-center">@{{ leave.person.position.name }}</td>
                                             <td class="col-md-2 text-center">@{{ leave.total_paidleave }}</td>
                                             <td class="col-md-2 text-center">@{{ leave.total_paidsickleave }}</td>
                                             <td class="col-md-2 text-center">@{{ leave.total_paidhospleave }}</td>
