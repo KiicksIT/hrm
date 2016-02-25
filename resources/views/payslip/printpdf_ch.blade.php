@@ -223,7 +223,7 @@
                                 加班时数
                             </span>
                             <span class="col-xs-8">
-                                {{$payslip->ot_hour}} x [Hourly Pay ({{$person->basic_rate}}) x OT Rate ({{$person->ot_rate}})] = {{$payslip->ot_hour * $person->basic_rate * $person->ot_rate}}
+                                {{$payslip->ot_hour}}  ( Hourly OT Rate {{$person->basic_rate * $person->ot_rate}})
                             </span>                             
                         </li>
                         <li class="list-group-item row">
