@@ -8,7 +8,7 @@
             display:inline;
         }
         body{
-            font-size: 9px;
+            font-size: 11px;
         }
         table{
             font-size: 14px;
@@ -59,11 +59,11 @@
           padding-left:0;
         }
         .subtitle{
-            font-size: 8px;
+            font-size: 10px;
         }
         .content{
             padding-top: 15px;
-            font-size: 10px;
+            font-size: 11px;
         }
 
     @media print {
@@ -93,10 +93,37 @@
                     </div>
 
                     <div class="row">
-                        <div class="panel panel-default" style="padding-top: 5px; width:133px; height:171px">
+                        <div class="panel panel-default col-xs-6" style="padding-top: 5px; width:133px; height:171px">
                             <div class="panel-body">
                                 <strong>Image | 照片</strong>
                             </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-4 col-xs-offset-1">
+                                    <span class="subtitle"><strong>Nationality:</strong></span>    
+                                </div>
+                                <div class="col-xs-7">
+                                    <span class="content">{{$person->nationality}}</span>
+                                </div>
+                            </div>                         
+                            <div class="row">
+                                <div class="col-xs-4 col-xs-offset-1">
+                                    <span class="subtitle"><strong>Contact:</strong></span>    
+                                </div>
+                                <div class="col-xs-7">
+                                    <span class="content">{{$person->contact}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-4 col-xs-offset-1">
+                                    <span class="subtitle"><strong>Address:</strong></span>    
+                                </div>
+                                <div class="col-xs-7">
+                                    <span class="content">{{$person->address}}</span>
+                                </div>
+                            </div>                                                       
                         </div>
                     </div>
 
