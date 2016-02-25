@@ -245,13 +245,24 @@ class LeaveController extends Controller
 
         if (!File::delete($path.$filename))
         {
+            if($file->leavepath){
 
-            Flash::error('Please Try Again');
+                Flash::error('Please Try Again');
 
-            return Redirect::action('LeaveController@edit', $leave->id);
-        }
-        else
-        {
+                return Redirect::action('LeaveController@edit', $leave->id);
+
+            }else{
+
+                $file->delete();
+
+                Flash::success('Files Deleted');
+
+                return Redirect::action('LeaveController@edit', $leave->id);                
+            }
+
+
+        }else{
+
             $file->delete();
 
             Flash::success('Files Deleted');

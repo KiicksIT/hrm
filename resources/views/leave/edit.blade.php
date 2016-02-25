@@ -69,9 +69,13 @@
                 <tr>
                     <td class="col-md-1 text-center">{{ $index++ }} </td>
                     <td class="col-md-4">
+                        @if(! $leaveattach->path == '')
                         <a href="{{$leaveattach->path}}">
                             {!! Html::image($leaveattach->path, 'alt', array( 'width' => 200, 'height' => 200 )) !!}
-                        </a>                            
+                        </a>
+                        @else 
+                            -
+                        @endif                           
                     </td>
                     <td class="col-md-3 text-center">{{$leaveattach->remark}}</td>
                     <td class="col-md-2 text-center">{{$leaveattach->created_at}}</td>
