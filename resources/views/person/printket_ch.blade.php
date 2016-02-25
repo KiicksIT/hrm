@@ -101,26 +101,26 @@
 
                         <div class="col-xs-8">
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
+                                <div class="col-xs-5 col-xs-offset-1">
                                     <span class="subtitle"><strong>Nationality 国籍:</strong></span>    
                                 </div>
-                                <div class="col-xs-7">
+                                <div class="col-xs-6">
                                     <span class="content">{{$person->nationality}}</span>
                                 </div>
                             </div>                         
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
+                                <div class="col-xs-5 col-xs-offset-1">
                                     <span class="subtitle"><strong>Contact 联络:</strong></span>    
                                 </div>
-                                <div class="col-xs-7">
+                                <div class="col-xs-6">
                                     <span class="content">{{$person->contact}}</span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
+                                <div class="col-xs-5 col-xs-offset-1">
                                     <span class="subtitle"><strong>Address 地址:</strong></span>    
                                 </div>
-                                <div class="col-xs-7">
+                                <div class="col-xs-6">
                                     <span class="content">{{$person->address}}</span>
                                 </div>
                             </div>                                                       
