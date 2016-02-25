@@ -93,16 +93,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="panel panel-default col-xs-6" style="padding-top: 5px; width:133px; height:171px">
+                        <div class="panel panel-default col-xs-4" style="padding-top: 5px; width:133px; height:171px">
                             <div class="panel-body">
                                 <strong>Image | 照片</strong>
                             </div>
                         </div>
 
-                        <div class="col-xs-6">
+                        <div class="col-xs-8">
                             <div class="row">
                                 <div class="col-xs-3 col-xs-offset-1">
-                                    <span class="subtitle"><strong>Nationality:</strong></span>    
+                                    <span class="subtitle"><strong>Nationality 国籍:</strong></span>    
                                 </div>
                                 <div class="col-xs-8">
                                     <span class="content">{{$person->nationality}}</span>
@@ -110,7 +110,7 @@
                             </div>                         
                             <div class="row">
                                 <div class="col-xs-3 col-xs-offset-1">
-                                    <span class="subtitle"><strong>Contact:</strong></span>    
+                                    <span class="subtitle"><strong>Contact 联络:</strong></span>    
                                 </div>
                                 <div class="col-xs-8">
                                     <span class="content">{{$person->contact}}</span>
@@ -118,7 +118,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-3 col-xs-offset-1">
-                                    <span class="subtitle"><strong>Address:</strong></span>    
+                                    <span class="subtitle"><strong>Address 地址:</strong></span>    
                                 </div>
                                 <div class="col-xs-8">
                                     <span class="content">{{$person->address}}</span>
