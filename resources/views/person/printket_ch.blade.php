@@ -8,7 +8,7 @@
             display:inline;
         }
         body{
-            font-size: 12px;
+            font-size: 9px;
         }
         table{
             font-size: 14px;
@@ -59,11 +59,11 @@
           padding-left:0;
         }
         .subtitle{
-            font-size: 10px;
+            font-size: 8px;
         }
         .content{
             padding-top: 15px;
-            font-size: 13px;
+            font-size: 10px;
         }
 
     @media print {
