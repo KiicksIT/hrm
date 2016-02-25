@@ -81,7 +81,7 @@
                 <div class="col-xs-6">
                     <div class="row no-pad">
                         <div class="col-xs-7">
-                            <h4 style="margin-bottom: -20px"><strong>Key Employment Terms <br> 主要雇佣条件</strong></h4>
+                            <h4 style="margin-bottom: -20px; font-size: 80%;"><strong>Key Employment Terms <br> 主要雇佣条件</strong></h4>
                             <br> 
                             <span style="font-size:55%;">除不适用者,所有表格中项目必须填写</span>                        
                         </div>
