@@ -81,7 +81,18 @@ class PersonController extends Controller
 
         $request->merge(['resident'=>$resident]);
 
-        $request->merge(['medic_exam'=>$medic_exam]);        
+        $request->merge(['medic_exam'=>$medic_exam]);
+
+        if($request->file('avatar')){
+
+            $file = $request->file('avatar');
+            
+            $name = (Carbon::now()->format('dmYHi')).$file->getClientOriginalName();
+
+            $file->move('person_asset/avatar/', $name);
+
+            $request->merge(array('avatar_path' => '/person_asset/avatar/'.$name));             
+        }                
 
         $input = $request->all();
 
@@ -160,7 +171,26 @@ class PersonController extends Controller
 
         $request->merge(['resident'=>$resident]);
 
-        $request->merge(['medic_exam'=>$medic_exam]);      
+        $request->merge(['medic_exam'=>$medic_exam]); 
+
+        if($request->file('avatar')){
+
+            $file = $request->file('avatar');
+            
+            $name = (Carbon::now()->format('dmYHi')).$file->getClientOriginalName();            
+
+            if($person->avatar_path){
+
+                $path = public_path();
+
+                File::delete($path.$person->avatar_path);
+            
+            }
+
+            $file->move('person_asset/avatar/', $name);
+            
+            $request->merge(array('avatar_path' => '/person_asset/avatar/'.$name));
+        }     
 
         $input = $request->all();
 

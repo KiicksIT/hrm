@@ -14,7 +14,7 @@
     <div class="panel-body">
         {!! Form::open(['id'=>'form_print', 'method'=>'POST', 'action'=>['PersonController@generateKET', $person->id]]) !!}
         {!! Form::close() !!}     
-        {!! Form::model($person,['method'=>'PATCH','action'=>['PersonController@update', $person->id]]) !!}            
+        {!! Form::model($person,['method'=>'PATCH','action'=>['PersonController@update', $person->id], 'files'=>true]) !!}            
 
             @include('person.form_ch')
 

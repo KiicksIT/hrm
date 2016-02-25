@@ -3,6 +3,36 @@
 
 <div class="row">
     <div class="col-md-6">
+{{-- 
+    <div class="row">
+
+        @if($person->avatar_path)
+            <div class="panel panel-default col-md-6 col-md-offset-1" style="padding-top: 0px; padding-left:0px; width:133px; height:171px">
+                {!! Html::image($person->avatar_path, 'alt', array( 'width' => 133, 'height' => 171 )) !!}
+            </div>        
+         
+            <div class="col-md-5 col-md-offset-1" style="padding-top: 40px;">
+                <div class="form-group">
+                    {!! Form::label('avatar', 'Change Avatar', ['class'=>'control-label']) !!}
+                    {!! Form::file('avatar', null, ['class'=>'field']) !!}
+                </div> 
+            </div>             
+        @else
+            <div class="panel panel-default col-md-6 col-md-offset-1" style="padding-top: 5px; width:133px; height:171px">
+                <strong>No Image</strong>
+            </div>
+
+            <div class="col-md-5 col-md-offset-1" style="padding-top: 40px;">
+                <div class="form-group">
+                    {!! Form::label('avatar', 'Upload Avatar', ['class'=>'control-label']) !!}
+                    {!! Form::file('avatar', null, ['class'=>'field']) !!}
+                </div> 
+            </div>                         
+        @endif
+
+       
+    </div>
+ --}}
         <div class="form-group">
             {!! Form::label('name', 'Name 姓名', ['class'=>'control-label']) !!}
             {!! Form::text('name', null, ['class'=>'form-control']) !!}

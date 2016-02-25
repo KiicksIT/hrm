@@ -93,34 +93,40 @@
                     </div>
 
                     <div class="row">
-                        <div class="panel panel-default col-xs-4" style="padding-top: 5px; width:133px; height:171px">
-                            <div class="panel-body">
-                                <strong>Image | 照片</strong>
+                        @if($person->avatar_path)
+                            <div class="panel panel-default col-xs-4" style="padding-top: 5px;">
+                                {!! Html::image($person->avatar_path, 'alt', array( 'width' => 133, 'height' => 171 )) !!}
+                            </div>                        
+                        @else
+                            <div class="panel panel-default col-xs-4" style="padding-top: 5px; width:133px; height:171px">
+                                <div class="panel-body">
+                                    <strong>Image | 照片</strong>
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="col-xs-8">
                             <div class="row">
-                                <div class="col-xs-5 col-xs-offset-1">
+                                <div class="col-xs-4 col-xs-offset-1">
                                     <span class="subtitle"><strong>Nationality 国籍:</strong></span>    
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-7">
                                     <span class="content">{{$person->nationality}}</span>
                                 </div>
                             </div>                         
                             <div class="row">
-                                <div class="col-xs-5 col-xs-offset-1">
+                                <div class="col-xs-4 col-xs-offset-1">
                                     <span class="subtitle"><strong>Contact 联络:</strong></span>    
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-7">
                                     <span class="content">{{$person->contact}}</span>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-5 col-xs-offset-1">
+                                <div class="col-xs-4 col-xs-offset-1">
                                     <span class="subtitle"><strong>Address 地址:</strong></span>    
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-xs-7">
                                     <span class="content">{{$person->address}}</span>
                                 </div>
                             </div>                                                       

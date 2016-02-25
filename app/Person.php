@@ -22,7 +22,8 @@ class Person extends Model
         'mc', 'hospital_leave', 'medic_exam',
         'benefit_remark', 'prob_length', 'contract_start',
         'contract_end', 'contract_length', 'other_leave',
-        'salary_component', 'user_id', 'total_earned'
+        'salary_component', 'user_id', 'total_earned',
+        'avatar_path'
         ];
 
     /**
