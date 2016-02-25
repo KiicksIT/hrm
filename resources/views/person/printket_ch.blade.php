@@ -59,7 +59,7 @@
           padding-left:0;
         }
         .subtitle{
-            font-size: 10px;
+            font-size: 9px;
         }
         .content{
             padding-top: 15px;
@@ -322,7 +322,7 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-xs-10">
-                                                <span class="subtitle"><strong>Paid Annual Leave/Year <br> 每年带薪年假:</strong></span>
+                                                <span class="subtitle"><strong>Paid Annual Leave/Year (Days) <br> 每年带薪年假 (天):</strong></span>
                                             </div>
                                             <div class="col-xs-2">
                                                 <span class="content text-right">{{$person->paid_leave+0}}</span>
@@ -330,7 +330,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-10">
-                                                <span class="subtitle"><strong>Paid Outpatient Sick Leave/Year <br> 每年门诊带薪病假:</strong></span>
+                                                <span class="subtitle"><strong>Paid Outpatient Sick Leave/Year (Days)<br> 每年门诊带薪病假 (天):</strong></span>
                                             </div>
                                             <div class="col-xs-2">
                                                 <span class="content text-right">{{$person->mc+0}}</span>
@@ -338,7 +338,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-10">
-                                                <span class="subtitle"><strong>Paid Hospitalisation Leave/Year <br> 每年住院带薪病假:</strong></span>
+                                                <span class="subtitle"><strong>Paid Hospitalisation Leave/Year (Days)<br> 每年住院带薪病假 (天):</strong></span>
                                             </div>
                                             <div class="col-xs-2">
                                                 <span class="content text-right">{{$person->hospital_leave+0}}</span>
