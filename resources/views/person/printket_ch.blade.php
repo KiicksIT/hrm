@@ -37,7 +37,7 @@
             padding-top: 5px;
             padding-bottom: 5px;
             padding-right:0px;
-            font-size: 18px;
+            font-size: 16px;
             background-color: #d7d7db;
         }
         .panel-body{
