@@ -8,7 +8,7 @@
             display:inline;
         }
         body{
-            font-size: 11px;
+            font-size: 12px;
         }
         table{
             font-size: 14px;
@@ -63,7 +63,7 @@
         }
         .content{
             padding-top: 15px;
-            font-size: 11px;
+            font-size: 12px;
         }
 
     @media print {
