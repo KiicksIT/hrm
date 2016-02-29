@@ -279,7 +279,7 @@
                                     {{$addother->addotheritem->name}}
                                 </span>
                                 <span class="col-xs-8">
-                                    {{$addother->amount}}
+                                    {{$addother->addother_amount}}
                                 </span> 
                             </li>                                                       
                         @endforeach
