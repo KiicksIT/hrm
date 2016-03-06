@@ -3,13 +3,21 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
     function leaveController($scope, $http){
 
     $scope.currentPage1 = 1;
-    $scope.itemsPerPage1 = 10; 
+    $scope.itemsPerPage1 = 10;
     $scope.currentPage2 = 1;
-    $scope.itemsPerPage2 = 10;            
-        
+    $scope.itemsPerPage2 = 10;
+
+        $scope.exportData = function () {
+            var blob = new Blob(["\ufeff", document.getElementById('exportable').innerHTML], {
+                type: "application/vnd.ms-excel;charset=charset=utf-8"
+            });
+            var now = Date.now();
+            saveAs(blob, "LeaveSetting"+ now + ".xls");
+        };
+
         $http.get('/applyleaves/data').success(function(applyleaves){
         $scope.applyleaves = applyleaves;
-        });        
+        });
 
         $http.get('/leave/data').success(function(leaves){
         $scope.leaves = leaves;
@@ -32,8 +40,8 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
             }else{
                 return false;
             }
-        } 
-    }  
+        }
+    }
 
 function repeatController1($scope) {
     $scope.$watch('$index', function(index) {
@@ -45,7 +53,7 @@ function repeatController2($scope) {
     $scope.$watch('$index', function(index) {
         $scope.number = ($scope.$index + 1) + ($scope.currentPage2 - 1) * $scope.itemsPerPage2;
     })
-}    
+}
 
 app.controller('leaveController', leaveController);
 app.controller('repeatController1', repeatController1);

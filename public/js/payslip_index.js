@@ -1,13 +1,15 @@
 var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPagination', 'ui.select', 'ngSanitize']);
 
+    $('.select').select2({});
+
     function payslipController($scope, $http){
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 10;  
+        $scope.itemsPerPage = 10;
 
         angular.element(document).ready(function () {
 
             $http.get('/payslip/data').success(function(payslips){
-                $scope.payslips = payslips;       
+                $scope.payslips = payslips;
             });
 
             //delete record
@@ -29,15 +31,15 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
                 }else{
                     return false;
                 }
-            } 
+            }
         });
-    }  
+    }
 
 function repeatController($scope) {
     $scope.$watch('$index', function(index) {
         $scope.number = ($scope.$index + 1) + ($scope.currentPage - 1) * $scope.itemsPerPage;
     })
-}    
+}
 
 app.controller('payslipController', payslipController);
 app.controller('repeatController', repeatController);

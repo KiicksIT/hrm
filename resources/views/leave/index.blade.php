@@ -3,12 +3,12 @@
 {{ $LEAVE_TITLE }}
 @stop
 @section('content')
-    
-    <div class="row">        
+
+    <div class="row">
     <a class="title_hyper pull-left" href="/leave"><h1> {{ $LEAVE_TITLE }} <i class="fa fa-calendar-times-o"></i></h1></a>
     </div>
     <div ng-app="app" ng-controller="leaveController">
-    
+
     <div class="panel panel-warning">
         <div class="panel-heading">
             <ul class="nav nav-pills nav-justified" role="tablist">
@@ -50,56 +50,56 @@
                                 <input type="text" ng-model="search.status">
                                 <label for="search_company" class="search" style="padding-left: 10px">Apply On 申请日期:</label>
                                 <input type="text" ng-model="search.created_at">
-                            </div>                            
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-list-search table-hover table-bordered">
                                     <tr style="background-color: #DDFDF8">
                                         <th class="col-md-1 text-center">
                                             #
-                                        </th>                    
+                                        </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                                            Name 
+                                            Name
                                             <br>
                                             名字
-                                        <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                                        <span ng-if="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'person.position.name'; sortReverse = !sortReverse">
-                                            Position 
+                                            Position
                                             <br>
                                             职位
-                                        <span ng-show="sortType == 'person.position.name' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'person.position.name' && sortReverse" class="fa fa-caret-up"></span>
-                                        </th>                                                
+                                        <span ng-if="sortType == 'person.position.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'person.position.name' && sortReverse" class="fa fa-caret-up"></span>
+                                        </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'person.leave_type'; sortReverse = !sortReverse">
-                                            Leave Type 
+                                            Leave Type
                                             <br>
                                             假期种类
-                                        <span ng-show="sortType == 'person.leave_type' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'person.leave_type' && sortReverse" class="fa fa-caret-up"></span>
+                                        <span ng-if="sortType == 'person.leave_type' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'person.leave_type' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'created_at'; sortReverse = !sortReverse">
-                                            Apply On 
+                                            Apply On
                                             <br>
                                             申请日期
-                                        <span ng-show="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'created_at' && sortReverse" class="fa fa-caret-up"></span>
+                                        <span ng-if="sortType == 'created_at' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'created_at' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-1 text-center">
                                         <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">
-                                            Status 
+                                            Status
                                             <br>
                                             状态
-                                        <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
-                                        </th>                                                        
+                                        <span ng-if="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                                        </th>
                                         <th class="col-md-1 text-center">
                                             Action
-                                        </th>                                                                                                
+                                        </th>
                                     </tr>
 
                                     <tbody>
@@ -115,24 +115,31 @@
                                                 {{-- <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(leave.id)">Delete</button> --}}
                                             </td>
                                         </tr>
-                                        <tr ng-show="(applyleaves | filter:search).length == 0 || ! applyleaves.length">
+                                        <tr ng-if="(applyleaves | filter:search).length == 0 || ! applyleaves.length">
                                             <td colspan="8" class="text-center">No Records Found!</td>
-                                        </tr>                         
+                                        </tr>
 
                                     </tbody>
-                                </table>            
+                                </table>
                             </div>
                         </div>
                         <div class="panel-footer">
                               <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" class="pull-left" pagination-id="1"> </dir-pagination-controls>
-                              <label class="pull-right totalnum" for="totalnum">Showing @{{(leaves | filter:search).length}} of @{{leaves.length}} entries</label> 
+                              <label class="pull-right totalnum" for="totalnum">Showing @{{(leaves | filter:search).length}} of @{{leaves.length}} entries</label>
                         </div>
                     </div>
                 </div>
-                {{-- End of Leave Application --}}            
+                {{-- End of Leave Application --}}
 
                 {{-- Leave Setting --}}
                 <div class="tab-pane" id="setting">
+
+                    <div class="row">
+                        <div style="padding: 0px 0px 10px 15px">
+                            <button class="btn btn-primary" ng-click="exportData()">Export Excel</button>
+                        </div>
+                    </div>
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
@@ -148,7 +155,7 @@
                                 </div>
                                 <div class="pull-right">
                                     <a href="/leave/create" class="btn btn-success" name="btn_create">+ New Leave Setup</a>
-                                </div>                                
+                                </div>
                             </div>
                         </div>
 
@@ -159,55 +166,55 @@
                                 <label for="search_contact" class="search" style="padding-left: 10px">Position 职位:</label>
                                 <input type="text" ng-model="search.person.positon.name">
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="exportable">
                                 <table class="table table-list-search table-hover table-bordered">
                                     <tr style="background-color: #DDFDF8">
                                         <th class="col-md-1 text-center">
                                             #
-                                        </th>                    
+                                        </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'person.name'; sortReverse = !sortReverse">
-                                            Name 
+                                            Name
                                             <br>
                                             名字
-                                        <span ng-show="sortType == 'person.name' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'person.name' && sortReverse" class="fa fa-caret-up"></span>
+                                        <span ng-if="sortType == 'person.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'person.name' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'person.position.name'; sortReverse = !sortReverse">
-                                            Position 
+                                            Position
                                             <br>
                                             职位
-                                        <span ng-show="sortType == 'person.position.name' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'person.position.name' && sortReverse" class="fa fa-caret-up"></span>
-                                        </th>                                                
+                                        <span ng-if="sortType == 'person.position.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'person.position.name' && sortReverse" class="fa fa-caret-up"></span>
+                                        </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'total_paidleave'; sortReverse = !sortReverse">
-                                            Paid Leave 
+                                            Paid Leave
                                             <br>
                                             带薪年假
-                                        <span ng-show="sortType == 'total_paidleave' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'total_paidleave' && sortReverse" class="fa fa-caret-up"></span>
+                                        <span ng-if="sortType == 'total_paidleave' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'total_paidleave' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'total_paidsickleave'; sortReverse = !sortReverse">
-                                            Sick Leave 
+                                            Sick Leave
                                             <br>
-                                            门诊带薪病假 
-                                        <span ng-show="sortType == 'total_paidsickleave' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'total_paidsickleave' && sortReverse" class="fa fa-caret-up"></span>
+                                            门诊带薪病假
+                                        <span ng-if="sortType == 'total_paidsickleave' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'total_paidsickleave' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2 text-center">
                                         <a href="" ng-click="sortType = 'total_paidhospleave'; sortReverse = !sortReverse">
-                                            Hospt Leave 
+                                            Hospt Leave
                                             <br>
                                             住院带薪病假
-                                        <span ng-show="sortType == 'total_paidhospleave' && !sortReverse" class="fa fa-caret-down"></span>
-                                        <span ng-show="sortType == 'total_paidhospleave' && sortReverse" class="fa fa-caret-up"></span>
-                                        </th>                                                        
+                                        <span ng-if="sortType == 'total_paidhospleave' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-if="sortType == 'total_paidhospleave' && sortReverse" class="fa fa-caret-up"></span>
+                                        </th>
                                          <th class="col-md-1 text-center">
                                             Action
-                                        </th>                                                                                                
+                                        </th>
                                     </tr>
 
                                     <tbody>
@@ -223,17 +230,17 @@
                                                 {{-- <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(leave.id)">Delete</button> --}}
                                             </td>
                                         </tr>
-                                        <tr ng-show="(leaves | filter:search).length == 0 || ! leaves.length">
+                                        <tr ng-if="(leaves | filter:search).length == 0 && ! leaves.length">
                                             <td colspan="8" class="text-center">No Records Found!</td>
-                                        </tr>                         
+                                        </tr>
 
                                     </tbody>
-                                </table>            
+                                </table>
                             </div>
                         </div>
                         <div class="panel-footer">
                               <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" class="pull-left" pagination-id="2"> </dir-pagination-controls>
-                              <label class="pull-right totalnum" for="totalnum">Showing @{{(leaves | filter:search).length}} of @{{leaves.length}} entries</label> 
+                              <label class="pull-right totalnum" for="totalnum">Showing @{{(leaves | filter:search).length}} of @{{leaves.length}} entries</label>
                         </div>
                     </div>
                 </div>
@@ -242,6 +249,6 @@
         </div>
     </div>
     </div>
- 
-    <script src="/js/leave.js"></script>  
+
+    <script src="/js/leave.js"></script>
 @stop

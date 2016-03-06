@@ -36,6 +36,7 @@ class PersonRequest extends Request
             'paid_leave' => 'numeric|required',
             'mc'=>'numeric|required',
             'hospital_leave'=>'numeric|required',
+            'nric_fin' => 'required',
             'email'=>'email|unique:people,email,'.$person,
             'contact'=>array('regex:/^([0-9\s\-\+\(\)]*)$/'),
             'basic'=>'numeric',
