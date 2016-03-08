@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\Http\Requests\LeaveRequest;
 use App\Http\Requests;
@@ -13,7 +14,7 @@ use Laracasts\Flash\Flash;
 use App\Leave;
 use App\LeaveAttach;
 use Carbon\Carbon;
-//use App\Person;
+use App\Person;
 
 class LeaveController extends Controller
 {
@@ -105,7 +106,7 @@ class LeaveController extends Controller
     {
         $leave = Leave::findOrFail($id);
 
-        $leaveattaches = LeaveAttach::wherePersonId($leave->person_id)->latest()->paginate(5);
+        $leaveattaches = LeaveAttach::wherePersonId($leave->person_id)->latest()->paginate(10);
 
         return view('leave.edit', compact('leave', 'leaveattaches'));
     }
@@ -262,5 +263,30 @@ class LeaveController extends Controller
 
             return Redirect::action('LeaveController@edit', $leave->id);
         }
+    }
+
+    public function exportAttachExcel($person_id)
+    {
+        $person = Person::findOrFail($person_id)->first();
+
+        $title = 'LeaveAttach ('.$person->name.')';
+
+        $leave_attach = LeaveAttach::wherePersonId($person_id)->latest()->get();
+
+        Excel::create($title.'_'.Carbon::now()->format('dmYHis'), function($excel) use ($person, $leave_attach) {
+
+            $excel->sheet('sheet1', function($sheet) use ($person, $leave_attach) {
+
+                $sheet->setAutoSize(true);
+
+                $sheet->setColumnFormat(array(
+                    'A:T' => '@'
+                ));
+
+                $sheet->loadView('leave.exportExcel', compact('person', 'leave_attach'));
+
+            });
+
+        })->download('xls');
     }
 }

@@ -47,20 +47,19 @@ class CreatePeopleTable extends Migration
             $table->text('hour_remark')->nullable();
             $table->text('day_remark')->nullable();
             $table->text('off_remark')->nullable();
-            $table->decimal('paid_leave', 3, 1);                         
+            $table->decimal('paid_leave', 3, 1);
             $table->decimal('mc', 3, 1);
             $table->decimal('hospital_leave', 3, 1);
             $table->integer('medic_exam')->nullable();
             $table->text('other_leave')->nullable();
             $table->text('benefit_remark')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');            
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->softDeletes();
-        });  
+        });
 
         $statement = "ALTER TABLE people AUTO_INCREMENT = 100001;";
-        DB::unprepared($statement);              
+        DB::unprepared($statement);
     }
 
     /**

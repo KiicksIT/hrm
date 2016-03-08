@@ -12,7 +12,7 @@
     </div>
 
     <div class="panel-body">
-        {!! Form::model($leave,['method'=>'PATCH','action'=>['LeaveController@update', $leave->id]]) !!}            
+        {!! Form::model($leave,['method'=>'PATCH','action'=>['LeaveController@update', $leave->id]]) !!}
 
             @include('leave.form')
 
@@ -21,15 +21,15 @@
                     {!! Form::submit('Edit', ['class'=> 'btn btn-primary']) !!}
         {!! Form::close() !!}
 
-                    <a href="/leave" class="btn btn-default">Cancel</a>            
+                    <a href="/leave" class="btn btn-default">Cancel</a>
                 </div>
                 <div class="pull-left form_button_left">
                     @can('delete_user')
-                    {!! Form::open(['method'=>'DELETE', 'action'=>['LeaveController@destroy', $leave->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['LeaveController@destroy', $leave->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}
                         {!! Form::submit('Delete', ['class'=> 'btn btn-danger']) !!}
                     {!! Form::close() !!}
                     @endcan
-                </div>                
+                </div>
             </div>
     </div>
 </div>
@@ -40,27 +40,32 @@
     </div>
 
     <div class="panel-body">
+        <div class="row">
+            <div style="padding: 0px 0px 10px 15px">
+                <a href="/leave/leaveattach/excel/{{ $leave->person->id }}" class="btn btn-warning">Export Excel</a>
+            </div>
+        </div>
+
         <table class="table table-list-search table-hover table-bordered">
             <tr style="background-color: #DDFDF8">
                 <th class="col-md-1 text-center">
                     #
-                </th>                    
+                </th>
                 <th class="col-md-4 text-center">
-                    Item                           
+                    Item
                 </th>
                 <th class="col-md-3 text-center">
                     Remark
                 </th>
                 <th class="col-md-2 text-center">
-                    Upload On                      
+                    Upload On
                 </th>
                 <th class="col-md-2 text-center">
                     Action
-                </th>                                                                                                
+                </th>
             </tr>
 
             <tbody>
-
                 <?php $index = $leaveattaches->firstItem(); ?>
                 @unless(count($leaveattaches)>0)
                 <td class="text-center" colspan="7">No Records Found</td>
@@ -73,23 +78,24 @@
                         <a href="{{$leaveattach->path}}">
                             {!! Html::image($leaveattach->path, 'alt', array( 'width' => 200, 'height' => 200 )) !!}
                         </a>
-                        @else 
+                        @else
                             -
-                        @endif                           
+                        @endif
                     </td>
                     <td class="col-md-3 text-center">{{$leaveattach->remark}}</td>
                     <td class="col-md-2 text-center">{{$leaveattach->created_at}}</td>
                     <td class="col-md-2 text-center">
-                        {!! Form::open(['method'=>'DELETE', 'action'=>['LeaveController@removeLeaveAttach', $leaveattach->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['LeaveController@removeLeaveAttach', $leaveattach->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}
                             {!! Form::submit('Delete', ['class'=> 'btn btn-danger btn-sm']) !!}
-                        {!! Form::close() !!} 
+                        {!! Form::close() !!}
                     </td>
                 </tr>
                 @endforeach
-                @endunless                        
+                @endunless
 
             </tbody>
-        </table>        
+        </table>
+        {!!$leaveattaches->render()!!}
     </div>
 
     <div class="panel-footer">
@@ -98,16 +104,15 @@
             <div class="form-group">
                 {!! Form::label('remark', 'Add Attachment Remark', ['class'=>'control-label']) !!}
                 {!! Form::textarea('remark', null, ['class'=>'form-control', 'rows'=>'2']) !!}
-            </div> 
+            </div>
             <div class="form-group">
             {!! Form::file('leave_attach', ['class' => 'field']) !!}
-            </div>  
-            {!! Form::submit('Create', ['class'=> 'btn btn-success pull-right']) !!}  
-        {!! Form::close() !!} 
-        </div>        
+            </div>
+            {!! Form::submit('Create', ['class'=> 'btn btn-success pull-right']) !!}
+        {!! Form::close() !!}
+        </div>
     </div>
 </div>
-
 </div>
 
 @stop

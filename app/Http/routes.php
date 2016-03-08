@@ -43,6 +43,7 @@ get('/addother/data/{id}', 'AddOtherController@getData');
 delete('/addother/data/{id}', 'AddOtherController@destroyAjax');
 resource('addother', 'AddOtherController');
 
+get('/leave/leaveattach/excel/{person_id}', 'LeaveController@exportAttachExcel');
 post('/leave/leaveattach/{id}', 'LeaveController@addLeaveAttach');
 delete('/leave/leaveattach/{id}', 'LeaveController@removeLeaveAttach');
 get('/leave/data/', 'LeaveController@getData');

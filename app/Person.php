@@ -4,27 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model
 {
-    use SoftDeletes;
 
-        protected $fillable = [
-        'name', 'nric_fin', 'contract_type',
-        'gender', 'dob','nationality', 'resident',
-        'contact', 'address', 'email',
-        'start_date', 'end_date', 'leave_reason',
-        'education', 'person_remark', 'basic',
-        'ot_rate', 'prob_start', 'prob_end', 'department_id',
-        'hour_remark', 'day_remark', 'off_remark',
-        'position_id', 'basic_rate', 'paid_leave',
-        'mc', 'hospital_leave', 'medic_exam',
-        'benefit_remark', 'prob_length', 'contract_start',
-        'contract_end', 'contract_length', 'other_leave',
-        'salary_component', 'user_id', 'total_earned',
-        'avatar_path'
-        ];
+    protected $fillable = [
+    'name', 'nric_fin', 'contract_type',
+    'gender', 'dob','nationality', 'resident',
+    'contact', 'address', 'email',
+    'start_date', 'end_date', 'leave_reason',
+    'education', 'person_remark', 'basic',
+    'ot_rate', 'prob_start', 'prob_end', 'department_id',
+    'hour_remark', 'day_remark', 'off_remark',
+    'position_id', 'basic_rate', 'paid_leave',
+    'mc', 'hospital_leave', 'medic_exam',
+    'benefit_remark', 'prob_length', 'contract_start',
+    'contract_end', 'contract_length', 'other_leave',
+    'salary_component', 'user_id', 'total_earned',
+    'avatar_path'
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -32,9 +31,9 @@ class Person extends Model
      * @var array
      */
     protected $dates = [
-        'dob', 'start_date', 'end_date' ,'deleted_at', 'prob_start', 'prob_end',
+        'dob', 'start_date', 'end_date', 'prob_start', 'prob_end',
         'contract_start', 'contract_end'
-    ]; 
+    ];
 
     public function setStartDateAttribute($date)
     {
@@ -47,7 +46,7 @@ class Person extends Model
             $this->attributes['start_date'] = null;
 
         }
-    } 
+    }
 
     public function setEndDateAttribute($date)
     {
@@ -60,7 +59,7 @@ class Person extends Model
             $this->attributes['end_date'] = null;
 
         }
-    } 
+    }
 
     public function setDobAttribute($date)
     {
@@ -74,7 +73,7 @@ class Person extends Model
             $this->attributes['dob'] = null;
 
         }
-    } 
+    }
 
     public function setProbStartAttribute($date)
     {
@@ -88,7 +87,7 @@ class Person extends Model
             $this->attributes['prob_start'] = null;
 
         }
-    } 
+    }
 
     public function setProbEndAttribute($date)
     {
@@ -115,7 +114,7 @@ class Person extends Model
             $this->attributes['contract_start'] = null;
 
         }
-    } 
+    }
 
     public function setContractEndAttribute($date)
     {
@@ -128,7 +127,7 @@ class Person extends Model
             $this->attributes['contract_end'] = null;
 
         }
-    }        
+    }
 
     public function getContractStartAttribute($date)
     {
@@ -138,18 +137,18 @@ class Person extends Model
     public function getContractEndAttribute($date)
     {
         return Carbon::parse($date)->format('d-F-Y');
-    }                              
+    }
 
     // dates format
     public function getDobAttribute($date)
     {
         return Carbon::parse($date)->format('d-F-Y');
-    }  
+    }
 
     public function getStartDateAttribute($date)
     {
         return Carbon::parse($date)->format('d-F-Y');
-    }  
+    }
 
     public function getEndDateAttribute($date)
     {
@@ -161,8 +160,8 @@ class Person extends Model
 
             return '';
         }
-        
-    }          
+
+    }
 
     public function getCreatedAtAttribute($date)
     {
@@ -179,13 +178,13 @@ class Person extends Model
         if($date){
 
             return Carbon::parse($date)->format('d-F-Y');
-                
+
         }else{
 
             return null;
         }
-        
-    }                   
+
+    }
 
     public function transaction()
     {
@@ -210,28 +209,28 @@ class Person extends Model
     public function department()
     {
         return $this->belongsTo('App\Department');
-    } 
+    }
 
     public function position()
     {
         return $this->belongsTo('App\Position');
-    }  
+    }
 
     public function leave()
     {
         return $this->hasOne('App\Leave');
-    }  
+    }
 
     public function applyleave()
     {
         return $this->hasOne('App\ApplyLeave');
-    } 
+    }
 
     public function leaveattaches()
     {
         return $this->hasMany('App\LeaveAttach');
-    }                         
- 
+    }
+
 
     /**
      * search like name
@@ -262,6 +261,6 @@ class Person extends Model
     public function scopeSearchEmail($query, $email)
     {
         return $query->where('email', 'like', "%$email%");
-    }       
-   
+    }
+
 }
