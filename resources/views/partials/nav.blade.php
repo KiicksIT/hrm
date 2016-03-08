@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="/">{{ $APP_NAME }}</a>
-        </div>       
+        </div>
 
         <ul class="nav navbar-nav navbar-right">
             @if (Auth::guest())
@@ -31,13 +31,13 @@
                 </li>
                 <li class="{{ strpos(Request::path(), 'payslip') !== false ? 'active' : '' }}">
                     <a href="/payslip"><i class="fa fa-fw fa-credit-card"></i> {{ $PAYSLIP_TITLE }}</a>
-                </li>                
+                </li>
                 <li class="{{ strpos(Request::path(), 'person') !== false ? 'active' : '' }}">
                     <a href="/person"><i class="fa fa-fw fa-users"></i> {{ $PERSON_TITLE }}</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'position') !== false ? 'active' : '' }}">
                     <a href="/position"><i class="fa fa-fw fa-briefcase"></i> {{ $POSITION_TITLE }}</a>
-                </li>         
+                </li>
 {{--                 <li class="{{ strpos(Request::path(), 'department') !== false ? 'active' : '' }}">
                     <a href="/department"><i class="fa fa-fw fa-building-o"></i> {{ $DEPT_TITLE }}</a>
                 </li>  --}}
@@ -45,26 +45,26 @@
                     <a href="/leave"><i class="fa fa-fw fa-calendar-times-o"></i> {{ $LEAVE_TITLE }}</a>
                 </li>
                 <li class="{{ strpos(Request::path(), 'user') !== false ? 'active' : '' }}">
-                    <a href="/user"><i class="fa fa-fw fa-user"></i> {{ $USER_TITLE }}</a>
+                    <a href="/user"><i class="fa fa-fw fa-cog"></i> {{ $USER_TITLE }}</a>
                 </li>
                 @endcan
 
-                @can('apply_leave')                
+                @can('apply_leave')
                 <li class="{{ strpos(Request::path(), 'applyleave') !== false ? 'active' : '' }}">
                     <a href="/applyleave"><i class="fa fa-fw fa-calendar-times-o"></i> {{ $APPLEAVE_TITLE }}</a>
                 </li>
-                @endcan                  
+                @endcan
 
             {{--     <li class="{{ strpos(Request::path(), 'scheduler') !== false ? 'active' : '' }}">
                     <a href="/scheduler"><i class="fa fa-fw fa fa-clock-o"></i> {{ $SCHEDULER_TITLE }}</a>
-                </li> --}} 
+                </li> --}}
              {{--    <li class="{{ strpos(Request::path(), 'report') !== false ? 'active' : '' }}">
                     <a href="/report"><i class="fa fa-fw fa fa-file-text-o"></i> {{ $REPORT_TITLE }}</a>
-                </li>  --}}        
+                </li>  --}}
              {{--    <li class="{{ strpos(Request::path(), 'massemail') !== false ? 'active' : '' }}">
                     <a href="/massemail"><i class="fa fa-fw fa fa-envelope-o"></i> {{ $EMAIL_TITLE }}</a>
-                </li>   --}}                                                                           
+                </li>   --}}
             </ul>
         </div>
-        @endunless       
+        @endunless
     </nav>

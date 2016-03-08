@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
         //Person
         // view()->share('MAININDEX_TITLE', 'Dashboard');
         view()->share('MAININDEX_TITLE', 'Dashboard 仪表');
-        view()->share('MAININDEX_PREFIX', 'B');        
+        view()->share('MAININDEX_PREFIX', 'B');
 
         //Person
         // view()->share('PERSON_TITLE', 'Employee');
@@ -29,48 +29,48 @@ class AppServiceProvider extends ServiceProvider
         //Position
         // view()->share('POSITION_TITLE', 'Position');
         view()->share('POSITION_TITLE', 'Position 职位');
-        view()->share('POSITION_PREFIX', 'L');        
+        view()->share('POSITION_PREFIX', 'L');
 
         //Dept
         // view()->share('DEPT_TITLE', 'Department');
         view()->share('DEPT_TITLE', 'Department 部门');
-        view()->share('DEPT_PREFIX', 'D'); 
+        view()->share('DEPT_PREFIX', 'D');
 
         //Dept
         // view()->share('PAYSLIP_TITLE', 'Payslip');
         view()->share('PAYSLIP_TITLE', 'Payslip 薪水单');
-        view()->share('PAYSLIP_PREFIX', 'P');                 
+        view()->share('PAYSLIP_PREFIX', 'P');
 
         //User
         // view()->share('USER_TITLE', 'User');
-        view()->share('USER_TITLE', 'User 用户');
+        view()->share('USER_TITLE', 'Setting 设置');
         view()->share('USER_PREFIX', 'U');
 
         //Transaction
         view()->share('TRANS_TITLE', 'Transaction');
-        view()->share('TRANS_PREFIX', 'T');         
+        view()->share('TRANS_PREFIX', 'T');
 
         //Scheduler
         view()->share('SCHEDULER_TITLE', 'Todo\'s');
-        view()->share('SCHEDULER_PREFIX', 'T'); 
+        view()->share('SCHEDULER_PREFIX', 'T');
 
         //Market
         view()->share('REPORT_TITLE', 'Report');
-        view()->share('REPORT_PREFIX', 'R');                                   
+        view()->share('REPORT_PREFIX', 'R');
 
-        //Email                              
+        //Email
         view()->share('EMAIL_TITLE', 'Contact');
-        view()->share('EMAIL_PREFIX', ''); 
+        view()->share('EMAIL_PREFIX', '');
 
-        //Leave                              
+        //Leave
         // view()->share('LEAVE_TITLE', 'Leave');
         view()->share('LEAVE_TITLE', 'Leave 假期');
-        view()->share('LEAVE_PREFIX', ''); 
+        view()->share('LEAVE_PREFIX', '');
 
-        //Apply Leave                              
+        //Apply Leave
         view()->share('APPLEAVE_TITLE', 'Apply Leave 请假');
-        view()->share('APPLEAVE_PREFIX', '');                   
-                
+        view()->share('APPLEAVE_PREFIX', '');
+
     }
 
     /**

@@ -3,9 +3,9 @@
 {{ $USER_TITLE }}
 @stop
 @section('content')
-    
-    <div class="row">        
-    <a class="title_hyper pull-left" href="/user"><h1>{{ $USER_TITLE }} <i class="fa fa-user"></i></h1></a>
+
+    <div class="row">
+    <a class="title_hyper pull-left" href="/user"><h1>{{ $USER_TITLE }} <i class="fa fa-cog"></i></h1></a>
     </div>
 
 
@@ -19,7 +19,7 @@
                 <li><a href="#role_draft" role="tab" data-toggle="tab">Access Level</a></li>
 
                 @can('view_permission')
-                <li><a href="#permission_list" role="tab" data-toggle="tab">Permission</a></li>
+                <li><a href="#permission_list" role="tab" data-toggle="tab">KET Setting</a></li>
                 @endcan
 
                 <li><a href="#profile" role="tab" data-toggle="tab">Company Profile</a></li>
@@ -50,7 +50,7 @@
                                 <div class="pull-right">
                                     @can('create_user')
                                     <a href="/user/create" class="btn btn-success">+ New {{ $USER_TITLE }}</a>
-                                    @endcan                                                        
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                 <label for="search_id" class="search">Search ID:</label>
                                 <input type="text" ng-model="search.id">
                                 <label for="search_name" class="search" style="padding-left: 10px">Name:</label>
-                                <input type="text" ng-model="search.name">                    
+                                <input type="text" ng-model="search.name">
                                 <label for="search_contact" class="search" style="padding-left: 10px">Contact:</label>
                                 <input type="text" ng-model="search.contact">
 
@@ -70,40 +70,40 @@
                                     <tr style="background-color: #DDFDF8">
                                         <th class="col-md-1">
                                             #
-                                        </th>                    
+                                        </th>
                                         <th class="col-md-1">
                                             <a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse">
                                             ID
                                             <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
-                                            <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>                            
+                                            <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
                                         </th>
                                         <th class="col-md-2">
-                                            <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse"> 
+                                            <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
                                             Name
                                             <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
                                             <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
                                             </a>
                                         </th>
                                         <th class="col-md-2">
-                                            <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse"> 
+                                            <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse">
                                             Username
                                             <span ng-show="sortType == 'username' && !sortReverse" class="fa fa-caret-down"></span>
                                             <span ng-show="sortType == 'username' && sortReverse" class="fa fa-caret-up"></span>
-                                            </a>                             
+                                            </a>
                                         </th>
                                         <th class="col-md-2">
                                             Contact
                                         </th>
                                         <th class="col-md-2">
                                             Email
-                                        </th>                       
+                                        </th>
                                          <th class="col-md-2">
                                             Action
-                                        </th>                                                                       
+                                        </th>
                                     </tr>
 
                                     <tbody>
-                                      
+
                                          <tr dir-paginate="user in users | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage" pagination-id="user" current-page="currentPage" ng-controller="repeatController">
                                             <td class="col-md-1">@{{ number }} </td>
                                             <td class="col-md-1">{{ $USER_PREFIX }}@{{ user.id }}</td>
@@ -123,19 +123,19 @@
                                         </tr>
                                         <tr ng-show="(users | filter:search).length == 0 || ! users.length">
                                             <td colspan="6">No Records Found</td>
-                                        </tr>                         
+                                        </tr>
 
                                     </tbody>
                                 </table>
-                            </div>            
+                            </div>
                         </div>
 
                         <div class="panel-footer">
                               <dir-pagination-controls pagination-id="user" max-size="5" direction-links="true" boundary-links="true" class="pull-left"> </dir-pagination-controls>
-                              <label class="pull-right totalnum" for="totalnum">Showing @{{(users | filter:search).length}} of @{{users.length}} entries</label> 
+                              <label class="pull-right totalnum" for="totalnum">Showing @{{(users | filter:search).length}} of @{{users.length}} entries</label>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
 
 
@@ -148,7 +148,7 @@
                         </div>
                         <div class="pull-right">
                             @can('create_role')
-                            <a href="/role/create" class="btn btn-success">+ New Access</a>                          
+                            <a href="/role/create" class="btn btn-success">+ New Access</a>
                             @endcan
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                                 <span class="col-md-1"><strong>#</strong></span>
                                 <span class="col-md-3"><strong>Access Level</strong></span>
                                 <span class="col-md-6"><strong>Assigned Permission</strong></span>
-                                <span class="col-md-2"><strong>Action</strong></span>                                
+                                <span class="col-md-2"><strong>Action</strong></span>
                             </li>
 
                             <?php $index = $roles->firstItem(); ?>
@@ -184,12 +184,12 @@
 
                                     <a href="/role/{{ $role->id }}/edit" class="btn btn-sm btn-primary col-md-4" style="margin-right:5px;">Edit</a>
 
-                                    @can('delete_role')  
-                                    {!! Form::open(['method'=>'DELETE', 'action'=>['RoleController@destroy', $role->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                                    @can('delete_role')
+                                    {!! Form::open(['method'=>'DELETE', 'action'=>['RoleController@destroy', $role->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}
                                         {!! Form::submit('Delete', ['class'=> 'btn btn-danger btn-sm col-md-5']) !!}
-                                    {!! Form::close() !!}                          
+                                    {!! Form::close() !!}
                                     @endcan
-                                    </span>                             
+                                    </span>
                                 </li>
                                 @endforeach
                             @endunless
@@ -206,53 +206,30 @@
                 </div>
             </div>
 
-
-            @can('view_permission')
             <div class="tab-pane" id="permission_list">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="panel-title pull-left">
-                            <h3 class="panel-title display_num"><strong>Permission List</strong></h3>
+                            <h3 class="panel-title display_num"><strong>KET Setting</strong></h3>
                         </div>
                     </div>
 
                     <div class="panel-body">
-                        <ul class="list-group">
-                            <li class="list-group-item row">
-                                <span class="col-md-1"><strong>#</strong></span>
-                                <span class="col-md-3"><strong>Module</strong></span>
-                                <span class="col-md-8"><strong>Module Action</strong></span>
-                            </li>
-                            <li class="list-group-item row">
-                                <span class="col-md-1">1</span>
-                                <span class="col-md-3">User</span>
-                                <span class="col-md-8">                                 
-                                    create_user, view_user, edit_user, delete_user
-                                </span>
-                            </li>
-                            <li class="list-group-item row">
-                                <span class="col-md-1">2</span>
-                                <span class="col-md-3">Role</span>
-                                <span class="col-md-8">
-                                    create_role, view_role, edit_role, delete_role
-                                </span>
-                            </li>
-                            <li class="list-group-item row">
-                                <span class="col-md-1">3</span>
-                                <span class="col-md-3">Permission</span>
-                                <span class="col-md-8">
-                                    view_permission
-                                </span>
-                            </li>                                                             
-                        </ul>
-                    </div>
+                        {!! Form::model($profile,['method'=>'PATCH','action'=>['ProfileController@update', $profile->id]]) !!}
 
-                    <div class="panel-footer">
-                          <label class="pull-right totalnum" for="totalnum">Total of 3 entries</label>                                                          
-                    </div>                    
+                            @include('person.profile.form')
+
+                            <div class="col-md-12">
+                                <div class="pull-right form_button_right">
+                                    {!! Form::submit('Edit', ['class'=> 'btn btn-primary']) !!}
+                        {!! Form::close() !!}
+
+                                    <a href="/payslip" class="btn btn-default">Back</a>
+                                </div>
+                            </div>
+                    </div>
                 </div>
             </div>
-            @endcan 
 
             <div class="tab-pane" id="profile">
                 <div class="panel panel-default">
@@ -262,13 +239,13 @@
                         </div>
                         @if($profile->name != '')
                         <div class="pull-right">
-                            <a href="/profile/{{$profile->id}}/edit" class="btn btn-primary">Edit Profile</a>  
+                            <a href="/profile/{{$profile->id}}/edit" class="btn btn-primary">Edit Profile</a>
                         </div>
                         @else
                         <div class="pull-right">
-                            <a href="/profile/create" class="btn btn-success">+ Create Profile</a>  
+                            <a href="/profile/create" class="btn btn-success">+ Create Profile</a>
                         </div>
-                        @endif                        
+                        @endif
                     </div>
 
                     <div class="panel-body">
@@ -282,41 +259,41 @@
                             <div class="form-group">
                                 {!! Form::label('roc_no', 'ROC No.', ['class'=>'control-label']) !!}
                                 {!! Form::text('roc_no', $profile->roc_no, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-                            </div>                        
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::label('address', 'Address', ['class'=>'control-label']) !!}
                                 {!! Form::textarea('address', $profile->address, ['class'=>'form-control', 'rows'=>'3','readonly'=>'readonly']) !!}
-                            </div> 
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::label('contact', 'Contact', ['class'=>'control-label']) !!}
                                 {!! Form::text('contact', $profile->contact, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-                            </div> 
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::label('alt_contact', 'Alt. Contact', ['class'=>'control-label']) !!}
                                 {!! Form::text('alt_contact', $profile->alt_contact, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-                            </div> 
+                            </div>
 
                             <div class="form-group">
                                 {!! Form::label('email', 'Email', ['class'=>'control-label']) !!}
                                 {!! Form::email('email', $profile->email, ['class'=>'form-control', 'readonly'=>'readonly']) !!}
-                            </div>                                                                         
+                            </div>
 
                             @if($profile->logo != '')
                                 <div class="col-md-3">
                                     {!! Form::label('logo', 'Logo', ['class'=>'control-label']) !!}
-                                </div>                               
+                                </div>
                                 <div class="col-md-12">
                                     {!! Html::image($profile->logo) !!}
-                                </div>                         
+                                </div>
                             @endif
 
                             @if($profile->header != '')
                                 <div class="col-md-3">
                                     {!! Form::label('header', 'Header', ['class'=>'control-label']) !!}
-                                </div>                               
+                                </div>
                                 <div class="col-md-12">
                                     {!! Html::image($profile->header) !!}
                                 </div>
@@ -325,11 +302,11 @@
                             @if($profile->footer != '')
                                 <div class="col-md-3">
                                     {!! Form::label('footer', 'Footer', ['class'=>'control-label']) !!}
-                                </div>                               
+                                </div>
                                 <div class="col-md-12">
                                     {!! Html::image($profile->footer) !!}
-                                </div> 
-                            @endif                       
+                                </div>
+                            @endif
 
                         </div>
                     </div>
@@ -345,11 +322,11 @@
                         </label>
                     </div> --}}
                 </div>
-            </div>            
+            </div>
 
 
     </div>
-</div>          
+</div>
 
-<script src="/js/user.js"></script>              
+<script src="/js/user.js"></script>
 @stop

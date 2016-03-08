@@ -26,7 +26,6 @@
                     </div>
 
                     <div class="pull-right">
-                        <a href="/profile/{{$profile::firstOrFail()->id}}/edit/policy" class="btn btn-primary">Payslip Policy 薪水单选项</a>
                         <a href="/payslip/create" class="btn btn-success" name="btn_create">+ New {{ $PAYSLIP_TITLE }}</a>
                     </div>
                 </div>
