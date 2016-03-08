@@ -45,7 +45,7 @@ class LeaveController extends Controller
     public function index()
     {
         return view('leave.index');
-    }      
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -79,9 +79,9 @@ class LeaveController extends Controller
 
             Flash::error('Please Try Again');
 
-        }        
+        }
 
-        return redirect('leave');        
+        return redirect('leave');
     }
 
     /**
@@ -134,7 +134,7 @@ class LeaveController extends Controller
 
             Flash::error('Please Try Again');
 
-        }        
+        }
 
         return redirect('leave');
     }
@@ -159,7 +159,7 @@ class LeaveController extends Controller
 
             Flash::error('Please Try Again');
 
-        }             
+        }
 
         return redirect('leave');
     }
@@ -184,7 +184,7 @@ class LeaveController extends Controller
 
             Flash::error('Please Try Again');
 
-        }             
+        }
 
         return $leave->id . 'has been successfully deleted';
     }
@@ -195,22 +195,26 @@ class LeaveController extends Controller
         $leave = Leave::findOrFail($id);
         // $person = Person::findOrFail($id);
 
-        
+
         if($request->file('leave_attach')){
 
-            $file = $request->file('leave_attach'); 
-            
+            $file = $request->file('leave_attach');
+
             $name = (Carbon::now()->format('dmYHi')).$file->getClientOriginalName();
 
             $file->move('person_asset/'.$leave->person->name.'/', $name);
 
-            $leave->person->leaveattaches()->create(['path' => "/person_asset/".$leave->person->name."/{$name}", 'remark' => $request->remark]);               
-        
+            $leave->person->leaveattaches()->create(['path' => "/person_asset/".$leave->person->name."/{$name}", 'remark' => $request->remark]);
+
+            Flash::success('Files Added');
+
         }else{
 
             if($request->remark){
 
                 $leave->person->leaveattaches()->create(['remark' => $request->remark]);
+
+                Flash::success('Files Added');
 
             }else{
 
@@ -218,17 +222,6 @@ class LeaveController extends Controller
             }
 
         }
-
-
-        if($file){
-
-            Flash::success('Files Added');
-
-        }else{
-
-            Flash::error('Please Try Again');
-
-        } 
 
         return Redirect::action('LeaveController@edit', $leave->id);
     }
@@ -257,7 +250,7 @@ class LeaveController extends Controller
 
                 Flash::success('Files Deleted');
 
-                return Redirect::action('LeaveController@edit', $leave->id);                
+                return Redirect::action('LeaveController@edit', $leave->id);
             }
 
 

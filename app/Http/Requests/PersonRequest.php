@@ -26,7 +26,7 @@ class PersonRequest extends Request
         $person = $this->route('person');
 
         return [
-            'name'=>'required|min:3',
+            'name'=>'required|min:3|unique:people,name,'.$person,
             'dob'=>'required',
             'nationality'=>'required',
             'start_date'=>'required',
