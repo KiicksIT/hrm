@@ -52,7 +52,7 @@ class ApplyLeaveController extends Controller
 
         return $appyleaves;
     }
-        
+
     /**
      * Display a listing of the resource.
      *
@@ -92,10 +92,9 @@ class ApplyLeaveController extends Controller
      */
     public function store(ApplyLeaveRequest $request)
     {
+        if($this->calDateLength($request->leave_from, $request->leave_to) != $request->day_num){
 
-        if(! $this->calDateLength($request->leave_from, $request->leave_to) == $request->day_num){
-
-            Flash::success('Start/End date not tally with Total Day');
+            Flash::error('Start/End date not tally with Total Day');
 
             return redirect('applyleave');
         }
@@ -104,9 +103,9 @@ class ApplyLeaveController extends Controller
 
         if(! $this->validateLeaveCount($request->day_num, $request->leave_type, $person)){
 
-            Flash::success('Claim day exceed available day');
+            Flash::error('Claim day exceed available day');
 
-            return redirect('applyleave');            
+            return redirect('applyleave');
         }
 
         $input = $request->all();
@@ -121,7 +120,7 @@ class ApplyLeaveController extends Controller
 
             Flash::error('Please Try Again');
 
-        } 
+        }
 
         return redirect('applyleave');
     }
@@ -149,14 +148,14 @@ class ApplyLeaveController extends Controller
 
         if($applyleave->person_id == null){
 
-            $person = Person::whereUserId(Auth::user()->id)->first();    
-        
+            $person = Person::whereUserId(Auth::user()->id)->first();
+
         }else{
 
             $person = Person::findOrFail($applyleave->person_id);
         }
 
-        
+
 
         return view('leave.apply.edit', compact('applyleave', 'person'));
     }
@@ -178,11 +177,11 @@ class ApplyLeaveController extends Controller
             $this->deductLeaveCount($applyleave->leave_type, $applyleave->person_id, $applyleave->day_num);
 
             $request->merge(array('status' => 'Approve'));
-        
+
         }elseif($request->input('btn_reject')){
 
             $request->merge(array('status' => 'Reject'));
-        }        
+        }
 
         $input = $request->all();
 
@@ -196,7 +195,7 @@ class ApplyLeaveController extends Controller
 
             Flash::error('Please Try Again');
 
-        } 
+        }
 
         return redirect('leave');
 
@@ -215,7 +214,7 @@ class ApplyLeaveController extends Controller
 
     private function calDateLength($leave_start, $leave_end)
     {
-        $total_day = Carbon::parse($leave_start)->diffInDays(Carbon::parse($leave_end)) + 1; 
+        $total_day = Carbon::parse($leave_start)->startOfDay()->diffInDays(Carbon::parse($leave_end)->startOfDay()) + 1;
 
         return $total_day;
     }
@@ -242,7 +241,7 @@ class ApplyLeaveController extends Controller
                     return false;
                 else
                     return true;
-                break;                               
+                break;
         }
 
     }
@@ -260,11 +259,11 @@ class ApplyLeaveController extends Controller
 
                 case 'Paid Sick Leave':
                     $leave->total_paidsickleave = $leave->total_paidsickleave - $day_num;
-                    break; 
-                    
+                    break;
+
                 case 'Paid Hospitalisation Leave':
                     $leave->total_paidhospleave = $leave->total_paidhospleave - $day_num;
-                    break;                                                
+                    break;
             }
 
             $leave->save();

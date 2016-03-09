@@ -18,6 +18,7 @@ use App\Leave;
 use App\Profile;
 use PDF;
 use App\User;
+use App\Role;
 
 class PersonController extends Controller
 {
@@ -38,7 +39,7 @@ class PersonController extends Controller
         $person =  Person::with(['position', 'department'])->get();
 
         return $person;
-    }  
+    }
 
     /**
      * Return viewing page.
@@ -70,14 +71,14 @@ class PersonController extends Controller
     public function store(PersonRequest $request)
     {
         if($request->prob_length and $request->prob_start){
-            
+
             $request->merge(array('prob_end' => $this->calProbLength($request->prob_start, $request->prob_length)));
 
         }
 
         $resident = $request->has('resident')? 1 : 0;
 
-        $medic_exam = $request->has('medic_exam')? 1 : 0; 
+        $medic_exam = $request->has('medic_exam')? 1 : 0;
 
         $request->merge(['resident'=>$resident]);
 
@@ -86,13 +87,13 @@ class PersonController extends Controller
         if($request->file('avatar')){
 
             $file = $request->file('avatar');
-            
+
             $name = (Carbon::now()->format('dmYHi')).$file->getClientOriginalName();
 
             $file->move('person_asset/avatar/', $name);
 
-            $request->merge(array('avatar_path' => '/person_asset/avatar/'.$name));             
-        }                
+            $request->merge(array('avatar_path' => '/person_asset/avatar/'.$name));
+        }
 
         $input = $request->all();
 
@@ -114,7 +115,7 @@ class PersonController extends Controller
 
             Flash::error('Please Try Again');
 
-        }        
+        }
 
         return redirect('person');
     }
@@ -167,30 +168,30 @@ class PersonController extends Controller
 
         $resident = $request->has('resident')? 1 : 0;
 
-        $medic_exam = $request->has('medic_exam')? 1 : 0; 
+        $medic_exam = $request->has('medic_exam')? 1 : 0;
 
         $request->merge(['resident'=>$resident]);
 
-        $request->merge(['medic_exam'=>$medic_exam]); 
+        $request->merge(['medic_exam'=>$medic_exam]);
 
         if($request->file('avatar')){
 
             $file = $request->file('avatar');
-            
-            $name = (Carbon::now()->format('dmYHi')).$file->getClientOriginalName();            
+
+            $name = (Carbon::now()->format('dmYHi')).$file->getClientOriginalName();
 
             if($person->avatar_path){
 
                 $path = public_path();
 
                 File::delete($path.$person->avatar_path);
-            
+
             }
 
             $file->move('person_asset/avatar/', $name);
-            
+
             $request->merge(array('avatar_path' => '/person_asset/avatar/'.$name));
-        }     
+        }
 
         $input = $request->all();
 
@@ -204,7 +205,7 @@ class PersonController extends Controller
 
             Flash::error('Please Try Again');
 
-        }        
+        }
 
         return Redirect::action('PersonController@edit', $person->id);
     }
@@ -229,7 +230,7 @@ class PersonController extends Controller
 
             Flash::error('Please Try Again');
 
-        }         
+        }
 
         return redirect('person');
     }
@@ -254,7 +255,7 @@ class PersonController extends Controller
 
             Flash::error('Please Try Again');
 
-        }         
+        }
 
         return $person->name . 'has been successfully deleted';
     }
@@ -279,7 +280,7 @@ class PersonController extends Controller
 
             Flash::error('Please Try Again');
 
-        }         
+        }
 
     }
 
@@ -338,6 +339,8 @@ class PersonController extends Controller
 
             $user->save();
 
+            $user->roles()->attach(Role::whereName('user')->firstOrFail()->id);
+
             $person->user_id = $user->id;
 
             $person->save();
@@ -350,18 +353,18 @@ class PersonController extends Controller
 
                 Flash::error('Please Try Again');
 
-            }        
+            }
 
         }else{
 
             Flash::error('This Employee has already been added as user');
         }
 
-        return Redirect::action('PersonController@edit', $person->id);        
+        return Redirect::action('PersonController@edit', $person->id);
     }
 
     // printing pdf version of payslip
-    public function generateKET($id)    
+    public function generateKET($id)
     {
         $person = Person::findOrFail($id);
 
@@ -377,10 +380,10 @@ class PersonController extends Controller
         $pdf = PDF::loadView('person.printket_ch', $data);
 
         $pdf->setPaper('A4', 'landscape');
-        
+
         return $pdf->download($name);
 
-    }      
+    }
 
     // create leave records for the person
     private function initLeave($request, $person)
@@ -395,7 +398,7 @@ class PersonController extends Controller
 
         $leave->person_id = $person->id;
 
-        $leave->save();        
+        $leave->save();
     }
 
     // calculate probabtion length
@@ -403,7 +406,7 @@ class PersonController extends Controller
     {
         switch($prob_length){
 
-            case 'None': 
+            case 'None':
                 $prob_end = null;
                 break;
 
@@ -421,7 +424,7 @@ class PersonController extends Controller
 
             case '6 Months';
                 $prob_end = Carbon::parse($prob_start)->addMonths(6);
-                break;                                
+                break;
         }
 
         if($prob_end != null){
@@ -438,7 +441,7 @@ class PersonController extends Controller
     {
         switch($contract_length){
 
-            case 'None': 
+            case 'None':
                 $contract_end = null;
                 break;
 
@@ -456,7 +459,7 @@ class PersonController extends Controller
 
             case '4 Years';
                 $contract_end = Carbon::parse($contract_start)->addYears(4);
-                break;                                
+                break;
         }
 
         if($contract_end != null){
@@ -466,6 +469,6 @@ class PersonController extends Controller
         }
 
         return $contract_end;
-    }                  
-  
+    }
+
 }
