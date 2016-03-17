@@ -17,6 +17,7 @@ use Laracasts\Flash\Flash;
 use App\Leave;
 use App\Profile;
 use PDF;
+use DB;
 use App\User;
 use App\Role;
 
@@ -36,7 +37,16 @@ class PersonController extends Controller
 
     public function getData()
     {
-        $person =  Person::with(['position', 'department'])->get();
+
+        $temptable = DB::raw("(SELECT person_id, count(*) AS num_count
+                        FROM payslips where MONTH(payslip_from) = MONTH(CURDATE()) GROUP BY person_id) as num");
+
+        $person = DB::table('people')
+                    ->leftJoin('positions', 'positions.id', '=', 'people.position_id')
+                    ->leftJoin($temptable, 'num.person_id', '=', 'people.id')
+                    ->select('people.id', 'people.name as person_name', 'positions.name as position_name', 'num.num_count')
+                    ->whereNull('num.num_count')
+                    ->get();
 
         return $person;
     }

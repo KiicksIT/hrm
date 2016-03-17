@@ -74,6 +74,14 @@
                             <th class="col-md-1 text-center">
                                 #
                             </th>
+                            <th class="col-md-1 text-center">
+                                <a href="#" ng-click="sortType = 'person.id'; sortReverse = !sortReverse">
+                                ID
+                                <br>
+                                编号
+                                <span ng-show="sortType == 'person.id' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'person.id' && sortReverse" class="fa fa-caret-up"></span>
+                            </th>
                             <th class="col-md-2 text-center">
                                 <a href="#" ng-click="sortType = 'person.name'; sortReverse = !sortReverse">
                                 Name
@@ -116,6 +124,7 @@
                         <tbody>
                             <tr dir-paginate="payslip in payslips | filter:search | orderBy:sortType:sortReverse | itemsPerPage:itemsPerPage"  current-page="currentPage" ng-controller="repeatController">
                                 <td class="col-md-1 text-center">@{{ number }} </td>
+                                <td class="col-md-1 text-center">@{{ payslip.person.id }}</td>
                                 <td class="col-md-2 text-center">@{{ payslip.person.name }}</td>
                                 {{-- <td class="col-md-2 text-center">@{{ payslip.person.department.name }}</td> --}}
                                 <td class="col-md-2 text-center">@{{ payslip.person.position.name }}</td>

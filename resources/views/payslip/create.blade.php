@@ -13,24 +13,24 @@
 
         <div class="panel-body">
             {!! Form::model($item = new \App\Payslip, ['action'=>'PayslipController@store']) !!}
-            <div class="col-md-8 col-md-offset-2">    
+            <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     {{-- {!! Form::label('search_person', 'Select Person', ['class'=>'control-label']) !!} --}}
                     {!! Form::label('search_person', 'Select Person 选择员工', ['class'=>'control-label']) !!}
-                    <select id="person_id" name="person_id" class="select form-control" 
+                    <select id="person_id" name="person_id" class="select form-control"
                             ng-model="personModel" ng-change="onPersonSelected(personModel)">
                             <option value=""></option>
                             <option ng-repeat="person in people" ng-value="person.id" value="@{{person.id}}">
-                                @{{person.position.name}} - @{{person.id}} - @{{person.name}}
-                            </option>                            
+                                @{{person.position_name}} - @{{person.id}} - @{{person.person_name}}}}
+                            </option>
                     </select>
                 </div>
-            </div>  
+            </div>
 
                 <div class="col-md-12">
                     <div class="form-group pull-right" style="padding: 30px 190px 0px 0px;">
                         {!! Form::submit('Add', ['class'=> 'btn btn-success']) !!}
-                        <a href="/payslip" class="btn btn-default">Cancel</a>            
+                        <a href="/payslip" class="btn btn-default">Cancel</a>
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -46,6 +46,6 @@
         placeholder: 'Select...',
         allowClear: true
     });
-</script>  
+</script>
 @stop
 
