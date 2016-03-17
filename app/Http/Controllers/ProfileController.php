@@ -13,14 +13,11 @@ use App\Profile;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getData()
     {
-        
+        $profile =  Profile::firstOrFail();
+
+        return $profile;
     }
 
     /**
@@ -87,7 +84,7 @@ class ProfileController extends Controller
         $profile = Profile::findOrFail($id);
 
         return view('person.profile.policy', compact('profile'));
-    }    
+    }
 
     /**
      * Update the specified resource in storage.
@@ -167,6 +164,6 @@ class ProfileController extends Controller
         File::delete($header);
 
         File::delete($footer);
-    }  
-  
+    }
+
 }

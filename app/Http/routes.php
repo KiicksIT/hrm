@@ -13,12 +13,13 @@ Route::get('/', function () {
 get('/person/user/{person_id}', 'PersonController@convertToUser');
 post('/person/download/{person_id}', 'PersonController@generateKET');
 get('person/transac/{person_id}', 'PersonController@showTransac');
-get('/person/data', 'PersonController@getData');
+get('/person/createData/{month}', 'PersonController@getData');
 delete('/person/data/{id}', 'PersonController@destroyAjax');
 resource('person', 'PersonController');
 post('person/{id}/file', 'PersonController@addFile');
 delete('person/{id}/file', 'PersonController@removeFile');
 
+get('/profile/data', 'ProfileController@getData');
 get('/profile/{id}/edit/policy', 'ProfileController@editPolicy');
 resource('profile', 'ProfileController');
 

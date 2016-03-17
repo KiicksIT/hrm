@@ -35,7 +35,7 @@ class PayslipController extends Controller
         $payslip =  Payslip::with(['person.department', 'person.position', 'person'])->latest()->get();
 
         return $payslip;
-    }  
+    }
 
     /**
      * Display a listing of the resource.
@@ -71,15 +71,6 @@ class PayslipController extends Controller
 
         $request->merge(array('status' => 'Pending'));
         // set default dates
-        $request->merge(array('pay_date' => Carbon::now()));
-
-        $request->merge(array('payslip_from' => Carbon::now()->startOfMonth()));
-
-        $request->merge(array('payslip_to' => Carbon::now()->endOfMonth()));
-
-        $request->merge(array('ot_from' => Carbon::now()->startOfMonth()));
-
-        $request->merge(array('ot_to' => Carbon::now()->endOfMonth()));        
 
         $input = $request->all();
 
@@ -89,7 +80,7 @@ class PayslipController extends Controller
 
         if($person->resident == 1){
 
-            $this->createCPFDeduction($payslip);            
+            $this->createCPFDeduction($payslip);
 
         }
 
@@ -101,7 +92,7 @@ class PayslipController extends Controller
 
             Flash::error('Please Try Again');
 
-        }        
+        }
 
         return Redirect::action('PayslipController@edit', $payslip->id);
     }
@@ -115,7 +106,7 @@ class PayslipController extends Controller
     public function show($id)
     {
 
-        $payslip = Payslip::with('person')->findOrFail($id);              
+        $payslip = Payslip::with('person')->findOrFail($id);
 
         return $payslip;
     }
@@ -167,10 +158,10 @@ class PayslipController extends Controller
 
             Flash::error('Please Try Again');
 
-        }        
+        }
 
         return Redirect::action('PayslipController@edit', $payslip->id);
-      
+
     }
 
     /**
@@ -193,7 +184,7 @@ class PayslipController extends Controller
 
             Flash::error('Please Try Again');
 
-        }         
+        }
 
         return redirect('payslip');
     }
@@ -218,7 +209,7 @@ class PayslipController extends Controller
 
             Flash::error('Please Try Again');
 
-        }         
+        }
     }
 
     // get person data based on person id
@@ -227,7 +218,7 @@ class PayslipController extends Controller
         $person = Person::findOrFail($person_id)->first();
 
         return $person;
-    } 
+    }
 
     // add item section (B) angular
     public function getAddition($payslip_id)
@@ -235,7 +226,7 @@ class PayslipController extends Controller
         $additions = Addition::wherePayslipId($payslip_id)->with('additem')->get();
 
         return $additions;
-    } 
+    }
 
     // deduct item section (C) angular
     public function getDeduction($payslip_id)
@@ -243,7 +234,7 @@ class PayslipController extends Controller
         $deductions = Deduction::wherePayslipId($payslip_id)->with('deductitem')->get();
 
         return $deductions;
-    }         
+    }
 
     // addother section (E) angular
     public function getAddOther($payslip_id)
@@ -251,10 +242,10 @@ class PayslipController extends Controller
         $addothers = Addother::wherePayslipId($payslip_id)->with('addotheritem')->get();
 
         return $addothers;
-    } 
+    }
 
     // printing pdf version of payslip
-    public function generatePayslip($id)    
+    public function generatePayslip($id)
     {
         $payslip = Payslip::findOrFail($id);
 
@@ -268,10 +259,10 @@ class PayslipController extends Controller
 
             $employeecpf = Deduction::wherePayslipId($payslip->id)->whereDeductitemId(1)->first()->deduct_amount;
         }else{
-            
+
             $employeecpf = '';
         }
-        
+
 
         $addothers = AddOther::wherePayslipId($payslip->id)->get();
 
@@ -292,10 +283,10 @@ class PayslipController extends Controller
         $pdf = PDF::loadView('payslip.printpdf_ch', $data);
 
         $pdf->setPaper('a4');
-        
+
         return $pdf->download($name);
 
-    }            
+    }
 
     // create cpf item as first item for Singaporean/ PR
     private function createCPFDeduction($payslip)
@@ -313,7 +304,7 @@ class PayslipController extends Controller
         $deduction->save();
 
         return $deduction;
-    } 
+    }
 
 
 
@@ -366,7 +357,7 @@ class PayslipController extends Controller
 
             if(! $deduction){
 
-                $deduction = $this->createCPFDeduction($payslip); 
+                $deduction = $this->createCPFDeduction($payslip);
             }
 
             $deduction->deduct_amount = $payslip->employee_epf;
@@ -375,24 +366,24 @@ class PayslipController extends Controller
 
         }
             // cal net pay (A+B-C+D+E)
-            $payslip->net_pay = $this->getBasic($request) + $this->getAdditionSum($payslip->id) 
+            $payslip->net_pay = $this->getBasic($request) + $this->getAdditionSum($payslip->id)
                                 - $this->getDeductionSum($payslip->id) + $this->getOtSum($request) + $this->getAddotherSum($payslip->id);
 
             $payslip->save();
-        
+
     }
 
     // Get A given the request
-    private function getBasic($request)                 
+    private function getBasic($request)
     {
         $basic = $request->basic;
 
         return $basic;
-    }    
+    }
 
 
     // Get B given the payslip id
-    private function getAdditionSum($payslip_id)                 
+    private function getAdditionSum($payslip_id)
     {
         $addition = Addition::wherePayslipId($payslip_id)->get();
 
@@ -402,13 +393,13 @@ class PayslipController extends Controller
 
         $payslip->add_total = $add_total;
 
-        $payslip->save();        
+        $payslip->save();
 
         return $add_total;
     }
 
     // Get C given the payslip id
-    private function getDeductionSum($payslip_id)                 
+    private function getDeductionSum($payslip_id)
     {
         $deduction = Deduction::wherePayslipId($payslip_id)->get();
 
@@ -418,21 +409,21 @@ class PayslipController extends Controller
 
         $payslip->deduct_total = $deduct_total;
 
-        $payslip->save();        
+        $payslip->save();
 
         return $deduct_total;
-    } 
+    }
 
     // Get D given the request
-    private function getOtSum($request)                 
+    private function getOtSum($request)
     {
         $ot_total = $request->ot_total;
 
         return $ot_total;
-    }     
+    }
 
     // Get E given the payslip id
-    private function getAddotherSum($payslip_id)                 
+    private function getAddotherSum($payslip_id)
     {
         $addother = Addother::wherePayslipId($payslip_id)->get();
 
@@ -454,7 +445,7 @@ class PayslipController extends Controller
         $totalPositive = $this->getBasic($request) + $this->getOtSum($request) + $this->getAdditionSum($payslip_id) + $this->getAddotherSum($payslip_id);
 
         return $totalPositive;
-    } 
+    }
 
 
 

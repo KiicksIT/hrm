@@ -35,19 +35,20 @@ class PersonController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getData()
+    public function getData($month)
     {
-/*
-        $temptable = DB::raw("(SELECT person_id, count(*) AS num_count
-                        FROM payslips where MONTH(payslip_from) = MONTH(CURDATE()) GROUP BY person_id) as num");*/
+        $month = $month + 1;
+
+        $temptable = DB::raw("(SELECT person_id, count(*) AS num_count FROM payslips
+                    WHERE MONTH(payslip_from) = ".$month." GROUP BY person_id) as num");
 
         $person = DB::table('people')
                     ->leftJoin('positions', 'positions.id', '=', 'people.position_id')
-                    // ->leftJoin('payslips', 'payslips.person_id', '=', 'people.id')
-                    // ->leftJoin($temptable, 'num.person_id', '=', 'people.id')
-                    ->select('people.id', 'people.name as person_name', 'positions.name as position_name')
-                    // ->whereNull('num.num_count')
+                    ->leftJoin($temptable, 'num.person_id', '=', 'people.id')
+                    ->select('people.id', 'people.name as person_name', 'positions.name as position_name', 'num.num_count')
+                    ->whereNull('num.num_count')
                     ->get();
+
 
         return $person;
     }
