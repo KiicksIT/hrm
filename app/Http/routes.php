@@ -13,7 +13,8 @@ Route::get('/', function () {
 get('/person/user/{person_id}', 'PersonController@convertToUser');
 post('/person/download/{person_id}', 'PersonController@generateKET');
 get('person/transac/{person_id}', 'PersonController@showTransac');
-get('/person/createData/{month}', 'PersonController@getData');
+get('/person/data', 'PersonController@getData');
+get('/person/createData/{month}', 'PersonController@getDataMonth');
 delete('/person/data/{id}', 'PersonController@destroyAjax');
 resource('person', 'PersonController');
 post('person/{id}/file', 'PersonController@addFile');

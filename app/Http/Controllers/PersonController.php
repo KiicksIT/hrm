@@ -29,13 +29,20 @@ class PersonController extends Controller
         $this->middleware('auth');
     }
 
+    public function getData()
+    {
+        $person =  Person::with(['position'])->latest()->get();
+
+        return $person;
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function getData($month)
+    public function getDataMonth($month)
     {
         $month = $month + 1;
 
