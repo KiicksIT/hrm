@@ -3,8 +3,8 @@
 {{ $PERSON_TITLE }}
 @stop
 @section('content')
-    
-    <div class="row">        
+
+    <div class="row">
     <a class="title_hyper pull-left" href="/person"><h1>{{ $PERSON_TITLE }} <i class="fa fa-users"></i></h1></a>
     </div>
     <div ng-app="app" ng-controller="personController">
@@ -26,7 +26,7 @@
                     <div class="pull-right">
                         {{-- <input type="button" class="btn btn-primary" name="submit" value="Send Mail" ng-click="check(people)"/> --}}
                         <a href="#" ng-click="check(people)" class="btn btn-primary"><i class="fa fa-envelope"></i></a>
-                        <a href="/person/create" class="btn btn-success">+ New {{ $PERSON_TITLE }}</a>                        
+                        <a href="/person/create" class="btn btn-success">+ New {{ $PERSON_TITLE }}</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     <label for="search_company" class="search">Search Name 名字:</label>
                     <input type="text" ng-model="search.name">
                     <label for="search_name" class="search" style="padding-left: 10px">Position 职位:</label>
-                    <input type="text" ng-model="search.position.name">                    
+                    <input type="text" ng-model="search.position.name">
 
                 </div>
                 <div class="table-responsive">
@@ -47,34 +47,42 @@
                             </th>
                             <th class="col-md-1 text-center">
                                 #
-                            </th>                    
-                            <th class="col-md-4 text-center">
+                            </th>
+                            <th class="col-md-2 text-center">
                                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-                                Name 
+                                Name
                                 <br>
                                 名字
                                 <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>                                
-                            </th>                            
+                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                            </th>
                             <th class="col-md-2 text-center">
                                 <a href="#" ng-click="sortType = 'position.name'; sortReverse = !sortReverse">
-                                Position 
+                                Position
                                 <br>
                                 职位
                                 <span ng-show="sortType == 'position.name' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'position.name' && sortReverse" class="fa fa-caret-up"></span>
-                            </th>                            
+                            </th>
+                            <th class="col-md-2 text-center">
+                                <a href="#" ng-click="sortType = 'nationality'; sortReverse = !sortReverse">
+                                Nationality
+                                <br>
+                                国籍
+                                <span ng-show="sortType == 'nationality' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'nationality' && sortReverse" class="fa fa-caret-up"></span>
+                            </th>
                             <th class="col-md-2 text-center">
                                 <a href="#" ng-click="sortType = 'contact'; sortReverse = !sortReverse">
-                                Contact 
+                                Contact
                                 <br>
                                 联络号码
                                 <span ng-show="sortType == 'contact' && !sortReverse" class="fa fa-caret-down"></span>
                                 <span ng-show="sortType == 'contact' && sortReverse" class="fa fa-caret-up"></span>
-                            </th>                                                                          
+                            </th>
                             <th class="col-md-2 text-center">
                                 Action
-                            </th>                                                                                                
+                            </th>
                         </tr>
 
                         <tbody>
@@ -83,8 +91,9 @@
                                     {!! Form::checkbox('name', '@{{person.id}}', false,  ['ng-model'=>"person.SELECTED", 'ng-true-value'=>"'Y'", 'ng-false-value'=>"'N'"]) !!}
                                 </td>
                                 <td class="col-md-1 text-center">@{{ number }} </td>
-                                <td class="col-md-4">@{{ person.name }}</td>
+                                <td class="col-md-2">@{{ person.name }}</td>
                                 <td class="col-md-2 text-center">@{{ person.position.name }}</td>
+                                <td class="col-md-2 text-center">@{{ person.nationality }}</td>
                                 <td class="col-md-2 text-center">@{{ person.contact }}</td>
                                 <td class="col-md-2 text-center">
                                     <a href="/person/@{{ person.id }}/edit" class="btn btn-sm btn-primary">Profile</a>
@@ -93,18 +102,18 @@
                             </tr>
                             <tr ng-show="(people | filter:search).length == 0 || ! people.length">
                                 <td colspan="9" class="text-center">No Records Found</td>
-                            </tr>                         
+                            </tr>
 
                         </tbody>
                     </table>
-                </div>            
+                </div>
             </div>
                 <div class="panel-footer">
                       <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true" class="pull-left"> </dir-pagination-controls>
-                      <label class="pull-right totalnum" for="totalnum">Showing @{{(people | filter:search).length}} of @{{people.length}} entries</label> 
+                      <label class="pull-right totalnum" for="totalnum">Showing @{{(people | filter:search).length}} of @{{people.length}} entries</label>
                 </div>
         </div>
-    </div>  
+    </div>
 
-    <script src="/js/person.js"></script>  
+    <script src="/js/person.js"></script>
 @stop
