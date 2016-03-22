@@ -1,12 +1,12 @@
 var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPagination', 'ui.select', 'ngSanitize']);
 
-    $('.select').select2({});
-
     function payslipController($scope, $http){
         $scope.currentPage = 1;
         $scope.itemsPerPage = 10;
 
         angular.element(document).ready(function () {
+
+            $('.select').select2({});
 
             $http.get('/payslip/data').success(function(payslips){
                 $scope.payslips = payslips;
