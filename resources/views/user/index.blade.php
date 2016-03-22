@@ -49,7 +49,7 @@
 
                                 <div class="pull-right">
                                     @can('create_user')
-                                    <a href="/user/create" class="btn btn-success">+ New {{ $USER_TITLE }}</a>
+                                    <a href="/user/create" class="btn btn-success">+ New User 用户</a>
                                     @endcan
                                 </div>
                             </div>
