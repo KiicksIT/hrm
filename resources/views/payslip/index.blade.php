@@ -151,4 +151,7 @@
         </div>
     </div>
     <script src="/js/payslip_index.js"></script>
+    <script>
+        $('.select').select2();
+    </script>
 @stop

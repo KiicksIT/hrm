@@ -6,8 +6,6 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
 
         angular.element(document).ready(function () {
 
-            $('.select').select2({});
-
             $http.get('/payslip/data').success(function(payslips){
                 $scope.payslips = payslips;
             });
