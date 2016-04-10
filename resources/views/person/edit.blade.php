@@ -8,13 +8,14 @@
 <div class="panel panel-primary">
 
     <div class="panel-heading">
-        <h3 class="panel-title"><strong>Profile for {{$person->id}} : {{$person->name}} </strong></h3>
+        <h3 class="panel-title pull-left"><strong>Profile for {{$person->id}} : {{$person->name}} </strong></h3>
+        <a href="/personatts/{{$person->id}}" class="btn btn-warning pull-right">Recurring Setup 重复开单设置</a>
     </div>
 
     <div class="panel-body">
         {!! Form::open(['id'=>'form_print', 'method'=>'POST', 'action'=>['PersonController@generateKET', $person->id]]) !!}
-        {!! Form::close() !!}     
-        {!! Form::model($person,['method'=>'PATCH','action'=>['PersonController@update', $person->id], 'files'=>true]) !!}            
+        {!! Form::close() !!}
+        {!! Form::model($person,['method'=>'PATCH','action'=>['PersonController@update', $person->id], 'files'=>true]) !!}
 
             @include('person.form_ch')
 
@@ -23,18 +24,18 @@
                     {!! Form::submit('Edit Profile', ['class'=> 'btn btn-warning']) !!}
         {!! Form::close() !!}
                     {!! Form::submit('Print KET', ['name'=>'print', 'class'=> 'btn btn-primary', 'form'=>'form_print']) !!}
-                    <a href="/person" class="btn btn-default">Cancel</a>            
+                    <a href="/person" class="btn btn-default">Cancel</a>
                 </div>
                 <div class="pull-left row">
                         <div class="col-md-3">
-                        {!! Form::open(['method'=>'DELETE', 'action'=>['PersonController@destroy', $person->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['PersonController@destroy', $person->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}
                             {!! Form::submit('Delete', ['class'=> 'btn btn-danger']) !!}
                         {!! Form::close() !!}
                     </div>
                     <div class="col-md-3 col-md-offset-1">
                         <a href="/person/user/{{$person->id}}" class="btn btn-success">Convert to User</a>
                     </div>
-                </div>                
+                </div>
             </div>
     </div>
 </div>
@@ -54,16 +55,16 @@
             <tr style="background-color: #DDFDF8">
                 <th class="col-md-1 text-center">
                     #
-                </th>                    
+                </th>
                 <th class="col-md-7 text-center">
-                    Path                           
+                    Path
                 </th>
                 <th class="col-md-2 text-center">
-                    Upload On                      
+                    Upload On
                 </th>
                 <th class="col-md-2 text-center">
                     Action
-                </th>                                                                                                
+                </th>
             </tr>
 
             <tbody>
@@ -79,20 +80,20 @@
                         {!! Html::image($file->path, 'alt', array( 'width' => 200, 'height' => 200 )) !!}
                         <a href="{{$file->path}}">
                         {!! str_replace("/person_asset/file/", "", "$file->path"); !!}
-                        </a>                            
+                        </a>
                     </td>
                     <td class="col-md-2 text-center">{{$file->created_at}}</td>
                     <td class="col-md-2 text-center">
-                        {!! Form::open(['method'=>'DELETE', 'action'=>['PersonController@removeFile', $file->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}                
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['PersonController@removeFile', $file->id], 'onsubmit'=>'return confirm("Are you sure you want to delete?")']) !!}
                             {!! Form::submit('Delete', ['class'=> 'btn btn-danger btn-sm']) !!}
-                        {!! Form::close() !!} 
+                        {!! Form::close() !!}
                     </td>
                 </tr>
                 @endforeach
-                @endunless                        
+                @endunless
 
             </tbody>
-        </table>      
+        </table>
         {!! $files->render() !!}
     </div>
 
@@ -110,18 +111,18 @@
 $(document).ready(function() {
     Dropzone.autoDiscover = false;
     $('.dropzone').dropzone({
-        init: function() 
+        init: function()
         {
             this.on("complete", function()
             {
               if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
                 location.reload();
-              }                
+              }
             });
         }
     });
 });
 </script>
-<script src="/js/person_edit.js"></script>  
+<script src="/js/person_edit.js"></script>
 
 @stop

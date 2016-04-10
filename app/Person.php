@@ -231,6 +231,11 @@ class Person extends Model
         return $this->hasMany('App\LeaveAttach');
     }
 
+    public function personatts()
+    {
+        return $this->hasOne('App\PersonAtts');
+    }
+
 
     /**
      * search like name

@@ -106,7 +106,7 @@ class PayslipController extends Controller
     public function show($id)
     {
 
-        $payslip = Payslip::with('person')->findOrFail($id);
+        $payslip = Payslip::where('id', $id)->with('person', 'person.personatts')->firstOrFail();
 
         return $payslip;
     }

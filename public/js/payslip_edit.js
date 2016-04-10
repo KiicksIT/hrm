@@ -1,6 +1,6 @@
-var app = angular.module('app', [   'ui.bootstrap', 
+var app = angular.module('app', [   'ui.bootstrap',
                                     'angularUtils.directives.dirPagination',
-                                    'ui.select', 
+                                    'ui.select',
                                     'ngSanitize'
                                 ]);
 
@@ -8,18 +8,18 @@ var app = angular.module('app', [   'ui.bootstrap',
 
         // default constructor
         $scope.currentPage1 = 1;
-        $scope.itemsPerPage1 = 5; 
+        $scope.itemsPerPage1 = 5;
         $scope.currentPage2 = 1;
-        $scope.itemsPerPage2 = 5; 
+        $scope.itemsPerPage2 = 5;
         $scope.currentPage3 = 1;
         $scope.itemsPerPage3 = 5;
         $scope.basicModel = 0.00;
-        $scope.otRateModel = 0.00; 
-        $scope.totalAddModel = 0.00; 
-        $scope.totalDeductModel = 0.00; 
-        $scope.ottotalModel = 0.00; 
+        $scope.otRateModel = 0.00;
+        $scope.totalAddModel = 0.00;
+        $scope.totalDeductModel = 0.00;
+        $scope.ottotalModel = 0.00;
         $scope.totalAddotherModel = 0.00;
-        $scope.netPayModel = 0.00;  
+        $scope.netPayModel = 0.00;
 
 
         // retrieve payslip id
@@ -33,49 +33,57 @@ var app = angular.module('app', [   'ui.bootstrap',
             $scope.othourModel = payslip.ot_hour;
 
             // retrieve employee cpf
-            $scope.employerEpfModel = payslip.employercont_epf;
+            $scope.employerEpfModel = payslip.employercont_epf ? payslip.employercont_epf : 'Not Applicable';
 
             // retrieve total ot pay
             $scope.ottotalModel = payslip.ot_total;
 
             // retrieve basic pay
-            if(payslip.basic == null || payslip.basic == 0){
+            if(payslip.basic){
 
-                $scope.basicModel = payslip.person.basic;
+                if(payslip.person.personatts){
+
+                    $scope.basicModel = payslip.person.personatts.basic;
+
+                }else{
+
+                    $scope.basicModel = payslip.person.basic;
+                }
 
             }else{
 
                 $scope.basicModel = payslip.basic;
             }
 
-            // retrieve basic rate
-            $scope.basicRateModel = payslip.person.basic_rate;
+            // retrieve rate
+            if(payslip.person.personatts){
 
-            // retrieve ot rate
-            $scope.otRateModel = payslip.person.ot_rate;
+                $scope.basicRateModel = payslip.person.personatts.basic_rate != 0 ? payslip.person.personatts.basic_rate : payslip.person.basic_rate;
+
+                $scope.otRateModel = payslip.person.personatts.ot_rate != 0 ? payslip.person.personatts.ot_rate : payslip.person.ot_rate;
+
+                $scope.residentModel = payslip.person.personatts.resident == 1 ? 'Yes' : 'No';
+
+            }else{
+
+                $scope.basicRateModel = payslip.person.basic_rate;
+
+                $scope.otRateModel = payslip.person.ot_rate;
+
+                $scope.residentModel = payslip.person.resident == 1 ? 'Yes' : 'No';
+            }
 
             // retrieve net pay
             $scope.netPayModel = payslip.net_pay;
 
-            // retrieve resident isSingporean
-            if(payslip.person.resident == 1){
-
-                $scope.residentModel = 'Yes'
-
-            }else{
-
-                $scope.residentModel = 'No'
-            }
-            // $scope.residentModel = payslip.person.resident;
-
             // worked ot pay
             $scope.onOtHourChange = function(){
                 $scope.ottotalModel = ($scope.othourModel * $scope.otRateModel * $scope.basicRateModel).toFixed(2);
-            } 
+            }
 
             // addition
             $http.get('/payslip/addition/' + payslip_id).success(function(additions){
-                $scope.additions = additions; 
+                $scope.additions = additions;
 
                 // calculate cumulative add total
                 var totaladd = 0;
@@ -99,7 +107,7 @@ var app = angular.module('app', [   'ui.bootstrap',
                 }
                 $scope.totalDeductModel = totaldeduct.toFixed(2);
 
-            });            
+            });
 
             // addother
             $http.get('/payslip/addother/' + payslip_id).success(function(addothers){
@@ -113,8 +121,8 @@ var app = angular.module('app', [   'ui.bootstrap',
                 }
                 $scope.totalAddotherModel = totaladdother.toFixed(2);
 
-            });            
-        });      
+            });
+        });
 
         //delete all record
         $scope.confirmDelete = function(id){
@@ -134,7 +142,7 @@ var app = angular.module('app', [   'ui.bootstrap',
             }else{
                 return false;
             }
-        } 
+        }
 
         //delete record for addition
         $scope.confirmDelete1 = function(id){
@@ -153,7 +161,7 @@ var app = angular.module('app', [   'ui.bootstrap',
             }else{
                 return false;
             }
-        }     
+        }
 
         //delete record for deduction
         $scope.confirmDelete2 = function(id){
@@ -172,7 +180,7 @@ var app = angular.module('app', [   'ui.bootstrap',
             }else{
                 return false;
             }
-        }     
+        }
 
         //delete record for addother
         $scope.confirmDelete3 = function(id){
@@ -191,8 +199,8 @@ var app = angular.module('app', [   'ui.bootstrap',
             }else{
                 return false;
             }
-        } 
-    } 
+        }
+    }
 
 
 
@@ -200,19 +208,19 @@ function repeatController1($scope) {
     $scope.$watch('$index', function(index) {
         $scope.number = ($scope.$index + 1) + ($scope.currentPage1 - 1) * $scope.itemsPerPage1;
     })
-} 
+}
 
 function repeatController2($scope) {
     $scope.$watch('$index', function(index) {
         $scope.number = ($scope.$index + 1) + ($scope.currentPage2 - 1) * $scope.itemsPerPage2;
     })
-}  
+}
 
 function repeatController3($scope) {
     $scope.$watch('$index', function(index) {
         $scope.number = ($scope.$index + 1) + ($scope.currentPage3 - 1) * $scope.itemsPerPage3;
     })
-}    
+}
 
 app.controller('payslipController', payslipController);
 app.controller('repeatController1', repeatController1);

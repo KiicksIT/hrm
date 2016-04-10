@@ -10,6 +10,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+get('/api/personatts/{person_id}', 'PersonAttsController@getIndex');
+resource('personatts', 'PersonAttsController');
+
 get('/person/user/{person_id}', 'PersonController@convertToUser');
 post('/person/download/{person_id}', 'PersonController@generateKET');
 get('person/transac/{person_id}', 'PersonController@showTransac');
