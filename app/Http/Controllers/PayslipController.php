@@ -133,6 +133,7 @@ class PayslipController extends Controller
      */
     public function update(PayslipRequest $request, $id)
     {
+        // dd($request->all());
         if($request->input('confirm')){
 
             $request->merge(array('status' => 'Confirmed'));

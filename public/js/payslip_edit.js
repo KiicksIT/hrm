@@ -41,6 +41,10 @@ var app = angular.module('app', [   'ui.bootstrap',
             // retrieve basic pay
             if(payslip.basic){
 
+                $scope.basicModel = payslip.basic;
+
+            }else{
+
                 if(payslip.person.personatts){
 
                     $scope.basicModel = payslip.person.personatts.basic;
@@ -50,9 +54,6 @@ var app = angular.module('app', [   'ui.bootstrap',
                     $scope.basicModel = payslip.person.basic;
                 }
 
-            }else{
-
-                $scope.basicModel = payslip.basic;
             }
 
             // retrieve rate

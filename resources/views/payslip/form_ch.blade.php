@@ -2,8 +2,8 @@
 
     <div class="form-group">
         {!! Form::label('person_id', 'Employee 员工', ['class'=>'control-label']) !!}
-        {!! Form::text('person_id', 
-        $payslip->person->position->name.' - '.$payslip->person->id.' - '.$payslip->person->name, 
+        {!! Form::text('person_id',
+        $payslip->person->position->name.' - '.$payslip->person->id.' - '.$payslip->person->name,
         ['class'=>'form-control', 'disabled'=>'disabled']) !!}
     </div>
 
@@ -27,43 +27,43 @@
                 </div>
             </div>
         </div>
-    </div>             
+    </div>
 
     <div class="row">
-        <div class="col-md-3">    
+        <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('pay_date', 'Date of Payment 发薪日期', ['class'=>'control-label']) !!}
                 <div class="input-group date">
                 {!! Form::text('pay_date', null, ['class'=>'form-control', 'id'=>'pay_date']) !!}
                 <span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span>
                 </div>
-            </div>        
-        </div> 
+            </div>
+        </div>
 
-        <div class="col-md-3">       
+        <div class="col-md-3">
             {!! Form::label('pay_mode', 'Payment Method 支付方式', ['class'=>'control-label']) !!}
-            {!! Form::select('pay_mode', 
-                ['Cash'=>'Cash', 'Cheque'=>'Cheque', 'Bank Deposit'=>'Bank Deposit'], 
-                null, 
+            {!! Form::select('pay_mode',
+                ['Cash'=>'Cash', 'Cheque'=>'Cheque', 'Bank Deposit'=>'Bank Deposit'],
+                null,
                 [
-                'id'=>'pay_mode', 
+                'id'=>'pay_mode',
                 'class'=>'select form-control'
-                ]) 
-            !!}        
+                ])
+            !!}
         </div>
 
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('basic_rate', 'Hourly Pay 每小时工资($)', ['class'=>'control-label']) !!}
                 {!! Form::text('basic_rate', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'basicRateModel']) !!}
-            </div>        
+            </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('resident', 'Singaporean/ PR (公民/永久居民)', ['class'=>'control-label']) !!}
                 {!! Form::text('resident', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'residentModel']) !!}
-            </div>        
-        </div>    
+            </div>
+        </div>
     </div>
 
     <hr>
@@ -91,16 +91,16 @@
             <div class="form-group">
                 {!! Form::label('ot_rate', 'Overtime Rate 加班费 率', ['class'=>'control-label']) !!}
                 {!! Form::text('ot_rate', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'otRateModel']) !!}
-            </div>        
-        </div> 
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="form-group">
                 {!! Form::label('ot_hour', 'OT Worked Hour(s) 加班时数 (小时)', ['class'=>'control-label']) !!}
-                {!! Form::text('ot_hour', null, ['class'=>'form-control', 'ng-model'=>'othourModel', 
+                {!! Form::text('ot_hour', null, ['class'=>'form-control', 'ng-model'=>'othourModel',
                 'ng-change'=>'onOtHourChange()', 'placeholder'=>'Fill if Applicable']) !!}
-            </div>        
-        </div>                   
-    </div>  
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -110,5 +110,5 @@
 
     $('.date').datetimepicker({
        format: 'DD-MMMM-YYYY'
-    });      
-</script>  
+    });
+</script>
