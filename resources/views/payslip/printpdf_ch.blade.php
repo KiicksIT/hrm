@@ -13,7 +13,7 @@
         table{
             font-size: 13px;
             font-family: 'Times New Roman';
-        }    
+        }
         th{
             font-size: 15px;
         }
@@ -22,10 +22,10 @@
             height: 400px;
             bottom: 0;
             width: 100%;
-        }   
+        }
         html, body{
             height: 100%;
-        } 
+        }
         .panel{
             border:solid thin black;
             margin-bottom: 3px;
@@ -50,8 +50,8 @@
         .panel > .panel-heading{
             background-color: #d7d7db !important;
         }
-      }         
-    
+      }
+
     </style>
     </head>
 
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Name of Employer 公司名称</strong></h3> 
+                        <h3 class="panel-title"><strong>Name of Employer 公司名称</strong></h3>
                     </div>
                     <div class="panel-body">
                         {{$profile->name}}
@@ -81,13 +81,13 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Name of Employee 员工姓名</strong></h3> 
+                        <h3 class="panel-title"><strong>Name of Employee 员工姓名</strong></h3>
                     </div>
                     <div class="panel-body">
-                        {{$person->name}}
+                        {{$person->name}} ({{$person->contract_type}})
                     </div>
                 </div>
-            </div> 
+            </div>
 
             {{-- showing items --}}
             <div class="row">
@@ -100,7 +100,7 @@
                                 <span class="col-xs-8">Amount 款额</span>
                                 </strong>
                             </div>
-                        </h3> 
+                        </h3>
                     </div>
 
                     {{-- total basic pay --}}
@@ -111,11 +111,11 @@
                             </span>
                             <span class="col-xs-7">
                                 <strong>{{$payslip->basic}}</strong>
-                            </span> 
+                            </span>
                             <span class="col-xs-1">
                                 <strong>(A)</strong>
                             </span>
-                        </li>                                                
+                        </li>
 
                         {{-- total allowance --}}
                         <li class="list-group-item row">
@@ -124,7 +124,7 @@
                             </span>
                             <span class="col-xs-7">
                                 <strong>{{$payslip->add_total}}</strong>
-                            </span> 
+                            </span>
                             <span class="col-xs-1">
                                 <strong>(B)</strong>
                             </span>
@@ -139,8 +139,8 @@
                                 </span>
                                 <span class="col-xs-8">
                                     {{$addition->add_amount}}
-                                </span> 
-                            </li>                                                       
+                                </span>
+                            </li>
                         @endforeach
 
                         {{-- total deduction --}}
@@ -150,7 +150,7 @@
                             </span>
                             <span class="col-xs-7">
                                 <strong>{{$payslip->deduct_total}}</strong>
-                            </span> 
+                            </span>
                             <span class="col-xs-1">
                                 <strong>(C)</strong>
                             </span>
@@ -164,9 +164,9 @@
                                 </span>
                                 <span class="col-xs-8">
                                     {{$deduction->deduct_amount}}
-                                </span> 
-                            </li>                                                        
-                        @endforeach                                                
+                                </span>
+                            </li>
+                        @endforeach
 
                     </ul>
                 </div>
@@ -176,7 +176,7 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Date of Payment 发薪日期</strong></h3> 
+                        <h3 class="panel-title"><strong>Date of Payment 发薪日期</strong></h3>
                     </div>
                     <div class="panel-body">
                         {{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->pay_date)->format('d M Y') }}
@@ -188,7 +188,7 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Mode of Payment 支付方式</strong></h3> 
+                        <h3 class="panel-title"><strong>Mode of Payment 支付方式</strong></h3>
                     </div>
                     <div class="panel-body">
                         {{$payslip->pay_mode}}
@@ -200,31 +200,31 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><strong>Overtime Details 加班细节</strong></h3> 
+                        <h3 class="panel-title"><strong>Overtime Details 加班细节</strong></h3>
                     </div>
 
                     <ul class="list-group">
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                Overtime Payment Period(s) 
+                                Overtime Payment Period(s)
                                 <br>
                                 加班费支付周期
                             </span>
                             <span class="col-xs-8">
                                 <strong>
-                                {{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->ot_from)->format('d M Y') }} to {{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->ot_to)->format('d M Y') }} 
+                                {{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->ot_from)->format('d M Y') }} to {{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->ot_to)->format('d M Y') }}
                                 </strong>
-                            </span>                                 
+                            </span>
                         </li>
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                Overtime Hours Worked 
+                                Overtime Hours Worked
                                 <br>
                                 加班时数
                             </span>
                             <span class="col-xs-8">
                                 <strong>{{$payslip->ot_hour}}</strong>  (Hourly OT Rate {{$person->basic_rate * $person->ot_rate}})
-                            </span>                             
+                            </span>
                         </li>
                         <li class="list-group-item row">
                             <span class="col-xs-4">
@@ -235,9 +235,9 @@
                             </span>
                             <span class="col-xs-1">
                                 <strong>(D)</strong>
-                            </span>                              
+                            </span>
                         </li>
-                    </ul>                                                                        
+                    </ul>
                 </div>
             </div>
 
@@ -252,20 +252,20 @@
                                 <span class="col-xs-8">Amount 款额</span>
                                 </strong>
                             </div>
-                        </h3> 
+                        </h3>
                     </div>
 
                     <ul class="list-group">
                         {{-- total addother --}}
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                <strong>Other Additional Payments 
+                                <strong>Other Additional Payments
                                 <br>
                                 其它付款</strong> <br> <span style="font-size:70%;">(Breakdown shown below 细节如下)</span>
                             </span>
                             <span class="col-xs-7">
                                 <strong>{{$payslip->other_total}}</strong>
-                            </span> 
+                            </span>
                             <span class="col-xs-1">
                                 <strong>(E)</strong>
                             </span>
@@ -280,8 +280,8 @@
                                 </span>
                                 <span class="col-xs-8">
                                     {{$addother->addother_amount}}
-                                </span> 
-                            </li>                                                       
+                                </span>
+                            </li>
                         @endforeach
 
                         {{-- net pay --}}
@@ -291,35 +291,35 @@
                             </span>
                             <span class="col-xs-8">
                                 <strong>{{$payslip->net_pay}}</strong>
-                            </span> 
-                        </li> 
+                            </span>
+                        </li>
                         @if($person->resident)
                         {{-- employer cpf contri --}}
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                Employer's CPF Contribution 
+                                Employer's CPF Contribution
                                 <br>
                                 雇主公积金缴交额
                             </span>
                             <span class="col-xs-8">
                                 {{$payslip->employercont_epf}}
-                            </span> 
-                        </li> 
+                            </span>
+                        </li>
                         {{-- employee cpf --}}
                         <li class="list-group-item row">
                             <span class="col-xs-4">
-                                Total CPF Amount 
+                                Total CPF Amount
                                 <br>
                                 总公积金缴交额
                             </span>
                             <span class="col-xs-8">
                                 <strong>{{number_format($payslip->employercont_epf + $employeecpf, 2)}}
-                            </span> 
+                            </span>
                         </li>
-                        @endif                                                                        
-                    </ul>                    
+                        @endif
+                    </ul>
                 </div>
-            </div> 
+            </div>
 
             <div class="row">
                 <div class="col-xs-6 col-xs-offset-6" >
@@ -330,8 +330,8 @@
                         <span class="text-center col-xs-12" style="margin-top:0px">
                             <strong>Agreed By</strong>
                         </span>
-                    </div>                            
-                </div> 
+                    </div>
+                </div>
             </div>
     </body>
-</html>    
+</html>

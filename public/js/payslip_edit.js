@@ -39,7 +39,7 @@ var app = angular.module('app', [   'ui.bootstrap',
             $scope.ottotalModel = payslip.ot_total;
 
             // retrieve basic pay
-            if(payslip.basic){
+            if(payslip.basic != 0){
 
                 $scope.basicModel = payslip.basic;
 
@@ -47,7 +47,15 @@ var app = angular.module('app', [   'ui.bootstrap',
 
                 if(payslip.person.personatts){
 
-                    $scope.basicModel = payslip.person.personatts.basic;
+                    if(payslip.person.personatts.basic != 0){
+
+                        $scope.basicModel = payslip.person.personatts.basic;
+
+                    }else{
+
+                        $scope.basicModel = payslip.person.basic;
+                    }
+
 
                 }else{
 
