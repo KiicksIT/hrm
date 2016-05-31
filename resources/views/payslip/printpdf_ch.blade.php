@@ -192,6 +192,13 @@
                     </div>
                     <div class="panel-body">
                         {{$payslip->pay_mode}}
+
+                        @if($payslip->pay_mode == 'Cheque')
+                            <span>
+                                {{$payslip->cheque_no}}
+                            </span>
+                        @endif
+
                     </div>
                 </div>
             </div>

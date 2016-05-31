@@ -30,7 +30,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('pay_date', 'Date of Payment 发薪日期', ['class'=>'control-label']) !!}
                 <div class="input-group date">
@@ -40,25 +40,33 @@
             </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             {!! Form::label('pay_mode', 'Payment Method 支付方式', ['class'=>'control-label']) !!}
             {!! Form::select('pay_mode',
                 ['Cash'=>'Cash', 'Cheque'=>'Cheque', 'Bank Deposit'=>'Bank Deposit'],
                 null,
                 [
                 'id'=>'pay_mode',
-                'class'=>'select form-control'
+                'class'=>'select form-control',
+                'ng-model'=>'payModeModel',
                 ])
             !!}
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
+            <div class="form-group">
+                {!! Form::label('cheque_no', 'Cheque No 支票号码', ['class'=>'control-label']) !!}
+                {!! Form::text('cheque_no', null, ['class'=>'form-control', 'placeholder'=>'Fill if Cheque']) !!}
+            </div>
+        </div>
+
+        <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('basic_rate', 'Hourly Pay 每小时工资($)', ['class'=>'control-label']) !!}
                 {!! Form::text('basic_rate', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'basicRateModel']) !!}
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="form-group">
                 {!! Form::label('resident', 'Singaporean/ PR (公民/永久居民)', ['class'=>'control-label']) !!}
                 {!! Form::text('resident', null, ['class'=>'form-control', 'disabled'=>'disabled', 'ng-model'=>'residentModel']) !!}
