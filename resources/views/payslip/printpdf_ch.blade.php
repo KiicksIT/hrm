@@ -194,9 +194,7 @@
                         {{$payslip->pay_mode}}
 
                         @if($payslip->pay_mode == 'Cheque')
-                            <span>
-                                {{$payslip->cheque_no}}
-                            </span>
+                            {{$payslip->cheque_no}}
                         @endif
 
                     </div>

@@ -48,7 +48,6 @@
                 [
                 'id'=>'pay_mode',
                 'class'=>'select form-control',
-                'ng-model'=>'payModeModel',
                 ])
             !!}
         </div>
