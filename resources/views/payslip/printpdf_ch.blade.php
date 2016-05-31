@@ -193,7 +193,7 @@
                     <div class="panel-body">
                         {{$payslip->pay_mode}}
 
-                        @if($payslip->pay_mode == 'Cheque')
+                        @if($payslip->pay_mode === 'Cheque' and $payslip->cheque_no)
                              ({{$payslip->cheque_no}})
                         @endif
 
