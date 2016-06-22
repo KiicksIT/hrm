@@ -108,6 +108,13 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {!! Form::label('remark', 'Remark 备注', ['class'=>'control-label']) !!}
+            {!! Form::textarea('remark', null, ['class'=>'form-control', 'rows'=>'3']) !!}
+        </div>
+    </div>
 </div>
 
 <script>

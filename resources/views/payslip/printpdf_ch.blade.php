@@ -326,6 +326,19 @@
                 </div>
             </div>
 
+            @if($payslip->remark)
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><strong>Remark 备注</strong></h3>
+                    </div>
+                    <div class="panel-body">
+                        {{$payslip->remark}}
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <div class="row">
                 <div class="col-xs-6 col-xs-offset-6" >
                     <div class="form-group" style="margin-left: 30px;">

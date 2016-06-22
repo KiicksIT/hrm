@@ -14,7 +14,7 @@ class Payslip extends Model
         'ot_total', 'other_total', 'net_pay',
         'employee_epf', 'status', 'payslip_from',
         'payslip_to', 'workday_actual', 'workday_total',
-        'employercont_epf', 'cheque_no'
+        'employercont_epf', 'cheque_no', 'remark'
     ];
 
     /**
