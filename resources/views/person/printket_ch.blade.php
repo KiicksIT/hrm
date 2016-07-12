@@ -107,7 +107,7 @@
 
                         <div class="col-xs-8">
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
+                                <div class="col-xs-5">
                                     <span class="subtitle"><strong>Nationality 国籍:</strong></span>
                                 </div>
                                 <div class="col-xs-7">
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
+                                <div class="col-xs-5">
                                     <span class="subtitle"><strong>Contact 联络:</strong></span>
                                 </div>
                                 <div class="col-xs-7">
@@ -123,7 +123,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
+                                <div class="col-xs-5">
                                     <span class="subtitle"><strong>Address 地址:</strong></span>
                                 </div>
                                 <div class="col-xs-7">
@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-4 col-xs-offset-1">
+                                <div class="col-xs-5">
                                     <span class="subtitle"><strong>BirthDate 生日:</strong></span>
                                 </div>
                                 <div class="col-xs-7">
