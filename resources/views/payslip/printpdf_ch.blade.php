@@ -39,11 +39,11 @@
         .panel-heading{
             height: 20px;
             padding-top: 3px;
-            padding-bottom: 0px;
+            padding-bottom: 1px;
             font-size: 11px;
         }
         .panel-body{
-            height: 30%;
+            height: 32%;
         }
 
     @media print {
