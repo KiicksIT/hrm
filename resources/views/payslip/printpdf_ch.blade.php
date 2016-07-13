@@ -8,14 +8,14 @@
             display:inline;
         }
         body{
-            font-size: 13px;
+            font-size: 12px;
         }
         table{
-            font-size: 13px;
+            font-size: 12px;
             font-family: 'Times New Roman';
         }
         th{
-            font-size: 15px;
+            font-size: 13px;
         }
         footer{
             position: fixed;
@@ -37,13 +37,13 @@
         }
 
         .panel-heading{
-            height: 25px;
+            height: 20px;
             padding-top: 5px;
             padding-bottom: 0px;
-            font-size: 13px;
+            font-size: 12px;
         }
         .panel-body{
-            height: 30%;
+            height: 25%;
         }
 
     @media print {
