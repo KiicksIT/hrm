@@ -37,13 +37,13 @@
         }
 
         .panel-heading{
-            height: 20px;
-            padding-top: 5px;
+            height: 19px;
+            padding-top: 3px;
             padding-bottom: 0px;
-            font-size: 12px;
+            font-size: 11px;
         }
         .panel-body{
-            height: 25%;
+            height: 28%;
         }
 
     @media print {
