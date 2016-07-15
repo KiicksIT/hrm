@@ -173,32 +173,30 @@
             </div>
 
             {{-- payment date --}}
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="col-xs-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><strong>Date of Payment 发薪日期</strong></h3>
-                            </div>
-                            <div class="panel-body">
-                                {{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->pay_date)->format('d M Y') }}
-                            </div>
+            <div class="col-xs-12 row">
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Date of Payment 发薪日期</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            {{Carbon\Carbon::createFromFormat('d-F-Y', $payslip->pay_date)->format('d M Y') }}
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-xs-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><strong>Mode of Payment 支付方式</strong></h3>
-                            </div>
-                            <div class="panel-body">
-                                {{$payslip->pay_mode}}
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>Mode of Payment 支付方式</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            {{$payslip->pay_mode}}
 
-                                @if($payslip->pay_mode === 'Cheque' and $payslip->cheque_no)
-                                     ({{$payslip->cheque_no}})
-                                @endif
+                            @if($payslip->pay_mode === 'Cheque' and $payslip->cheque_no)
+                                 ({{$payslip->cheque_no}})
+                            @endif
 
-                            </div>
                         </div>
                     </div>
                 </div>
