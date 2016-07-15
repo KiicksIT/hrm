@@ -174,7 +174,7 @@
 
             {{-- payment date --}}
             <div class="row">
-                <div class="col-xs-6 row">
+                <div class="col-xs-6 row pull-left">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><strong>Date of Payment 发薪日期</strong></h3>
