@@ -185,7 +185,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-6 row">
+                <div class="col-xs-6 row pull-right">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title"><strong>Mode of Payment 支付方式</strong></h3>
