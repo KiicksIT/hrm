@@ -307,8 +307,6 @@ class PayslipController extends Controller
         return $deduction;
     }
 
-
-
     // update cpf when submit button
     private function calculateTotal($request, $payslip)
     {
@@ -320,31 +318,120 @@ class PayslipController extends Controller
 
             $totalPositive = $this->calCPFFormula($request, $payslip->id);
 
-            if($age <=  55){
+            if($totalPositive >= 750){
 
-                $employerCpf = $totalPositive * 17/100;
+                if($age <=  55){
 
-                $employeeCpf = $totalPositive * 20/100;
+                    $employerCpf = $totalPositive * 17/100;
 
-            }else if($age > 55 && $age <= 60){
+                    $employeeCpf = $totalPositive * 20/100;
 
-                $employerCpf = $totalPositive * 13/100;
+                }else if($age > 55 && $age <= 60){
 
-                $employeeCpf = $totalPositive * 13/100;
+                    $employerCpf = $totalPositive * 13/100;
 
-            }else if($age > 60 && $age <= 65){
+                    $employeeCpf = $totalPositive * 13/100;
 
-                $employerCpf = $totalPositive * 9/100;
+                }else if($age > 60 && $age <= 65){
 
-                $employeeCpf = $totalPositive * 7.5/100;
+                    $employerCpf = $totalPositive * 9/100;
 
-            }else{
+                    $employeeCpf = $totalPositive * 7.5/100;
 
-                $employerCpf = $totalPositive * 7.5/100;
+                }else if($age > 65){
 
-                $employeeCpf = $totalPositive * 5/100;
+                    $employerCpf = $totalPositive * 7.5/100;
+
+                    $employeeCpf = $totalPositive * 5/100;
+
+                }
+
+            }else if($totalPositive < 750 and $totalPositive > 500){
+
+                if($age <= 55){
+
+                    $employerCpf = $totalPositive * 17/100 + ($totalPositive - 500) * 60/100;
+
+                    $employeeCpf = ($totalPositive - 500) * 60/100;
+
+                }else if($age > 55 and $age <= 60){
+
+                    $employerCpf = $totalPositive * 13/100 + ($totalPositive - 500) * 39/100;
+
+                    $employeeCpf = ($totalPositive - 500) * 39/100;
+
+                }else if($age > 60 and $age <= 65){
+
+                    $employerCpf = $totalPositive * 9/100 + ($totalPositive - 500) * 225/1000;
+
+                    $employeeCpf = ($totalPositive - 500) * 225/1000;
+
+                }else if($age > 65){
+
+                    $employerCpf = $totalPositive * 75/1000 + ($totalPositive - 500) * 15/100;
+
+                    $employeeCpf = ($totalPositive - 500) * 15/100;
+
+                }
+
+            }else if($totalPositive <= 500 and $totalPositive > 50){
+
+                if($age <=  55){
+
+                    $employerCpf = $totalPositive * 17/100;
+
+                    $employeeCpf = 0;
+
+                }else if($age > 55 && $age <= 60){
+
+                    $employerCpf = $totalPositive * 13/100;
+
+                    $employeeCpf = 0;
+
+                }else if($age > 60 && $age <= 65){
+
+                    $employerCpf = $totalPositive * 9/100;
+
+                    $employeeCpf = 0;
+
+                }else if($age > 65){
+
+                    $employerCpf = $totalPositive * 7.5/100;
+
+                    $employeeCpf = 0;
+
+                }
+
+            }else if($$totalPositive <= 50){
+
+                if($age <= 55){
+
+                    $employerCpf = 0;
+
+                    $employeeCpf = 0;
+
+                }else if($age > 55 and $age <= 60){
+
+                    $employerCpf = 0;
+
+                    $employeeCpf = 0;
+
+                }else if($age > 60 and $age <= 65){
+
+                    $employerCpf = 0;
+
+                    $employeeCpf = 0;
+
+                }else if($age > 65){
+
+                    $employerCpf = 0;
+
+                    $employeeCpf = 0;
+
+                }
 
             }
+
 
             $payslip->employee_epf = $employeeCpf;
 
