@@ -1,8 +1,11 @@
 /vendor
 /node_modules
 /public/person_asset
+.vagrant/
+.env
+Vagrantfile
 Homestead.yaml
 Homestead.json
-.env
+
 
 

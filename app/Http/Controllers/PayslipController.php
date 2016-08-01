@@ -325,24 +325,28 @@ class PayslipController extends Controller
                     $employerCpf = $totalPositive * 17/100;
 
                     $employeeCpf = $totalPositive * 20/100;
+                    dd('1');
 
                 }else if($age > 55 && $age <= 60){
 
                     $employerCpf = $totalPositive * 13/100;
 
                     $employeeCpf = $totalPositive * 13/100;
+                    dd('2');
 
                 }else if($age > 60 && $age <= 65){
 
                     $employerCpf = $totalPositive * 9/100;
 
                     $employeeCpf = $totalPositive * 7.5/100;
+                    dd('3');
 
                 }else if($age > 65){
 
                     $employerCpf = $totalPositive * 7.5/100;
 
                     $employeeCpf = $totalPositive * 5/100;
+                    dd('4');
 
                 }
 
