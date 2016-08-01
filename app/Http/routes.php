@@ -10,76 +10,76 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-get('/api/personatts/{person_id}', 'PersonAttsController@getIndex');
-resource('personatts', 'PersonAttsController');
+Route::get('/api/personatts/{person_id}', 'PersonAttsController@getIndex');
+Route::resource('personatts', 'PersonAttsController');
 
-get('/person/user/{person_id}', 'PersonController@convertToUser');
-post('/person/download/{person_id}', 'PersonController@generateKET');
-get('person/transac/{person_id}', 'PersonController@showTransac');
-get('/person/data', 'PersonController@getData');
-get('/person/createData/{month}', 'PersonController@getDataMonth');
-delete('/person/data/{id}', 'PersonController@destroyAjax');
-resource('person', 'PersonController');
-post('person/{id}/file', 'PersonController@addFile');
-delete('person/{id}/file', 'PersonController@removeFile');
+Route::get('/person/user/{person_id}', 'PersonController@convertToUser');
+Route::post('/person/download/{person_id}', 'PersonController@generateKET');
+Route::get('person/transac/{person_id}', 'PersonController@showTransac');
+Route::get('/person/data', 'PersonController@getData');
+Route::get('/person/createData/{month}', 'PersonController@getDataMonth');
+Route::delete('/person/data/{id}', 'PersonController@destroyAjax');
+Route::resource('person', 'PersonController');
+Route::post('person/{id}/file', 'PersonController@addFile');
+Route::delete('person/{id}/file', 'PersonController@removeFile');
 
-get('/profile/data', 'ProfileController@getData');
-get('/profile/{id}/edit/policy', 'ProfileController@editPolicy');
-resource('profile', 'ProfileController');
+Route::get('/profile/data', 'ProfileController@getData');
+Route::get('/profile/{id}/edit/policy', 'ProfileController@editPolicy');
+Route::resource('profile', 'ProfileController');
 
-post('/payslip/download/{payslip_id}', 'PayslipController@generatePayslip');
-get('/payslip/addother/{payslip_id}', 'PayslipController@getAddOther');
-get('/payslip/deduction/{payslip_id}', 'PayslipController@getDeduction');
-get('/payslip/addition/{payslip_id}', 'PayslipController@getAddition');
-get('/payslip/person/{person_id}', 'PayslipController@getPersonData');
-delete('/payslip/data/{id}', 'PayslipController@destroyAjax');
-get('/payslip/data', 'PayslipController@getData');
-resource('payslip', 'PayslipController');
+Route::post('/payslip/download/{payslip_id}', 'PayslipController@generatePayslip');
+Route::get('/payslip/addother/{payslip_id}', 'PayslipController@getAddOther');
+Route::get('/payslip/deduction/{payslip_id}', 'PayslipController@getDeduction');
+Route::get('/payslip/addition/{payslip_id}', 'PayslipController@getAddition');
+Route::get('/payslip/person/{person_id}', 'PayslipController@getPersonData');
+Route::delete('/payslip/data/{id}', 'PayslipController@destroyAjax');
+Route::get('/payslip/data', 'PayslipController@getData');
+Route::resource('payslip', 'PayslipController');
 
-get('/addition/data/{id}', 'AdditionController@getData');
-delete('/addition/data/{id}', 'AdditionController@destroyAjax');
-resource('addition', 'AdditionController');
+Route::get('/addition/data/{id}', 'AdditionController@getData');
+Route::delete('/addition/data/{id}', 'AdditionController@destroyAjax');
+Route::resource('addition', 'AdditionController');
 
-get('/deduction/data/{id}', 'DeductionController@getData');
-delete('/deduction/data/{id}', 'DeductionController@destroyAjax');
-resource('deduction', 'DeductionController');
+Route::get('/deduction/data/{id}', 'DeductionController@getData');
+Route::delete('/deduction/data/{id}', 'DeductionController@destroyAjax');
+Route::resource('deduction', 'DeductionController');
 
-get('/addother/data/{id}', 'AddOtherController@getData');
-delete('/addother/data/{id}', 'AddOtherController@destroyAjax');
-resource('addother', 'AddOtherController');
+Route::get('/addother/data/{id}', 'AddOtherController@getData');
+Route::delete('/addother/data/{id}', 'AddOtherController@destroyAjax');
+Route::resource('addother', 'AddOtherController');
 
-get('/leave/leaveattach/excel/{person_id}', 'LeaveController@exportAttachExcel');
-post('/leave/leaveattach/{id}', 'LeaveController@addLeaveAttach');
-delete('/leave/leaveattach/{id}', 'LeaveController@removeLeaveAttach');
-get('/leave/data/', 'LeaveController@getData');
-delete('/leave/data/{id}', 'LeaveController@destroyAjax');
-resource('leave', 'LeaveController');
+Route::get('/leave/leaveattach/excel/{person_id}', 'LeaveController@exportAttachExcel');
+Route::post('/leave/leaveattach/{id}', 'LeaveController@addLeaveAttach');
+Route::delete('/leave/leaveattach/{id}', 'LeaveController@removeLeaveAttach');
+Route::get('/leave/data/', 'LeaveController@getData');
+Route::delete('/leave/data/{id}', 'LeaveController@destroyAjax');
+Route::resource('leave', 'LeaveController');
 
-get('/applyleaves/data/', 'ApplyLeaveController@getAllData');
-get('/applyleave/data/', 'ApplyLeaveController@getData');
-delete('/applyleave/data/{id}', 'ApplyLeaveController@destroyAjax');
-resource('applyleave', 'ApplyLeaveController');
+Route::get('/applyleaves/data/', 'ApplyLeaveController@getAllData');
+Route::get('/applyleave/data/', 'ApplyLeaveController@getData');
+Route::delete('/applyleave/data/{id}', 'ApplyLeaveController@destroyAjax');
+Route::resource('applyleave', 'ApplyLeaveController');
 
-resource('/massemail', 'MassEmailController');
+Route::resource('/massemail', 'MassEmailController');
 
-get('/user/data', 'UserController@getData');
-delete('/user/data/{id}', 'UserController@destroyAjax');
-resource('user', 'UserController');
+Route::get('/user/data', 'UserController@getData');
+Route::delete('/user/data/{id}', 'UserController@destroyAjax');
+Route::resource('user', 'UserController');
 
-get('/role/data', 'RoleController@getData');
-resource('role', 'RoleController');
+Route::get('/role/data', 'RoleController@getData');
+Route::resource('role', 'RoleController');
 
-get('/position/people/{position_id}', 'PositionController@getPositionPeople');
-get('/position/data', 'PositionController@getData');
-delete('/position/data/{id}', 'PositionController@destroyAjax');
-resource('position', 'PositionController');
+Route::get('/position/people/{position_id}', 'PositionController@getPositionPeople');
+Route::get('/position/data', 'PositionController@getData');
+Route::delete('/position/data/{id}', 'PositionController@destroyAjax');
+Route::resource('position', 'PositionController');
 
-get('/department/people/{department_id}', 'DeptController@getDepartmentPeople');
-get('/department/data/', 'DeptController@getData');
-delete('/department/data/{id}', 'DeptController@destroyAjax');
-resource('department', 'DeptController');
+Route::get('/department/people/{department_id}', 'DeptController@getDepartmentPeople');
+Route::get('/department/data/', 'DeptController@getData');
+Route::delete('/department/data/{id}', 'DeptController@destroyAjax');
+Route::resource('department', 'DeptController');
 
-resource('mainindex', 'MainIndexController');
+Route::resource('mainindex', 'MainIndexController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
