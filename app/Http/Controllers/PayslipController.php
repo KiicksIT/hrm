@@ -311,167 +311,86 @@ class PayslipController extends Controller
     private function calculateTotal($request, $payslip)
     {
         $person = Person::findOrFail($payslip->person_id);
-
         if($person->resident == 1){
-
             // age calculation buggy because return only exact year
             // $age = Carbon::createFromFormat('d-F-Y', $person->dob)->age;
-
             $age = Carbon::createFromFormat('d-F-Y', $person->dob)->diffInYears(Carbon::now());
-
             if($age == 55 or $age == 60 or $age == 65){
-
                 if(Carbon::today()->month > Carbon::createFromFormat('d-F-Y', $person->dob)->month){
-
                     $age = $age + 0.5;
-
                 }else if(Carbon::today()->month == Carbon::createFromFormat('d-F-Y', $person->dob)->month){
-
                     if(Carbon::today()->day > Carbon::createFromFormat('d-F-Y', $person->dob)->day){
-
                         $age = $age + 0.5;
                     }
                 }
-
             }
-
             $totalPositive = $this->calCPFFormula($request, $payslip->id);
-
             if($totalPositive >= 750){
-
                 if($age <=  55){
-
                     $employerCpf = $totalPositive * 17/100;
-
                     $employeeCpf = $totalPositive * 20/100;
-
                 }else if($age > 55 && $age <= 60){
-
                     $employerCpf = $totalPositive * 13/100;
-
                     $employeeCpf = $totalPositive * 13/100;
-
-
                 }else if($age > 60 && $age <= 65){
-
                     $employerCpf = $totalPositive * 9/100;
-
                     $employeeCpf = $totalPositive * 7.5/100;
-
                 }else if($age > 65){
-
                     $employerCpf = $totalPositive * 7.5/100;
-
                     $employeeCpf = $totalPositive * 5/100;
-
                 }
-
             }else if($totalPositive < 750 and $totalPositive > 500){
-
                 if($age <= 55){
-
                     $employerCpf = $totalPositive * 17/100 + ($totalPositive - 500) * 60/100;
-
                     $employeeCpf = ($totalPositive - 500) * 60/100;
-
                 }else if($age > 55 and $age <= 60){
-
                     $employerCpf = $totalPositive * 13/100 + ($totalPositive - 500) * 39/100;
-
                     $employeeCpf = ($totalPositive - 500) * 39/100;
-
                 }else if($age > 60 and $age <= 65){
-
                     $employerCpf = $totalPositive * 9/100 + ($totalPositive - 500) * 225/1000;
-
                     $employeeCpf = ($totalPositive - 500) * 225/1000;
-
                 }else if($age > 65){
-
                     $employerCpf = $totalPositive * 75/1000 + ($totalPositive - 500) * 15/100;
-
                     $employeeCpf = ($totalPositive - 500) * 15/100;
-
                 }
-
             }else if($totalPositive <= 500 and $totalPositive > 50){
-
                 if($age <=  55){
-
                     $employerCpf = $totalPositive * 17/100;
-
                     $employeeCpf = 0;
-
                 }else if($age > 55 && $age <= 60){
-
                     $employerCpf = $totalPositive * 13/100;
-
                     $employeeCpf = 0;
-
                 }else if($age > 60 && $age <= 65){
-
                     $employerCpf = $totalPositive * 9/100;
-
                     $employeeCpf = 0;
-
                 }else if($age > 65){
-
                     $employerCpf = $totalPositive * 7.5/100;
-
                     $employeeCpf = 0;
-
                 }
-
-            }else if($$totalPositive <= 50){
-
+            }else if($totalPositive <= 50){
                 if($age <= 55){
-
                     $employerCpf = 0;
-
                     $employeeCpf = 0;
-
                 }else if($age > 55 and $age <= 60){
-
                     $employerCpf = 0;
-
                     $employeeCpf = 0;
-
                 }else if($age > 60 and $age <= 65){
-
                     $employerCpf = 0;
-
                     $employeeCpf = 0;
-
                 }else if($age > 65){
-
                     $employerCpf = 0;
-
                     $employeeCpf = 0;
-
                 }
-
             }
-
-
-            $payslip->employee_epf = floor($employeeCpf);
-
+            $payslip->employee_epf = $employeeCpf;
             $payslip->employercont_epf = $employerCpf;
-
             $payslip->save();
-
-            // dd($payslip->employee_epf);
-
             $deduction = Deduction::wherePayslipId($payslip->id)->whereDeductitemId(1)->first();
-
             if(! $deduction){
-
                 $deduction = $this->createCPFDeduction($payslip);
             }
-
             $deduction->deduct_amount = $payslip->employee_epf;
-
             $deduction->save();
-
         }
             // cal net pay (A+B-C+D+E)
             $payslip->net_pay = $this->getBasic($request) + $this->getAdditionSum($payslip->id)
