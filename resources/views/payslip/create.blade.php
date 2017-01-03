@@ -51,11 +51,5 @@
 
 @section('footer')
 <script src="/js/payslip.js"></script>
-<script>
-    $('.select').select2({
-        placeholder: 'Select...',
-        allowClear: true
-    });
-</script>
 @stop
 

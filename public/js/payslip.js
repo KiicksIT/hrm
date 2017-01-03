@@ -33,6 +33,13 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
                 $scope.people = people;
             });
         }
+
+        angular.element(document).ready(function () {
+            $('.select').select2({
+                placeholder: 'Select...',
+                allowClear: true
+            });
+        });
     }
 
 app.controller('payslipController', payslipController);
