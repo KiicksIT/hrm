@@ -10,7 +10,7 @@
         <div class="panel-heading">
             <h3 class="panel-title"><strong>New {{ $PAYSLIP_TITLE }}</strong></h3>
         </div>
-
+        @{{months}}
         <div class="panel-body">
             {!! Form::model($item = new \App\Payslip, ['action'=>'PayslipController@store']) !!}
             <div class="col-md-8 col-md-offset-2">

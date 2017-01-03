@@ -1,12 +1,9 @@
 var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPagination', 'ui.select', 'ngSanitize']);
-    console.log('dude');
     function payslipController($scope, $http){
         $scope.currentPage = 1;
         $scope.itemsPerPage = 10;
         $scope.people = '';
         $scope.months = [];
-
-        angular.element(document).ready(function () {
 
             $http.get('/api/months').success(function(response) {
                 for (i = 0; i < response.length; i++){
@@ -36,6 +33,7 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
                 });
             }
 
+        angular.element(document).ready(function () {
             $('.select').select2({
                 placeholder: 'Select...',
                 allowClear: true
