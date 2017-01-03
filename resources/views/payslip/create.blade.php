@@ -1,5 +1,3 @@
-@inject('months', 'App\Month')
-
 @extends('template')
 @section('title')
 {{ $PAYSLIP_TITLE }}
@@ -12,38 +10,19 @@
         <div class="panel-heading">
             <h3 class="panel-title"><strong>New {{ $PAYSLIP_TITLE }}</strong></h3>
         </div>
+
         <div class="panel-body">
             {!! Form::model($item = new \App\Payslip, ['action'=>'PayslipController@store']) !!}
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     {!! Form::label('search_date', 'Select Month 月份', ['class'=>'control-label']) !!}
-{{--                     <select name="month">
+                    <select id="month" name="month" class="select form-control"
+                            ng-model="monthModel" ng-change="onMonthSelected(monthModel)">
                             <option value=""></option>
-                            @foreach($months::all() as $month)
-                                <option value="{{$month->id}}-{{Carbon\Carbon::now()->subYear()->year}}">
-                                    {{$month->name}} - {{Carbon\Carbon::now()->subYear()->year}}
-                                </option>
-                            @endforeach
-                            @foreach($months::all() as $month)
-                                <option value="{{$month->id}}-{{Carbon\Carbon::now()->year}}">
-                                    {{$month->name}} - {{Carbon\Carbon::now()->year}}
-                                </option>
-                            @endforeach
-                            @foreach($months::all() as $month)
-                                <option value="{{$month->id}}-{{Carbon\Carbon::now()->addYear()->year}}">
-                                    {{$month->name}} - {{Carbon\Carbon::now()->addYear()->year}}
-                                </option>
-                            @endforeach
-                    </select> --}}
-                        {!! Form::select('month',
-                            [''=>null] + $months::pluck('name', 'id')->all(),
-                            null,
-                            [
-                            'class'=>'select form-control',
-                            'ng-model'=>'monthModel',
-                            'ng-change'=>'onMonthSelected(monthModel)'
-                            ])
-                        !!}
+                            <option ng-repeat="month in months" value="@{{month.id}}-@{{month.year}}">
+                                @{{month.name}} - @{{month.year}}
+                            </option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -68,7 +47,9 @@
         </div>
     </div>
 </div>
+@stop
 
-{!! Html::script('/js/payslip.js') !!}
+@section('footer')
+<script src="/js/payslip.js"></script>
 @stop
 
