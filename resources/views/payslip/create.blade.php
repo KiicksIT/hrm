@@ -17,7 +17,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     {!! Form::label('search_date', 'Select Month 月份', ['class'=>'control-label']) !!}
-                    <select name="month">
+{{--                     <select name="month">
                             <option value=""></option>
                             @foreach($months::all() as $month)
                                 <option value="{{$month->id}}-{{Carbon\Carbon::now()->subYear()->year}}">
@@ -34,7 +34,16 @@
                                     {{$month->name}} - {{Carbon\Carbon::now()->addYear()->year}}
                                 </option>
                             @endforeach
-                    </select>
+                    </select> --}}
+                        {!! Form::select('month',
+                            [''=>null] + $months::pluck('name', 'id')->all(),
+                            null,
+                            [
+                            'class'=>'select form-control',
+                            'ng-model'=>'monthModel',
+                            'ng-change'=>'onMonthSelected(monthModel)'
+                            ])
+                        !!}
                 </div>
 
                 <div class="form-group">
