@@ -19,7 +19,7 @@
                     <select id="month" name="month" class="select form-control"
                             ng-model="monthModel" ng-change="onMonthSelected(monthModel)">
                             <option value=""></option>
-                            <option ng-repeat="month in months" value="@{{month.id}}-@{{month.year}}">
+                            <option ng-repeat="month in months" ng-value="month.id" value="@{{month.id}}-@{{month.year}}">
                                 @{{month.name}} - @{{month.year}}
                             </option>
                     </select>
