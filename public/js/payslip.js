@@ -1,5 +1,5 @@
 var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPagination', 'ui.select', 'ngSanitize']);
-
+    console.log('dude');
     function payslipController($scope, $http){
         $scope.currentPage = 1;
         $scope.itemsPerPage = 10;
