@@ -13,16 +13,18 @@ Route::get('/', function () {
 Route::get('/api/personatts/{person_id}', 'PersonAttsController@getIndex');
 Route::resource('personatts', 'PersonAttsController');
 
+Route::get('/person/leave/{person_id}/edit', 'PersonController@leaveManagerIndex');
 Route::get('/person/user/{person_id}', 'PersonController@convertToUser');
 Route::post('/person/download/{person_id}', 'PersonController@generateKET');
 Route::get('person/transac/{person_id}', 'PersonController@showTransac');
 Route::get('/person/data', 'PersonController@getData');
-Route::get('/person/createData/{month}', 'PersonController@getDataMonth');
+Route::get('/person/createData/{month}/{year}', 'PersonController@getDataMonth');
 Route::delete('/person/data/{id}', 'PersonController@destroyAjax');
 Route::resource('person', 'PersonController');
 Route::post('person/{id}/file', 'PersonController@addFile');
 Route::delete('person/{id}/file', 'PersonController@removeFile');
 
+Route::post('/profile/annual/all/update', 'ProfileController@updateAnnualAll');
 Route::get('/profile/data', 'ProfileController@getData');
 Route::get('/profile/{id}/edit/policy', 'ProfileController@editPolicy');
 Route::resource('profile', 'ProfileController');
@@ -80,6 +82,8 @@ Route::delete('/department/data/{id}', 'DeptController@destroyAjax');
 Route::resource('department', 'DeptController');
 
 Route::resource('mainindex', 'MainIndexController');
+
+Route::get('/api/months', 'MonthController@getAllMonthsApi');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

@@ -134,6 +134,12 @@ class ProfileController extends Controller
 
     }
 
+    // update annual leave for all employees()
+    public function updateAnnualAll(Request $request)
+    {
+
+    }
+
     //adding file
     //@param file var, request
     private function addFile($file, $request)

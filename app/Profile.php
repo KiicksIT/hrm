@@ -14,7 +14,8 @@ class Profile extends Model
         'header', 'logo', 'footer',
         'payslip_start', 'payslip_end', 'payslip_otstart',
         'payslip_otend', 'payday', 'ot_payday',
-        'notice' 
+        'notice', 'annual_cap', 'annual_year_incre',
+        'first_year_annual', 'annual_bring_forward_cap'
     ];
 
     public function setPayslipStartAttribute($alphanum)
@@ -22,17 +23,17 @@ class Profile extends Model
         $this->attributes['payslip_start'] = $this->convertAlphanum($alphanum);
     }
 
-    public function getPayslipStartAttribute($number) 
+    public function getPayslipStartAttribute($number)
     {
         return $this->convertNum($number);
-    } 
+    }
 
     public function setPayslipEndAttribute($alphanum)
     {
         $this->attributes['payslip_end'] = $this->convertAlphanum($alphanum);
     }
 
-    public function getPayslipEndAttribute($number) 
+    public function getPayslipEndAttribute($number)
     {
         return $this->convertNum($number);
     }
@@ -42,17 +43,17 @@ class Profile extends Model
         $this->attributes['payslip_otstart'] = $this->convertAlphanum($alphanum);
     }
 
-    public function getPayslipOtstartAttribute($number) 
+    public function getPayslipOtstartAttribute($number)
     {
         return $this->convertNum($number);
-    } 
+    }
 
     public function setPayslipOtendAttribute($alphanum)
     {
         $this->attributes['payslip_otend'] = $this->convertAlphanum($alphanum);
     }
 
-    public function getPayslipOtendAttribute($number) 
+    public function getPayslipOtendAttribute($number)
     {
         return $this->convertNum($number);
     }
@@ -62,7 +63,7 @@ class Profile extends Model
         $this->attributes['payday'] = $this->convertAlphanum($alphanum);
     }
 
-    public function getPaydayAttribute($number) 
+    public function getPaydayAttribute($number)
     {
         return $this->convertNum($number);
     }
@@ -72,10 +73,10 @@ class Profile extends Model
         $this->attributes['ot_payday'] = $this->convertAlphanum($alphanum);
     }
 
-    public function getOtPaydayAttribute($number) 
+    public function getOtPaydayAttribute($number)
     {
         return $this->convertNum($number);
-    }    
+    }
 
     private function convertAlphanum($alphanum)
     {
@@ -92,6 +93,6 @@ class Profile extends Model
 
         else
 
-            return $number. $ends[$number % 10];        
-    }   
+            return $number. $ends[$number % 10];
+    }
 }

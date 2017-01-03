@@ -42,12 +42,11 @@ class PersonController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function getDataMonth($month)
+    public function getDataMonth($month, $year)
     {
-        $month = $month + 1;
 
         $temptable = DB::raw("(SELECT person_id, count(*) AS num_count FROM payslips
-                    WHERE MONTH(payslip_from) = ".$month." GROUP BY person_id) as num");
+                    WHERE MONTH(payslip_from) = ".$month." AND YEAR(payslip_from) = ".$year." GROUP BY person_id) as num");
 
         $person = DB::table('people')
                     ->leftJoin('positions', 'positions.id', '=', 'people.position_id')
@@ -341,44 +340,26 @@ class PersonController extends Controller
     public function convertToUser($person_id)
     {
         $person = Person::findOrFail($person_id);
-
         if(! $person->user_id){
-
             $user = new User();
-
             $user->name = $person->name;
-
             $user->email = $person->email;
-
             $user->username = strtolower(preg_replace('/\s+/', '', $person->name));
-
             $user->password = 'abcde12345';
-
             $user->contact = $person->contact;
-
             $user->save();
-
             $user->roles()->attach(Role::whereName('user')->firstOrFail()->id);
-
             $person->user_id = $user->id;
-
             $person->save();
 
             if($person){
-
                 Flash::success('User Added');
-
             }else{
-
                 Flash::error('Please Try Again');
-
             }
-
         }else{
-
             Flash::error('This Employee has already been added as user');
         }
-
         return Redirect::action('PersonController@edit', $person->id);
     }
 
@@ -386,7 +367,6 @@ class PersonController extends Controller
     public function generateKET($id)
     {
         $person = Person::findOrFail($id);
-
         $profile = Profile::firstOrFail();
 
         $data = [
@@ -395,28 +375,28 @@ class PersonController extends Controller
         ];
 
         $name = 'KET_('.$person->name.')-'.Carbon::now()->format('dmYHis').'.pdf';
-
         $pdf = PDF::loadView('person.printket_ch', $data);
-
         $pdf->setPaper('A4', 'landscape');
-
         return $pdf->download($name);
-
     }
+
+    // return leave manager index view()
+    public function leaveManagerIndex($person_id)
+    {
+        $person = Person::findOrFail($person_id);
+        return view('person.leavemanager', compact('person'));
+    }
+
+
 
     // create leave records for the person
     private function initLeave($request, $person)
     {
         $leave = new Leave();
-
         $leave->total_paidleave = $request->paid_leave;
-
         $leave->total_paidsickleave = $request->mc;
-
         $leave->total_paidhospleave = $request->hospital_leave;
-
         $leave->person_id = $person->id;
-
         $leave->save();
     }
 

@@ -15,10 +15,10 @@
 
                     <div class="pull-left display_panel_title">
                         <label for="display_num">Display</label>
-                        <select ng-model="itemsPerPage" ng-init="itemsPerPage='10'">
-                          <option>10</option>
-                          <option>20</option>
-                          <option>30</option>
+                        <select ng-model="itemsPerPage" ng-init="itemsPerPage='50'">
+                          <option>50</option>
+                          <option>100</option>
+                          <option>200</option>
                         </select>
                         <label for="display_num2" style="padding-right: 20px">per Page</label>
                     </div>
@@ -97,7 +97,7 @@
                                 <td class="col-md-2 text-center">@{{ person.contact }}</td>
                                 <td class="col-md-2 text-center">
                                     <a href="/person/@{{ person.id }}/edit" class="btn btn-sm btn-primary">Profile</a>
-                                    <button class="btn btn-danger btn-sm btn-delete" ng-click="confirmDelete(person.id)">Delete</button>
+                                    {{-- <a href="/person/leave/@{{person.id}}/edit" class="btn btn-sm btn-default"><i class="fa fa-calendar"></i> <span class="hidden-xs hidden-md">Ann.Leave</span></a> --}}
                                 </td>
                             </tr>
                             <tr ng-show="(people | filter:search).length == 0 || ! people.length">

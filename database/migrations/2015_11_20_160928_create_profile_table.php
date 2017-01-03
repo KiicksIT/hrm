@@ -30,6 +30,10 @@ class CreateProfileTable extends Migration
             $table->integer('payday')->nullable();
             $table->integer('ot_payday')->nullable();
             $table->text('notice')->nullable();
+            $table->decimal('annual_cap', 3 ,1)->nullable();
+            $table->decimal('annual_year_incre', 3 ,1)->nullable();
+            $table->decimal('first_year_annual', 3, 1)->nullable();
+            $table->decimal('annual_bring_forward_cap', 3, 1)->nullable();
             $table->timestamps();
         });
     }

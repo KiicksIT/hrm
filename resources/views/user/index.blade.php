@@ -23,16 +23,14 @@
                 @endcan
 
                 <li><a href="#profile" role="tab" data-toggle="tab">Company Profile</a></li>
+                {{-- <li><a href="#annual_leave" role="tab" data-toggle="tab">Annual Leave Setting</a></li> --}}
             </ul>
     </div>
 
     <div class="panel-body">
         <div class="tab-content">
-
             <div class="tab-pane active" id="data">
-
                 <div ng-controller="userController">
-
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title">
@@ -324,6 +322,33 @@
                 </div>
             </div>
 
+            <div class="tab-pane" id="annual_leave">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title pull-left">
+                            <h3 class="panel-title display_num"><strong>Annual Leave</strong></h3>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        {!! Form::open([
+                                        'id'=>'update_annual' ,
+                                        'method'=>'PATCH',
+                                        'action'=>['ProfileController@updateAnnualAll']
+                                        ])
+                         !!}
+                            @include('person.annual_all')
+                        {!! Form::close() !!}
+
+                            <div class="col-md-12">
+                                <div class="pull-right form_button_right">
+                                    {!! Form::submit('Edit', ['form'=>'update_annual', 'class'=> 'btn btn-primary']) !!}
+                                    <a href="/payslip" class="btn btn-default">Back</a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
 
     </div>
 </div>

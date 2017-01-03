@@ -8,17 +8,17 @@ $('.checkall').change(function(){
     function personController($scope, $http){
 
         $scope.currentPage = 1;
-        $scope.itemsPerPage = 10; 
+        $scope.itemsPerPage = 50;
         $scope.selected = [];
 
         // send email by checkbox
-        $scope.check= function(data) { 
+        $scope.check= function(data) {
         var arr = [];
         for(var i in data){
            if(data[i].SELECTED=='Y'){
                arr.push(data[i].email);
            }
-        }    
+        }
         // find selected checkbox and send mail
         $scope.selected = arr;
 
@@ -26,7 +26,7 @@ $('.checkall').change(function(){
                 var link = "mailto:"+arr;
                 window.location.href = link;
             }
-        }    
+        }
 
         // Check/uncheck all boxes
      /*   $scope.checkAll = function () {
@@ -40,10 +40,10 @@ $('.checkall').change(function(){
             });
 
         }; */
-                         
+
 
         angular.element(document).ready(function () {
-       
+
             $http.get('/person/data').success(function(people){
             $scope.people = people;
             });
@@ -65,15 +65,15 @@ $('.checkall').change(function(){
                 }else{
                     return false;
                 }
-            } 
+            }
         });
-    }  
+    }
 
 function repeatController($scope) {
     $scope.$watch('$index', function(index) {
         $scope.number = ($scope.$index + 1) + ($scope.currentPage - 1) * $scope.itemsPerPage;
     })
-}   
+}
 
 /*$(document).ready(function () {
     $(".checkall").click(function () {

@@ -6,40 +6,33 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
         $scope.people = '';
         $scope.months = [];
 
-
-            var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December' ];
-
-
-                for (i = 0; i < monthNames.length; i++){
-                    $scope.months.push({
-                        id: i, name: monthNames[i], year: moment().year()
-                    });
-                }
-
-            // init
-
-
-            $scope.onMonthSelected = function (month){
-
-                var month = parseInt(month);
-                var numberPattern = /\d+/g;
-
-                $http.get('/person/createData/' + month).success(function(people){
-                    $scope.people = people;
+        $http.get('/api/months').success(function(response) {
+            for (i = 0; i < response.length; i++){
+                $scope.months.push({
+                    id: response[i].id, name: response[i].name, year: moment().year()-1
                 });
-
-                $http.get('/profile/data').success(function(profile){
-                    var payday = profile.payday.match(numberPattern);
-                    $scope.pdateModel = moment().month(month).date(payday).format('YYYY-MM-DD');
-                });
-
-                $scope.pfromModel = moment().month(month).startOf('month').format('YYYY-MM-DD');
-                $scope.ptoModel = moment().month(month).endOf('month').format('YYYY-MM-DD');
-                $scope.ofromModel = moment().month(month).startOf('month').format('YYYY-MM-DD');
-                $scope.otoModel = moment().month(month).endOf('month').format('YYYY-MM-DD');
-
             }
+            for (i = 0; i < response.length; i++){
+                $scope.months.push({
+                    id: response[i].id, name: response[i].name, year: moment().year()
+                });
+            }
+            for (i = 0; i < response.length; i++){
+                $scope.months.push({
+                    id: response[i].id, name: response[i].name, year: moment().year()+1
+                });
+            }
+        });
+
+        $scope.onMonthSelected = function (months){
+            var timeline = months.split('-', 2);
+            var month = parseInt(timeline[0]);
+            var year = parseInt(timeline[1]);
+
+            $http.get('/person/createData/' + month + '/' + year).success(function(people){
+                $scope.people = people;
+            });
+        }
     }
 
 app.controller('payslipController', payslipController);

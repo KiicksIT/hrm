@@ -67,6 +67,10 @@ class AppServiceProvider extends ServiceProvider
         view()->share('LEAVE_TITLE', 'Leave 假期');
         view()->share('LEAVE_PREFIX', '');
 
+        // leave management
+        view()->share('LEAVE_MNG_TITLE', 'Leave Manager 假期管理');
+        view()->share('LEAVE_PREFIX', '');
+
         //Apply Leave
         view()->share('APPLEAVE_TITLE', 'Apply Leave 请假');
         view()->share('APPLEAVE_PREFIX', '');

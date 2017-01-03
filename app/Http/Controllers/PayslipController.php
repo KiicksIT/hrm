@@ -66,32 +66,37 @@ class PayslipController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'month' => 'required',
             'person_id' => 'required',
+        ], [
+            'month.required' => 'Please select the month',
+            'person_id.required' => 'Please select the person'
         ]);
 
+        $timeline = explode("-", $request->month);
+        $month = $timeline[0];
+        $year = $timeline[1];
+
+        $request->merge(array('payslip_from' => Carbon::createFromDate($year, $month, null)->startOfMonth()->toDateString()));
+        $request->merge(array('payslip_to' => Carbon::createFromDate($year, $month, null)->endOfMonth()->toDateString()));
+        $request->merge(array('ot_from' => Carbon::createFromDate($year, $month, null)->startOfMonth()->toDateString()));
+        $request->merge(array('ot_to' => Carbon::createFromDate($year, $month, null)->endOfMonth()->toDateString()));
+
+        $profile = Profile::firstOrFail();
+        $request->merge(array('pay_date' => Carbon::createFromDate($year, $month, (int) $profile->payday)->toDateString()));
         $request->merge(array('status' => 'Pending'));
-        // set default dates
 
         $input = $request->all();
-
         $payslip = Payslip::create($input);
-
         $person = Person::findOrFail($request->person_id);
-
         if($person->resident == 1){
-
             $this->createCPFDeduction($payslip);
-
         }
 
         if($payslip){
-
             Flash::success('Successfully Created');
-
         }else{
-
             Flash::error('Please Try Again');
-
         }
 
         return Redirect::action('PayslipController@edit', $payslip->id);

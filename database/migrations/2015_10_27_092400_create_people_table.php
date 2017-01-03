@@ -53,6 +53,10 @@ class CreatePeopleTable extends Migration
             $table->integer('medic_exam')->nullable();
             $table->text('other_leave')->nullable();
             $table->text('benefit_remark')->nullable();
+            $table->decimal('ann_leave_avail', 3, 1);
+            $table->decimal('ann_leave_total', 3, 1);
+            $table->decimal('ann_leave_used', 3, 1);
+
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

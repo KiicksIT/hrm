@@ -22,7 +22,8 @@ class Person extends Model
     'benefit_remark', 'prob_length', 'contract_start',
     'contract_end', 'contract_length', 'other_leave',
     'salary_component', 'user_id', 'total_earned',
-    'avatar_path'
+    'avatar_path', 'ann_leave_avail', 'ann_leave_total',
+    'ann_leave_used'
     ];
 
     /**

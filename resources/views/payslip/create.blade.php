@@ -13,29 +13,19 @@
 
         <div class="panel-body">
             {!! Form::model($item = new \App\Payslip, ['action'=>'PayslipController@store']) !!}
-
-            {!! Form::text('pay_date', null, ['class'=>'hidden form-control', 'ng-model'=>'pdateModel']) !!}
-            {!! Form::text('payslip_from', null, ['class'=>'hidden form-control', 'ng-model'=>'pfromModel']) !!}
-            {!! Form::text('payslip_to', null, ['class'=>'hidden form-control', 'ng-model'=>'ptoModel']) !!}
-            {!! Form::text('ot_from', null, ['class'=>'hidden form-control', 'ng-model'=>'ofromModel']) !!}
-            {!! Form::text('ot_to', null, ['class'=>'hidden form-control', 'ng-model'=>'otoModel']) !!}
-
             <div class="col-md-8 col-md-offset-2">
-
                 <div class="form-group">
-                    {{-- {!! Form::label('search_person', 'Select Person', ['class'=>'control-label']) !!} --}}
                     {!! Form::label('search_date', 'Select Month 月份', ['class'=>'control-label']) !!}
                     <select id="month" name="month" class="select form-control"
                             ng-model="monthModel" ng-change="onMonthSelected(monthModel)">
                             <option value=""></option>
-                            <option ng-repeat="month in months" ng-value="month.id" value="@{{month.id}}">
+                            <option ng-repeat="month in months" value="@{{month.id}}-@{{month.year}}">
                                 @{{month.name}} - @{{month.year}}
                             </option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    {{-- {!! Form::label('search_person', 'Select Person', ['class'=>'control-label']) !!} --}}
                     {!! Form::label('search_person', 'Select Person 选择员工', ['class'=>'control-label']) !!}
                     <select id="person_id" name="person_id" class="select form-control"
                             ng-model="personModel">
