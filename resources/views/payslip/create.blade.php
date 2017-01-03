@@ -47,12 +47,7 @@
         </div>
     </div>
 </div>
-@stop
 
-@section('footer')
-<script>
-    console.log('hello');
-</script>
 <script src="/js/payslip.js"></script>
 @stop
 
