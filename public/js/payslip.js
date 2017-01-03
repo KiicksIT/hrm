@@ -4,8 +4,6 @@ var app = angular.module('app', ['ui.bootstrap', 'angularUtils.directives.dirPag
         $scope.itemsPerPage = 10;
         $scope.people = '';
         $scope.months = [];
-        console.log('hey man');
-
 
             $scope.onMonthSelected = function (months){
                 var timeline = months.split('-', 2);

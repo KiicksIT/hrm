@@ -23,7 +23,8 @@ elixir(function(mix) {
             'dropzone.js',
             'fixedScroll.js',
             'filesaver.js',
-            '../bower/ui-select/dist/select.min.js'
+            '../bower/ui-select/dist/select.min.js',
+            '../bower/angular-ui-select2/src/select2.js'
             ])
         .version(['public/css/all.css', 'public/js/all.js']);
 });

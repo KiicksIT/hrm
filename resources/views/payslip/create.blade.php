@@ -1,3 +1,5 @@
+@inject('months', 'App\Month')
+
 @extends('template')
 @section('title')
 {{ $PAYSLIP_TITLE }}
@@ -10,18 +12,29 @@
         <div class="panel-heading">
             <h3 class="panel-title"><strong>New {{ $PAYSLIP_TITLE }}</strong></h3>
         </div>
-        @{{months}}
         <div class="panel-body">
             {!! Form::model($item = new \App\Payslip, ['action'=>'PayslipController@store']) !!}
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     {!! Form::label('search_date', 'Select Month 月份', ['class'=>'control-label']) !!}
-                    <select id="month" name="month" class="select form-control"
+                    <select name="month" class="select form-control"
                             ng-model="monthModel" ng-change="onMonthSelected(monthModel)">
                             <option value=""></option>
-                            <option ng-repeat="month in months" ng-value="month.id" value="@{{month.id}}-@{{month.year}}">
-                                @{{month.name}} - @{{month.year}}
-                            </option>
+                            @foreach($months::all() as $month)
+                                <option value="{{$month->id}}-{{Carbon\Carbon::now()->subYear()->year}}">
+                                    {{$month->name}} - {{Carbon\Carbon::now()->subYear()->year}}
+                                </option>
+                            @endforeach
+                            @foreach($months::all() as $month)
+                                <option value="{{$month->id}}-{{Carbon\Carbon::now()->year}}">
+                                    {{$month->name}} - {{Carbon\Carbon::now()->year}}
+                                </option>
+                            @endforeach
+                            @foreach($months::all() as $month)
+                                <option value="{{$month->id}}-{{Carbon\Carbon::now()->addYear()->year}}">
+                                    {{$month->name}} - {{Carbon\Carbon::now()->addYear()->year}}
+                                </option>
+                            @endforeach
                     </select>
                 </div>
 
