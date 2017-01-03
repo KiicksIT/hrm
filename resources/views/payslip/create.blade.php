@@ -48,6 +48,6 @@
     </div>
 </div>
 
-<script src="/js/payslip.js"></script>
+{!! Html::script('/js/payslip.js') !!}
 @stop
 
