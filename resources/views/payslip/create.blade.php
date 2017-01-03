@@ -17,8 +17,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="form-group">
                     {!! Form::label('search_date', 'Select Month 月份', ['class'=>'control-label']) !!}
-                    <select name="month" class="select form-control"
-                            ng-model="monthModel" ng-change="onMonthSelected(monthModel)">
+                    <select name="month">
                             <option value=""></option>
                             @foreach($months::all() as $month)
                                 <option value="{{$month->id}}-{{Carbon\Carbon::now()->subYear()->year}}">
