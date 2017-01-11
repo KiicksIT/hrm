@@ -138,32 +138,21 @@ class PayslipController extends Controller
      */
     public function update(PayslipRequest $request, $id)
     {
-        // dd($request->all());
         if($request->input('confirm')){
-
             $request->merge(array('status' => 'Confirmed'));
-
         }elseif($request->input('print')){
-
             $this->generatePayslip($id);
         }
-
         // update the respective payslip
         $payslip = Payslip::findOrFail($id);
-
         $payslip->update($request->all());
 
         //update epf when submit
         $this->calculateTotal($request, $payslip);
-
         if($payslip){
-
             Flash::success('Successfully Updated');
-
         }else{
-
             Flash::error('Please Try Again');
-
         }
 
         return Redirect::action('PayslipController@edit', $payslip->id);

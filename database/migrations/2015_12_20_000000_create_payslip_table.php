@@ -17,30 +17,30 @@ class CreatePayslipTable extends Migration
 
             $table->increments('id');
             $table->integer('person_id')->unsigned()->nullable();
-            $table->foreign('person_id')->references('id')->on('people'); 
+            $table->foreign('person_id')->references('id')->on('people');
             $table->decimal('basic', 10, 2);
             $table->decimal('workday_actual', 4, 1)->nullable();
             $table->decimal('workday_total', 4, 1)->nullable();
             $table->decimal('add_total', 10, 2)->nullable();
             $table->decimal('deduct_total', 10, 2)->nullable();
-            $table->timestamp('pay_date');
+            $table->datetime('pay_date');
             $table->string('pay_mode');
-            $table->timestamp('ot_from')->default(Carbon::now()->startOfMonth());
-            $table->timestamp('ot_to')->default(Carbon::now()->endOfMonth());
+            $table->datetime('ot_from')->default(Carbon::now()->startOfMonth());
+            $table->datetime('ot_to')->default(Carbon::now()->endOfMonth());
             $table->decimal('ot_hour', 5, 1)->nullable();
             $table->decimal('ot_total', 10, 2)->default(0);
             $table->decimal('other_total', 10, 2)->nullable();
             $table->decimal('net_pay', 15, 2);
             $table->decimal('employee_epf', 10, 2)->nullable();
             $table->decimal('employercont_epf', 10, 2)->nullable();
-            $table->string('status')->default('Pending'); 
-            $table->timestamp('payslip_from')->default(Carbon::now()->startOfMonth());
-            $table->timestamp('payslip_to')->default(Carbon::now()->endOfMonth()); 
-            $table->timestamps();         
+            $table->string('status')->default('Pending');
+            $table->datetime('payslip_from')->default(Carbon::now()->startOfMonth());
+            $table->datetime('payslip_to')->default(Carbon::now()->endOfMonth());
+            $table->timestamps();
         });
 
         $statement = "ALTER TABLE payslips AUTO_INCREMENT = 100001;";
-        DB::unprepared($statement);  
+        DB::unprepared($statement);
     }
 
     /**
