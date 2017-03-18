@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laracasts\Flash\Flash;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -75,6 +76,7 @@ class AppServiceProvider extends ServiceProvider
         view()->share('APPLEAVE_TITLE', 'Apply Leave 请假');
         view()->share('APPLEAVE_PREFIX', '');
 
+        // Flash::error('Your domain and server subscription will be due on 26th February 2017. Please contact +65 9037 2079 to renew subscription.')->important();
     }
 
     /**

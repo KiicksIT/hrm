@@ -335,17 +335,21 @@ class PayslipController extends Controller
                 }
             }else if($totalPositive < 750 and $totalPositive > 500){
                 if($age <= 55){
-                    $employerCpf = $totalPositive * 17/100 + ($totalPositive - 500) * 60/100;
-                    $employeeCpf = ($totalPositive - 500) * 60/100;
+                    $employerCpf = ($totalPositive * 17/100) + (($totalPositive - 500) * 60/100);
+                    $employeeCpf = floor(($totalPositive - 500) * 60/100);
+                    $employerCpf = $employerCpf - $employeeCpf;
                 }else if($age > 55 and $age <= 60){
-                    $employerCpf = $totalPositive * 13/100 + ($totalPositive - 500) * 39/100;
-                    $employeeCpf = ($totalPositive - 500) * 39/100;
+                    $employerCpf = ($totalPositive * 13/100) + (($totalPositive - 500) * 39/100);
+                    $employeeCpf = floor(($totalPositive - 500) * 39/100);
+                    $employerCpf = $employerCpf - $employeeCpf;
                 }else if($age > 60 and $age <= 65){
-                    $employerCpf = $totalPositive * 9/100 + ($totalPositive - 500) * 225/1000;
-                    $employeeCpf = ($totalPositive - 500) * 225/1000;
+                    $employerCpf = ($totalPositive * 9/100) + (($totalPositive - 500) * 225/1000);
+                    $employeeCpf = floor(($totalPositive - 500) * 225/1000);
+                    $employerCpf = $employerCpf - $employeeCpf;
                 }else if($age > 65){
-                    $employerCpf = $totalPositive * 75/1000 + ($totalPositive - 500) * 15/100;
-                    $employeeCpf = ($totalPositive - 500) * 15/100;
+                    $employerCpf = ($totalPositive * 75/1000) + (($totalPositive - 500) * 15/100);
+                    $employeeCpf = floor(($totalPositive - 500) * 15/100);
+                    $employerCpf = $employerCpf - $employeeCpf;
                 }
             }else if($totalPositive <= 500 and $totalPositive > 50){
                 if($age <=  55){

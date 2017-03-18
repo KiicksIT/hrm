@@ -3,7 +3,7 @@
     <head>
         @include('partials.header')
     </head>
-    
+
     <body>
         @include('partials.nav')
         <div class="container-fluid">
@@ -13,11 +13,12 @@
                 @include('flash::message')
                     @yield('content')
                 </div>
-            </div>               
+            </div>
         </div>
         @yield('footer')
         <script>
-            $('div.alert').delay(3000).slideUp(300);
+            // $('div.alert').delay(3000).slideUp(300);
+            $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
         </script>
     </body>
 </html>
