@@ -308,8 +308,10 @@ class PayslipController extends Controller
         if($person->resident == 1){
             // age calculation buggy because return only exact year
             // $age = Carbon::createFromFormat('d-F-Y', $person->dob)->age;
-            $age = Carbon::createFromFormat('d-F-Y', $person->dob)->diffInYears(Carbon::parse($payslip->payslip_from));
-/*            if($age == 55 or $age == 60 or $age == 65){
+            // $age = Carbon::createFromFormat('d-F-Y', $person->dob)->diffInYears(Carbon::parse($payslip->payslip_from));
+            $age = Carbon::parse($payslip->payslip_from)->year - Carbon::createFromFormat('d-F-Y', $person->dob)->year;
+
+            if($age == 55 or $age == 60 or $age == 65){
                 if(Carbon::parse($payslip->payslip_from)->month > Carbon::createFromFormat('d-F-Y', $person->dob)->month){
                     $age = $age + 0.5;
                 }else if(Carbon::parse($payslip->payslip_from)->month == Carbon::createFromFormat('d-F-Y', $person->dob)->month){
@@ -317,7 +319,8 @@ class PayslipController extends Controller
                         $age = $age + 0.5;
                     }
                 }
-            }*/
+            }
+            dd(Carbon::createFromFormat('d-F-Y', $person->dob), Carbon::parse($payslip->payslip_from), $age);
             $totalPositive = $this->calCPFFormula($request, $payslip->id);
             if($totalPositive >= 750){
                 if($age <=  55){
