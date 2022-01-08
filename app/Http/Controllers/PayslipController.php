@@ -323,25 +323,29 @@ class PayslipController extends Controller
             }
             // dd(Carbon::createFromFormat('d-F-Y', $person->dob), Carbon::parse($payslip->payslip_from), $age);
             $totalPositive = $this->calCPFFormula($request, $payslip->id);
-            if($totalPositive >= 750){
+            if($totalPositive > 750){
                 if($age <=  55){
                     $totalCpf = round($totalPositive * 37/100);
                     $employeeCpf = floor($totalPositive * 20/100);
                     $employerCpf = $totalCpf - $employeeCpf;
                 }else if($age > 55 && $age <= 60){
-                    $totalCpf = round($totalPositive * 26/100);
-                    $employeeCpf = floor($totalPositive * 13/100);
+                    $totalCpf = round($totalPositive * 28/100);
+                    $employeeCpf = floor($totalPositive * 14/100);
                     $employerCpf = $totalCpf - $employeeCpf;
                 }else if($age > 60 && $age <= 65){
-                    $totalCpf = round($totalPositive * 16.5/100);
-                    $employeeCpf = floor($totalPositive * 7.5/100);
+                    $totalCpf = round($totalPositive * 18.5/100);
+                    $employeeCpf = floor($totalPositive * 8.5/100);
                     $employerCpf = $totalCpf - $employeeCpf;
-                }else if($age > 65){
+                }else if($age > 65 && $age <= 70){
+                    $totalCpf = round($totalPositive * 14/100);
+                    $employeeCpf = floor($totalPositive * 6/100);
+                    $employerCpf = $totalCpf - $employeeCpf;
+                }else if($age > 70) {
                     $totalCpf = round($totalPositive * 12.5/100);
                     $employeeCpf = floor($totalPositive * 5/100);
                     $employerCpf = $totalCpf - $employeeCpf;
                 }
-            }else if($totalPositive < 750 and $totalPositive > 500){
+            }else if($totalPositive <= 750 and $totalPositive > 500){
                 if($age <= 55){
                     $employerCpf = round(($totalPositive * 17/100) + (($totalPositive - 500) * 60/100));
                     $employeeCpf = floor(($totalPositive - 500) * 60/100);
