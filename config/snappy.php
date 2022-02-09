@@ -13,6 +13,7 @@ return array(
                             'outline' => true,
                             'dpi' => 96,
                             'page-size' => 'A4',
+                            'zoom' => 1.23,
                         ),
     ),
     'image' => array(

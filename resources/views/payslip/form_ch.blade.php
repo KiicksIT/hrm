@@ -43,7 +43,7 @@
         <div class="col-md-4">
             {!! Form::label('pay_mode', 'Payment Method 支付方式', ['class'=>'control-label']) !!}
             {!! Form::select('pay_mode',
-                ['Cash'=>'Cash', 'Cheque'=>'Cheque', 'Bank Deposit'=>'Bank Deposit', 'Giro'=>'Giro'],
+                ['Cash'=>'Cash', 'Cheque'=>'Cheque', 'Bank Deposit'=>'Bank Deposit', 'Giro'=>'Giro', 'Online Transfer'],
                 null,
                 [
                 'id'=>'pay_mode',
