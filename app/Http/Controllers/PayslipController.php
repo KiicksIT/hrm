@@ -401,8 +401,6 @@ class PayslipController extends Controller
                 }
             }
 
-            dd($totalPositive, $age, $totalCpf, $employerCpf, $employeeCpf);
-
             // dd($totalPositive, $employerCpf, $employeeCpf);
             $payslip->employee_epf = $employeeCpf;
             $payslip->employercont_epf = $employerCpf;
