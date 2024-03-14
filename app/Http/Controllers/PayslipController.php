@@ -330,16 +330,16 @@ class PayslipController extends Controller
                     $employeeCpf = floor($totalPositive * 20/100);
                     $employerCpf = $totalCpf - $employeeCpf;
                 }else if($age > 55 && $age <= 60){
-                    $totalCpf = round($totalPositive * 29.5/100);
-                    $employeeCpf = floor($totalPositive * 15/100);
+                    $totalCpf = round($totalPositive * 31/100);
+                    $employeeCpf = floor($totalPositive * 16/100);
                     $employerCpf = $totalCpf - $employeeCpf;
                 }else if($age > 60 && $age <= 65){
-                    $totalCpf = round($totalPositive * 20.5/100);
-                    $employeeCpf = floor($totalPositive * 9.5/100);
+                    $totalCpf = round($totalPositive * 22/100);
+                    $employeeCpf = floor($totalPositive * 10.5/100);
                     $employerCpf = $totalCpf - $employeeCpf;
                 }else if($age > 65 && $age <= 70){
-                    $totalCpf = round($totalPositive * 15.5/100);
-                    $employeeCpf = floor($totalPositive * 7/100);
+                    $totalCpf = round($totalPositive * 16.5/100);
+                    $employeeCpf = floor($totalPositive * 7.5/100);
                     $employerCpf = $totalCpf - $employeeCpf;
                 }else if($age > 70) {
                     $totalCpf = round($totalPositive * 12.5/100);
@@ -352,14 +352,18 @@ class PayslipController extends Controller
                     $employeeCpf = floor(($totalPositive - 500) * 60/100);
                     $employerCpf = $employerCpf - $employeeCpf;
                 }else if($age > 55 and $age <= 60){
-                    $employerCpf = round(($totalPositive * 13/100) + (($totalPositive - 500) * 39/100));
-                    $employeeCpf = floor(($totalPositive - 500) * 39/100);
+                    $employerCpf = round(($totalPositive * 15/100) + (($totalPositive - 500) * 48/100));
+                    $employeeCpf = floor(($totalPositive - 500) * 48/100);
                     $employerCpf = $employerCpf - $employeeCpf;
                 }else if($age > 60 and $age <= 65){
+                    $employerCpf = round(($totalPositive * 115/1000) + (($totalPositive - 500) * 315/1000));
+                    $employeeCpf = floor(($totalPositive - 500) * 315/1000);
+                    $employerCpf = $employerCpf - $employeeCpf;
+                }else if($age > 65 && $age <= 70){
                     $employerCpf = round(($totalPositive * 9/100) + (($totalPositive - 500) * 225/1000));
                     $employeeCpf = floor(($totalPositive - 500) * 225/1000);
                     $employerCpf = $employerCpf - $employeeCpf;
-                }else if($age > 65){
+                }else {
                     $employerCpf = round(($totalPositive * 75/1000) + (($totalPositive - 500) * 15/100));
                     $employeeCpf = floor(($totalPositive - 500) * 15/100);
                     $employerCpf = $employerCpf - $employeeCpf;
@@ -369,13 +373,16 @@ class PayslipController extends Controller
                     $employerCpf = round($totalPositive * 17/100);
                     $employeeCpf = 0;
                 }else if($age > 55 && $age <= 60){
-                    $employerCpf = round($totalPositive * 13/100);
+                    $employerCpf = round($totalPositive * 15/100);
                     $employeeCpf = 0;
                 }else if($age > 60 && $age <= 65){
-                    $employerCpf = round($totalPositive * 9/100) ;
+                    $employerCpf = round($totalPositive * 115/1000) ;
                     $employeeCpf = 0;
-                }else if($age > 65){
-                    $employerCpf = round($totalPositive * 7.5/100);
+                }else if($age > 65 && $age <= 70){
+                    $employerCpf = round($totalPositive * 9/100);
+                    $employeeCpf = 0;
+                }else {
+                    $employerCpf = round($totalPositive * 75/1000);
                     $employeeCpf = 0;
                 }
             }else if($totalPositive <= 50){
