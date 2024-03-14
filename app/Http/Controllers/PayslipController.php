@@ -323,7 +323,7 @@ class PayslipController extends Controller
             }
             // dd(Carbon::createFromFormat('d-F-Y', $person->dob), Carbon::parse($payslip->payslip_from), $age);
             $totalPositive = $this->calCPFFormula($request, $payslip->id);
-            dd($totalPositive, $age);
+
             if($totalPositive > 750){
                 if($age <=  55){
                     $totalCpf = round($totalPositive * 37/100);
@@ -393,6 +393,8 @@ class PayslipController extends Controller
                     $employeeCpf = 0;
                 }
             }
+
+            dd($totalPositive, $age, $totalCpf, $employerCpf, $employeeCpf);
 
             // dd($totalPositive, $employerCpf, $employeeCpf);
             $payslip->employee_epf = $employeeCpf;
